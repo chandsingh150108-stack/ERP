@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Extra Notes - NoteHub</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#0f172a;color:#e2e8f0;min-height:100vh}
+.header{background:#1e293b;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #334155}
+.header h1{font-size:20px;font-weight:600}
+.header h1 span{color:#3b82f6}
+.nav-links{display:flex;gap:8px}
+.nav-link{color:#94a3b8;text-decoration:none;font-size:14px;padding:6px 12px;border:1px solid #475569;border-radius:6px;transition:all .2s}
+.nav-link:hover{color:#e2e8f0;border-color:#64748b}
+.container{max-width:1100px;margin:0 auto;padding:24px}
+
+.card{background:#1e293b;border:1px solid #334155;border-radius:12px;padding:20px;margin-bottom:20px}
+.card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:12px}
+.card-header h2{font-size:16px;font-weight:600}
+
+.search-bar{display:flex;gap:12px;align-items:center}
+.search-input-wrapper{flex:1;position:relative}
+.search-input-wrapper input{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:12px 16px;color:#e2e8f0;font-size:14px;outline:none;transition:border-color .2s;width:100%}
+.search-input-wrapper input:focus{border-color:#3b82f6}
+
+.btn{padding:9px 18px;border-radius:8px;border:none;cursor:pointer;font-size:14px;font-weight:500;transition:all .2s;display:inline-flex;align-items:center;justify-content:center;gap:6px;text-decoration:none}
+.btn-primary{background:#3b82f6;color:#fff}.btn-primary:hover{background:#2563eb}
+.btn-danger{background:#ef4444;color:#fff}.btn-danger:hover{background:#dc2626}
+.btn-outline{background:transparent;border:1px solid #475569;color:#94a3b8}.btn-outline:hover{border-color:#64748b;color:#e2e8f0}
+.btn-sm{padding:6px 12px;font-size:12px}
+
+.notes-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px}
+.note-card{background:#1e293b;border:1px solid #334155;border-radius:12px;padding:20px;display:flex;flex-direction:column;justify-content:space-between;transition:all .2s}
+.note-card:hover{border-color:#3b82f6}
+.note-header{margin-bottom:10px}
+.note-title{font-size:16px;font-weight:600;color:#e2e8f0;margin-bottom:8px;line-height:1.4}
+.tag{font-size:11px;padding:2px 8px;border-radius:4px;font-weight:500;display:inline-block;margin-bottom:10px}
+.tag-extra{background:#1e3a2f;color:#4ade80}
+
+.note-desc{font-size:13px;color:#94a3b8;margin-bottom:14px;line-height:1.5;flex-grow:1;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.note-meta{font-size:12px;color:#64748b;margin-bottom:14px;display:flex;flex-direction:column;gap:3px;border-top:1px solid #334155;padding-top:10px}
+
+.note-actions{display:flex;align-items:center;justify-content:space-between;gap:8px;border-top:1px solid #334155;padding-top:12px}
+.btn-vote{background:#0f172a;border:1px solid #334155;color:#94a3b8;border-radius:8px;padding:6px 12px;font-size:13px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:all .2s}
+.btn-vote:hover{border-color:#3b82f6;color:#e2e8f0}
+.btn-vote.voted{background:#1e3a5f;border-color:#3b82f6;color:#60a5fa}
+
+.load-more-bar{text-align:center;margin-top:24px}
+.empty-state{text-align:center;padding:48px;color:#64748b;background:#1e293b;border:1px dashed #334155;border-radius:12px;grid-column:1/-1}
+
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:100;align-items:center;justify-content:center;padding:16px}
+.modal-overlay.show{display:flex}
+.modal{background:#1e293b;border:1px solid #334155;border-radius:12px;padding:24px;width:100%;max-width:520px;max-height:90vh;overflow-y:auto}
+.modal h3{font-size:18px;font-weight:600;margin-bottom:16px;color:#e2e8f0}
+.modal .form-group{margin-bottom:14px;display:flex;flex-direction:column;gap:6px}
+label{font-size:12px;color:#94a3b8;font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+input,textarea{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:10px 12px;color:#e2e8f0;font-size:14px;outline:none;transition:border-color .2s;width:100%}
+input:focus,textarea:focus{border-color:#3b82f6}
+textarea{resize:vertical;min-height:80px}
+.modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:20px;padding-top:14px;border-top:1px solid #334155}
+
+.toast{position:fixed;bottom:24px;right:24px;background:#1e293b;border:1px solid #334155;border-radius:8px;padding:12px 20px;font-size:14px;z-index:200;animation:slideUp .3s ease;box-shadow:0 10px 25px rgba(0,0,0,0.4)}
+.toast.success{border-color:#22c55e;color:#4ade80}
+.toast.error{border-color:#ef4444;color:#f87171}
+.profile-btn{background:linear-gradient(135deg,#1e293b,#0f172a);color:#38bdf8;border:1px solid #38bdf8;padding:6px 14px;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:all .2s ease;box-shadow:0 2px 6px rgba(56,189,248,.15)}
+.profile-btn:hover{background:#38bdf8;color:#0f172a;box-shadow:0 4px 12px rgba(56,189,248,.3);transform:translateY(-1px)}
+@keyframes slideUp{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
+</style>
+</head>
+<body>
+<div class="header">
+  <h1><span>N</span>oteHub <span>•</span> Extra Notes</h1>
+  <div class="nav-links">
+    <button id="profile-btn" class="profile-btn" onclick="openProfileModal()">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>Profile
+    </button>
+    <a href="/faculty" class="nav-link">Faculty</a>
+    <a href="/notehub" class="nav-link">Back to NoteHub</a>
+    <a href="/" class="nav-link">Dashboard</a>
+  </div>
+</div>
+
+<div class="container">
+  <div class="card">
+    <div class="card-header">
+      <h2>Search Extra Notes</h2>
+      <button class="btn btn-primary" onclick="openUploadModal()">+ Upload Extra Note</button>
+    </div>
+    <div class="search-bar">
+      <div class="search-input-wrapper">
+        <input type="text" id="search-input" placeholder="Search by title or description (e.g. AI, Machine Learning, Web Dev)..." oninput="debounceSearch()">
+      </div>
+    </div>
+  </div>
+
+  <div class="notes-grid" id="notes-grid">
+    <div class="empty-state">Loading notes...</div>
+  </div>
+
+  <div class="load-more-bar" id="load-more-bar" style="display:none">
+    <button class="btn btn-outline" onclick="loadMore()">Load More Notes</button>
+  </div>
+</div>
+
+<!-- Upload Modal -->
+<div class="modal-overlay" id="upload-modal">
+  <div class="modal">
+    <h3>Upload Extra Note</h3>
+    <div class="form-group">
+      <label>PDF Note File (PDF Only)</label>
+      <input type="file" id="modal-file" accept=".pdf,application/pdf" required>
+    </div>
+    <div class="form-group">
+      <label>Title</label>
+      <input type="text" id="modal-title" placeholder="e.g. Complete Guide to Artificial Intelligence" required>
+    </div>
+    <div class="form-group">
+      <label>Description (Optional)</label>
+      <textarea id="modal-desc" placeholder="Details about this extra note, topics covered..."></textarea>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-outline" onclick="closeUploadModal()">Cancel</button>
+      <button class="btn btn-primary" id="btn-submit-upload" onclick="submitUpload()">Upload</button>
+    </div>
+  </div>
+</div>
+
+<!-- Student Profile Modal -->
+<div class="modal-overlay" id="profile-modal" onclick="if(event.target===this)closeProfileModal()">
+  <div class="modal" style="max-width:480px;border-color:#38bdf8">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;border-bottom:1px solid #334155;padding-bottom:12px">
+      <div style="display:flex;align-items:center;gap:12px">
+        <div style="width:42px;height:42px;border-radius:50%;background:#0284c7;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:16px" id="prof-avatar">ST</div>
+        <div>
+          <h3 style="margin:0;font-size:17px;color:#f8fafc" id="prof-fullname">Student Profile</h3>
+          <span style="font-size:12px;color:#94a3b8" id="prof-rollno">Roll No</span>
+        </div>
+      </div>
+      <button onclick="closeProfileModal()" style="background:none;border:none;color:#94a3b8;font-size:22px;cursor:pointer;line-height:1">&times;</button>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px">
+      <div style="background:#0f172a;padding:10px 12px;border-radius:8px;border:1px solid #334155">
+        <div style="font-size:11px;color:#64748b;text-transform:uppercase;font-weight:600">Course / Branch</div>
+        <div style="font-size:14px;color:#38bdf8;font-weight:600;margin-top:2px" id="prof-course">-</div>
+      </div>
+      <div style="background:#0f172a;padding:10px 12px;border-radius:8px;border:1px solid #334155">
+        <div style="font-size:11px;color:#64748b;text-transform:uppercase;font-weight:600">Class / Year</div>
+        <div style="font-size:14px;color:#4ade80;font-weight:600;margin-top:2px" id="prof-year">-</div>
+      </div>
+      <div style="background:#0f172a;padding:10px 12px;border-radius:8px;border:1px solid #334155">
+        <div style="font-size:11px;color:#64748b;text-transform:uppercase;font-weight:600">Current Semester</div>
+        <div style="font-size:14px;color:#e2e8f0;font-weight:600;margin-top:2px" id="prof-sem">-</div>
+      </div>
+      <div style="background:#0f172a;padding:10px 12px;border-radius:8px;border:1px solid #334155">
+        <div style="font-size:11px;color:#64748b;text-transform:uppercase;font-weight:600">Account Status</div>
+        <div style="font-size:14px;color:#a855f7;font-weight:600;margin-top:2px" id="prof-status">ACTIVE</div>
+      </div>
+      <div style="background:#0f172a;padding:10px 12px;border-radius:8px;border:1px solid #334155;grid-column:1 / -1">
+        <div style="font-size:11px;color:#64748b;text-transform:uppercase;font-weight:600">Degree Program</div>
+        <div style="font-size:13px;color:#e2e8f0;font-weight:500;margin-top:2px" id="prof-program">-</div>
+      </div>
+      <div style="background:#0f172a;padding:10px 12px;border-radius:8px;border:1px solid #334155;grid-column:1 / -1">
+        <div style="font-size:11px;color:#64748b;text-transform:uppercase;font-weight:600">College Email</div>
+        <div style="font-size:13px;color:#94a3b8;font-weight:500;margin-top:2px" id="prof-email">-</div>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:flex-end">
+      <button class="btn btn-outline" onclick="closeProfileModal()">Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const token = localStorage.getItem('token');
+if (!token) { window.location.href = '/'; }
+
+function authHeaders() {
+  return { 'Authorization': 'Bearer ' + token };
+}
+
+function toast(msg, type = 'success') {
+  const t = document.createElement('div');
+  t.className = 'toast ' + type;
+  t.textContent = msg;
+  document.body.appendChild(t);
+  setTimeout(() => t.remove(), 3500);
+}
+
+function formatFileSize(bytes) {
+  if (!bytes) return '0 B';
+  if (bytes < 1024) return bytes + ' B';
+  if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
+  return (bytes / 1048576).toFixed(1) + ' MB';
+}
+
+function formatDate(isoStr) {
+  if (!isoStr) return '';
+  const d = new Date(isoStr);
+  return d.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+}
+
+function getCurrentUser() {
+  try {
+    const payload = JSON.parse(atob(token.split('.')[1]));
+    let role = localStorage.getItem('role') || '';
+    if (!role) {
+      const u = localStorage.getItem('user');
+      if (u) {
+        try { role = JSON.parse(u).role || ''; } catch(e){}
+      }
+    }
+    return { username: payload.sub, role };
+  } catch (e) {
+    return { username: '', role: '' };
+  }
+}
+
+const currentUser = getCurrentUser();
+
+let currentPage = 0;
+const pageSize = 5;
+let totalNotesCount = 0;
+let currentNotes = [];
+let debounceTimer = null;
+
+function debounceSearch() {
+  clearTimeout(debounceTimer);
+  debounceTimer = setTimeout(() => {
+    currentPage = 0;
+    currentNotes = [];
+    fetchNotes(false);
+  }, 300);
+}
+
+async function fetchNotes(isAppend = false) {
+  const keyword = document.getElementById('search-input').value.trim();
+  const url = `/api/notehub/notes/search?keyword=${encodeURIComponent(keyword)}&page=${currentPage}&size=${pageSize}`;
+
+  try {
+    const res = await fetch(url, { headers: authHeaders() });
+    if (!res.ok) throw new Error('Failed to load extra notes');
+
+    const countHeader = res.headers.get('X-Total-Count');
+    if (countHeader !== null) {
+      totalNotesCount = parseInt(countHeader, 10);
+    }
+
+    const notes = await res.json();
+    if (isAppend) {
+      currentNotes = currentNotes.concat(notes);
+    } else {
+      currentNotes = notes;
+    }
+
+    renderNotes();
+  } catch (e) {
+    document.getElementById('notes-grid').innerHTML = `<div class="empty-state">Error: ${e.message}</div>`;
+  }
+}
+
+function renderNotes() {
+  const grid = document.getElementById('notes-grid');
+  if (currentNotes.length === 0) {
+    grid.innerHTML = '<div class="empty-state">No extra notes found. Upload your custom notes to share with everyone!</div>';
+    document.getElementById('load-more-bar').style.display = 'none';
+    return;
+  }
+
+  grid.innerHTML = '';
+  currentNotes.forEach(note => {
+    const card = document.createElement('div');
+    card.className = 'note-card';
+
+    const uploaderUser = (note.uploader && note.uploader.user) ? note.uploader.user.username : '';
+    const isOwner = uploaderUser && uploaderUser === currentUser.username;
+    const isAdminOrFaculty = currentUser.role === 'ADMIN' || currentUser.role === 'FACULTY' || (currentUser.role && currentUser.role.includes('ADMIN')) || (currentUser.role && currentUser.role.includes('FACULTY'));
+    const canDelete = isOwner || isAdminOrFaculty;
+
+    const uploaderName = note.uploader ? `${note.uploader.firstName || ''} ${note.uploader.lastName || ''}`.trim() || 'Student' : 'Student';
+    const uploaderRoll = note.uploader && note.uploader.rollNumber ? ` (${note.uploader.rollNumber})` : '';
+
+    card.innerHTML = `
+      <div class="note-header">
+        <div class="note-title">${escapeHtml(note.title)}</div>
+        <span class="tag tag-extra">Extra Note</span>
+      </div>
+      ${note.description ? `<div class="note-desc">${escapeHtml(note.description)}</div>` : '<div class="note-desc" style="font-style:italic">No description provided.</div>'}
+      <div class="note-meta">
+        <div><strong>Uploaded by:</strong> ${escapeHtml(uploaderName)}${escapeHtml(uploaderRoll)}</div>
+        <div><strong>File:</strong> ${escapeHtml(note.fileName)} • ${formatFileSize(note.fileSize)} • ${formatDate(note.createdAt)}</div>
+      </div>
+      <div class="note-actions">
+        <button class="btn-vote" id="vote-btn-${note.id}" onclick="toggleUpvote(${note.id})">
+          ▲ <span id="vote-count-${note.id}">${note.voteCount || 0}</span>
+        </button>
+        <div style="display:flex;gap:6px">
+          <a class="btn btn-outline btn-sm" href="/api/notehub/notes/${note.id}/download" target="_blank" download>Download PDF</a>
+          ${canDelete ? `<button class="btn btn-danger btn-sm" onclick="deleteNote(${note.id})">Delete</button>` : ''}
+        </div>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+
+  const loadMoreBar = document.getElementById('load-more-bar');
+  if (currentNotes.length < totalNotesCount) {
+    loadMoreBar.style.display = 'block';
+  } else {
+    loadMoreBar.style.display = 'none';
+  }
+}
+
+function loadMore() {
+  currentPage++;
+  fetchNotes(true);
+}
+
+async function toggleUpvote(noteId) {
+  try {
+    const res = await fetch(`/api/notehub/notes/${noteId}/upvote`, {
+      method: 'POST',
+      headers: authHeaders()
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.message || 'Upvote failed. Ensure you are logged in as a student.');
+    }
+    const data = await res.json();
+    const countSpan = document.getElementById(`vote-count-${noteId}`);
+    const btn = document.getElementById(`vote-btn-${noteId}`);
+    if (countSpan) countSpan.textContent = data.voteCount;
+    if (btn) btn.classList.toggle('voted', data.voted);
+
+    const target = currentNotes.find(n => n.id === noteId);
+    if (target) target.voteCount = data.voteCount;
+  } catch (e) {
+    toast(e.message, 'error');
+  }
+}
+
+async function deleteNote(noteId) {
+  if (!confirm('Are you sure you want to delete this note?')) return;
+  try {
+    const res = await fetch(`/api/notehub/notes/${noteId}`, {
+      method: 'DELETE',
+      headers: authHeaders()
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.message || 'Failed to delete note');
+    }
+    toast('Note deleted successfully');
+    currentNotes = currentNotes.filter(n => n.id !== noteId);
+    totalNotesCount = Math.max(0, totalNotesCount - 1);
+    renderNotes();
+  } catch (e) {
+    toast(e.message, 'error');
+  }
+}
+
+function openUploadModal() {
+  document.getElementById('upload-modal').classList.add('show');
+}
+
+function closeUploadModal() {
+  document.getElementById('upload-modal').classList.remove('show');
+}
+
+async function submitUpload() {
+  const fileInput = document.getElementById('modal-file');
+  const title = document.getElementById('modal-title').value.trim();
+  const desc = document.getElementById('modal-desc').value.trim();
+
+  if (!fileInput.files || fileInput.files.length === 0) {
+    toast('Please select a PDF file to upload', 'error');
+    return;
+  }
+
+  const file = fileInput.files[0];
+  if (!file.name.toLowerCase().endsWith('.pdf') || (file.type && file.type !== 'application/pdf')) {
+    toast('Only PDF files are allowed', 'error');
+    return;
+  }
+
+  if (file.size > 50 * 1024 * 1024) {
+    toast('File size exceeds the 50MB limit', 'error');
+    return;
+  }
+
+  if (!title) {
+    toast('Please enter a note title', 'error');
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append('file', file);
+  formData.append('title', title);
+  if (desc) formData.append('description', desc);
+  formData.append('noteType', 'EXTRA');
+
+  const submitBtn = document.getElementById('btn-submit-upload');
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Uploading...';
+
+  try {
+    const res = await fetch('/api/notehub/notes', {
+      method: 'POST',
+      headers: {
+        'Authorization': 'Bearer ' + token
+      },
+      body: formData
+    });
+
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.message || 'Failed to upload note');
+    }
+
+    toast('Extra note uploaded successfully!');
+    closeUploadModal();
+    // Reset form
+    fileInput.value = '';
+    document.getElementById('modal-title').value = '';
+    document.getElementById('modal-desc').value = '';
+
+    currentPage = 0;
+    currentNotes = [];
+    fetchNotes(false);
+  } catch (e) {
+    toast(e.message, 'error');
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Upload';
+  }
+}
+
+function escapeHtml(str) {
+  if (!str) return '';
+  return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+}
+
+let studentProfile = null;
+async function fetchProfileData() {
+  try {
+    const res = await fetch('/api/vault/profile', {
+      headers: { 'Authorization': 'Bearer ' + token }
+    });
+    if (res.ok) {
+      studentProfile = await res.json();
+      updateProfileModalData();
+    }
+  } catch (e) {
+    console.warn('Profile fetch error', e);
+  }
+}
+
+function updateProfileModalData() {
+  if (!studentProfile) return;
+  const fn = (studentProfile.firstName || '') + ' ' + (studentProfile.lastName || '');
+  document.getElementById('prof-fullname').textContent = fn.trim() || 'Student';
+  document.getElementById('prof-rollno').textContent = 'Roll No: ' + (studentProfile.rollNumber || 'N/A');
+  const initials = ((studentProfile.firstName?.[0] || '') + (studentProfile.lastName?.[0] || '')).toUpperCase() || 'ST';
+  document.getElementById('prof-avatar').textContent = initials;
+  document.getElementById('prof-course').textContent = studentProfile.course || 'N/A';
+  document.getElementById('prof-year').textContent = (studentProfile.year || 'N/A') + ' (Year ' + (studentProfile.studyYear || '-') + ')';
+  document.getElementById('prof-sem').textContent = studentProfile.currentSemester ? ('Semester ' + studentProfile.currentSemester) : 'N/A';
+  document.getElementById('prof-status').textContent = studentProfile.status || 'ACTIVE';
+  document.getElementById('prof-program').textContent = studentProfile.program ? (studentProfile.program.name + ' (' + studentProfile.program.code + ')') : (studentProfile.course || 'Undergraduate Degree');
+  document.getElementById('prof-email').textContent = studentProfile.email || (studentProfile.rollNumber ? (studentProfile.rollNumber.toLowerCase() + '@college.edu') : 'N/A');
+}
+
+function openProfileModal() {
+  if (!studentProfile) {
+    fetchProfileData().then(() => document.getElementById('profile-modal').classList.add('show'));
+  } else {
+    updateProfileModalData();
+    document.getElementById('profile-modal').classList.add('show');
+  }
+}
+
+function closeProfileModal() {
+  document.getElementById('profile-modal').classList.remove('show');
+}
+
+fetchNotes(false);
+fetchProfileData();
+</script>
+</body>
+</html>

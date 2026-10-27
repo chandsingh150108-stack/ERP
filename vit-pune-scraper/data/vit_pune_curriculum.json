@@ -1,0 +1,6517 @@
+{
+  "institution": "Vishwakarma Institute of Technology, Pune",
+  "institutionCode": "VIT_PUNE",
+  "totalCourses": 350,
+  "departments": {
+    "DESH": {
+      "code": "DESH",
+      "name": "Department of Engineering Sciences and Humanities",
+      "description": "First Year engineering foundation across basic sciences, mathematics, and introductory computing.",
+      "active": true
+    },
+    "CSE": {
+      "code": "CSE",
+      "name": "Computer Science and Engineering",
+      "description": "Core computer science, algorithms, software engineering, databases, and advanced systems.",
+      "active": true
+    },
+    "IT": {
+      "code": "IT",
+      "name": "Information Technology",
+      "description": "Information architecture, web engineering, cloud computing, networks, and distributed systems.",
+      "active": true
+    },
+    "AIDS": {
+      "code": "AIDS",
+      "name": "Artificial Intelligence and Data Science",
+      "description": "Data engineering, machine learning pipelines, statistical computing, and predictive models.",
+      "active": true
+    },
+    "AIML": {
+      "code": "AIML",
+      "name": "Artificial Intelligence and Machine Learning",
+      "description": "Neural networks, deep learning, computer vision, natural language processing, and autonomous systems.",
+      "active": true
+    },
+    "ENTC": {
+      "code": "ENTC",
+      "name": "Electronics and Telecommunication Engineering",
+      "description": "Embedded systems, signal processing, VLSI design, wireless communications, and IoT.",
+      "active": true
+    },
+    "MECH": {
+      "code": "MECH",
+      "name": "Mechanical Engineering",
+      "description": "Thermodynamics, mechanical design, CAD/CAM, fluid mechanics, robotics, and industrial automation.",
+      "active": true
+    },
+    "CHEM": {
+      "code": "CHEM",
+      "name": "Chemical Engineering",
+      "description": "Chemical processes, reaction engineering, heat transfer, separation processes, and process dynamics.",
+      "active": true
+    },
+    "INST": {
+      "code": "INST",
+      "name": "Instrumentation Engineering",
+      "description": "Sensors and transducers, industrial automation, PLC/SCADA, process control, and biomedical instrumentation.",
+      "active": true
+    }
+  },
+  "courses": [
+    {
+      "code": "CI2006",
+      "name": "Design Thinking",
+      "credits": 1,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 1,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "AIDS",
+      "applicableDepartments": [
+        "AIDS"
+      ],
+      "sourcePdf": "AIDS_Complete_2025-26.pdf",
+      "page": 11,
+      "authoritative": true
+    },
+    {
+      "code": "CI2007",
+      "name": "Engineering Design and Innovation - III",
+      "credits": 4,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "AIDS",
+      "applicableDepartments": [
+        "AIDS"
+      ],
+      "sourcePdf": "AIDS_Complete_2025-26.pdf",
+      "page": 11,
+      "authoritative": true
+    },
+    {
+      "code": "CI2008",
+      "name": "Engineering Design and Innovations-III, IV",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "AIDS",
+      "applicableDepartments": [
+        "AIDS"
+      ],
+      "sourcePdf": "AIDS_Complete_2025-26.pdf",
+      "page": 45,
+      "authoritative": false
+    },
+    {
+      "code": "CI2011",
+      "name": "Fundamentals Of Data Structures",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "AIDS",
+      "applicableDepartments": [
+        "AIDS"
+      ],
+      "sourcePdf": "AIDS_Complete_2025-26.pdf",
+      "page": 11,
+      "authoritative": false
+    },
+    {
+      "code": "CI2012",
+      "name": "Database Management Systems",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "AIDS",
+      "applicableDepartments": [
+        "AIDS"
+      ],
+      "sourcePdf": "AIDS_Complete_2025-26.pdf",
+      "page": 11,
+      "authoritative": false
+    },
+    {
+      "code": "CI2013",
+      "name": "Object Oriented Programming",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 2,
+      "tutorialHours": 0,
+      "practicalHours": 2,
+      "studyYear": 2,
+      "departmentCode": "AIDS",
+      "applicableDepartments": [
+        "AIDS"
+      ],
+      "sourcePdf": "AIDS_Complete_2025-26.pdf",
+      "page": 34,
+      "authoritative": true
+    },
+    {
+      "code": "CI2014",
+      "name": "Digital Systems and Microprocessor",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 2,
+      "tutorialHours": 0,
+      "practicalHours": 2,
+      "studyYear": 2,
+      "departmentCode": "AIDS",
+      "applicableDepartments": [
+        "AIDS"
+      ],
+      "sourcePdf": "AIDS_Complete_2025-26.pdf",
+      "page": 39,
+      "authoritative": true
+    },
+    {
+      "code": "CIM001",
+      "name": "Discrete Mathematics",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 2,
+      "tutorialHours": 1,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "AIDS",
+      "applicableDepartments": [
+        "AIDS"
+      ],
+      "sourcePdf": "AIDS_Complete_2025-26.pdf",
+      "page": 42,
+      "authoritative": true
+    },
+    {
+      "code": "CI3001",
+      "name": "Computer Network Technology",
+      "credits": 4,
+      "courseType": "CORE",
+      "lectureHours": 2,
+      "tutorialHours": 1,
+      "practicalHours": 2,
+      "studyYear": 3,
+      "departmentCode": "AIDS",
+      "applicableDepartments": [
+        "AIDS"
+      ],
+      "sourcePdf": "AIDS_Complete_2025-26.pdf",
+      "page": 56,
+      "authoritative": true
+    },
+    {
+      "code": "CI3002",
+      "name": "Design and Analysis of Algorithms",
+      "credits": 4,
+      "courseType": "CORE",
+      "lectureHours": 2,
+      "tutorialHours": 1,
+      "practicalHours": 2,
+      "studyYear": 3,
+      "departmentCode": "AIDS",
+      "applicableDepartments": [
+        "AIDS"
+      ],
+      "sourcePdf": "AIDS_Complete_2025-26.pdf",
+      "page": 63,
+      "authoritative": true
+    },
+    {
+      "code": "CI3003",
+      "name": "Artificial Neural Networks",
+      "credits": 4,
+      "courseType": "CORE",
+      "lectureHours": 2,
+      "tutorialHours": 1,
+      "practicalHours": 2,
+      "studyYear": 3,
+      "departmentCode": "AIDS",
+      "applicableDepartments": [
+        "AIDS"
+      ],
+      "sourcePdf": "AIDS_Complete_2025-26.pdf",
+      "page": 69,
+      "authoritative": true
+    },
+    {
+      "code": "CI3004",
+      "name": "Cloud Computing",
+      "credits": 4,
+      "courseType": "CORE",
+      "lectureHours": 2,
+      "tutorialHours": 1,
+      "practicalHours": 2,
+      "studyYear": 3,
+      "departmentCode": "AIDS",
+      "applicableDepartments": [
+        "AIDS"
+      ],
+      "sourcePdf": "AIDS_Complete_2025-26.pdf",
+      "page": 74,
+      "authoritative": true
+    },
+    {
+      "code": "CI3005",
+      "name": "Design Thinking",
+      "credits": 1,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 3,
+      "departmentCode": "AIDS",
+      "applicableDepartments": [
+        "AIDS"
+      ],
+      "sourcePdf": "AIDS_Complete_2025-26.pdf",
+      "page": 12,
+      "authoritative": true
+    },
+    {
+      "code": "CI3006",
+      "name": "Engineering Design and Innovation",
+      "credits": 6,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 12,
+      "studyYear": 3,
+      "departmentCode": "AIDS",
+      "applicableDepartments": [
+        "AIDS"
+      ],
+      "sourcePdf": "AIDS_Complete_2025-26.pdf",
+      "page": 12,
+      "authoritative": true
+    },
+    {
+      "code": "CI3007",
+      "name": "Software Engineering",
+      "credits": 4,
+      "courseType": "CORE",
+      "lectureHours": 2,
+      "tutorialHours": 1,
+      "practicalHours": 2,
+      "studyYear": 3,
+      "departmentCode": "AIDS",
+      "applicableDepartments": [
+        "AIDS"
+      ],
+      "sourcePdf": "AIDS_Complete_2025-26.pdf",
+      "page": 82,
+      "authoritative": true
+    },
+    {
+      "code": "CI3008",
+      "name": "Cyber Security and Blockchain",
+      "credits": 4,
+      "courseType": "CORE",
+      "lectureHours": 2,
+      "tutorialHours": 1,
+      "practicalHours": 2,
+      "studyYear": 3,
+      "departmentCode": "AIDS",
+      "applicableDepartments": [
+        "AIDS"
+      ],
+      "sourcePdf": "AIDS_Complete_2025-26.pdf",
+      "page": 88,
+      "authoritative": true
+    },
+    {
+      "code": "CI3009",
+      "name": "Deep Learning",
+      "credits": 4,
+      "courseType": "CORE",
+      "lectureHours": 2,
+      "tutorialHours": 1,
+      "practicalHours": 2,
+      "studyYear": 3,
+      "departmentCode": "AIDS",
+      "applicableDepartments": [
+        "AIDS"
+      ],
+      "sourcePdf": "AIDS_Complete_2025-26.pdf",
+      "page": 13,
+      "authoritative": true
+    },
+    {
+      "code": "CI3010",
+      "name": "Design Thinking",
+      "credits": 1,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 3,
+      "departmentCode": "AIDS",
+      "applicableDepartments": [
+        "AIDS"
+      ],
+      "sourcePdf": "AIDS_Complete_2025-26.pdf",
+      "page": 51,
+      "authoritative": true
+    },
+    {
+      "code": "CI3011",
+      "name": "Engineering Design and Innovation",
+      "credits": 6,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 12,
+      "studyYear": 3,
+      "departmentCode": "AIDS",
+      "applicableDepartments": [
+        "AIDS"
+      ],
+      "sourcePdf": "AIDS_Complete_2025-26.pdf",
+      "page": 13,
+      "authoritative": true
+    },
+    {
+      "code": "CIS3009",
+      "name": "Deep Learning",
+      "credits": 4,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 3,
+      "departmentCode": "AIDS",
+      "applicableDepartments": [
+        "AIDS"
+      ],
+      "sourcePdf": "AIDS_Complete_2025-26.pdf",
+      "page": 96,
+      "authoritative": false
+    },
+    {
+      "code": "MD3101",
+      "name": "IBM Full Stack Software Developer",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 3,
+      "departmentCode": "AIDS",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "AIDS_Complete_2025-26.pdf",
+      "page": 13,
+      "authoritative": false
+    },
+    {
+      "code": "MD3102",
+      "name": "Meta Back-End Developer",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 3,
+      "departmentCode": "AIDS",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "AIDS_Complete_2025-26.pdf",
+      "page": 13,
+      "authoritative": false
+    },
+    {
+      "code": "MD3113",
+      "name": "Google Data Analytics",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 3,
+      "departmentCode": "AIDS",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "AIDS_Complete_2025-26.pdf",
+      "page": 13,
+      "authoritative": false
+    },
+    {
+      "code": "MD3120",
+      "name": "IBM Data Warehouse Engineer",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 3,
+      "departmentCode": "AIDS",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "AIDS_Complete_2025-26.pdf",
+      "page": 13,
+      "authoritative": false
+    },
+    {
+      "code": "MD3121",
+      "name": "IBM DevOps and Software Engineering",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 3,
+      "departmentCode": "AIDS",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "AIDS_Complete_2025-26.pdf",
+      "page": 13,
+      "authoritative": false
+    },
+    {
+      "code": "MD3126",
+      "name": "Meta iOS/Android Developer 1",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 3,
+      "departmentCode": "AIDS",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "AIDS_Complete_2025-26.pdf",
+      "page": 13,
+      "authoritative": false
+    },
+    {
+      "code": "MD3135",
+      "name": "Salesforce Sales Development Representative",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 3,
+      "departmentCode": "AIDS",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "AIDS_Complete_2025-26.pdf",
+      "page": 13,
+      "authoritative": false
+    },
+    {
+      "code": "MD3140",
+      "name": "SAP Technology Consultant",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 3,
+      "departmentCode": "AIDS",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "AIDS_Complete_2025-26.pdf",
+      "page": 13,
+      "authoritative": false
+    },
+    {
+      "code": "MD3141",
+      "name": "AWS Cloud Technology Consultant",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 3,
+      "departmentCode": "AIDS",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "AIDS_Complete_2025-26.pdf",
+      "page": 13,
+      "authoritative": false
+    },
+    {
+      "code": "MD3147",
+      "name": "DEEP LEARNING.AI DEEP LEARNING",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 3,
+      "departmentCode": "AIDS",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "AIDS_Complete_2025-26.pdf",
+      "page": 13,
+      "authoritative": false
+    },
+    {
+      "code": "AI4015",
+      "name": "NETWORK SECURITY",
+      "credits": 2,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "AIDS",
+      "applicableDepartments": [
+        "AIDS"
+      ],
+      "sourcePdf": "INST_Complete_2025-26.pdf",
+      "page": 148,
+      "authoritative": false
+    },
+    {
+      "code": "CI4001",
+      "name": "Generative AI",
+      "credits": 2,
+      "courseType": "CORE",
+      "lectureHours": 2,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "AIDS",
+      "applicableDepartments": [
+        "AIDS"
+      ],
+      "sourcePdf": "AIDS_Complete_2025-26.pdf",
+      "page": 104,
+      "authoritative": true
+    },
+    {
+      "code": "CI4002",
+      "name": "Swayam",
+      "credits": 2,
+      "courseType": "CORE",
+      "lectureHours": 2,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "AIDS",
+      "applicableDepartments": [
+        "AIDS"
+      ],
+      "sourcePdf": "AIDS_Complete_2025-26.pdf",
+      "page": 14,
+      "authoritative": true
+    },
+    {
+      "code": "CI4007",
+      "name": "Design Thinking-7",
+      "credits": 1,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "AIDS",
+      "applicableDepartments": [
+        "AIDS"
+      ],
+      "sourcePdf": "AIDS_Complete_2025-26.pdf",
+      "page": 14,
+      "authoritative": true
+    },
+    {
+      "code": "CI4008",
+      "name": "Major Project",
+      "credits": 9,
+      "courseType": "CORE",
+      "lectureHours": 0,
+      "tutorialHours": 0,
+      "practicalHours": 20,
+      "studyYear": 4,
+      "departmentCode": "AIDS",
+      "applicableDepartments": [
+        "AIDS"
+      ],
+      "sourcePdf": "AIDS_Complete_2025-26.pdf",
+      "page": 116,
+      "authoritative": true
+    },
+    {
+      "code": "CI4010",
+      "name": "Industry Internship",
+      "credits": 19,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 32,
+      "studyYear": 4,
+      "departmentCode": "AIDS",
+      "applicableDepartments": [
+        "AIDS"
+      ],
+      "sourcePdf": "AIDS_Complete_2025-26.pdf",
+      "page": 16,
+      "authoritative": true
+    },
+    {
+      "code": "CI4011",
+      "name": "Project Internship",
+      "credits": 19,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 32,
+      "studyYear": 4,
+      "departmentCode": "AIDS",
+      "applicableDepartments": [
+        "AIDS"
+      ],
+      "sourcePdf": "AIDS_Complete_2025-26.pdf",
+      "page": 16,
+      "authoritative": true
+    },
+    {
+      "code": "CI4012",
+      "name": "Research Internship",
+      "credits": 19,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 32,
+      "studyYear": 4,
+      "departmentCode": "AIDS",
+      "applicableDepartments": [
+        "AIDS"
+      ],
+      "sourcePdf": "AIDS_Complete_2025-26.pdf",
+      "page": 16,
+      "authoritative": true
+    },
+    {
+      "code": "CI4013",
+      "name": "Global Internship",
+      "credits": 19,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 32,
+      "studyYear": 4,
+      "departmentCode": "AIDS",
+      "applicableDepartments": [
+        "AIDS"
+      ],
+      "sourcePdf": "AIDS_Complete_2025-26.pdf",
+      "page": 16,
+      "authoritative": true
+    },
+    {
+      "code": "MD4274",
+      "name": "Large Language Models Skill Development",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "AIDS",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "AIDS_Complete_2025-26.pdf",
+      "page": 14,
+      "authoritative": true
+    },
+    {
+      "code": "MD4275",
+      "name": "Mastering Microsoft Power BI",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "AIDS",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "AIDS_Complete_2025-26.pdf",
+      "page": 14,
+      "authoritative": true
+    },
+    {
+      "code": "MD4276",
+      "name": "Generative AI Skills for Developers",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "AIDS",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "AIDS_Complete_2025-26.pdf",
+      "page": 14,
+      "authoritative": true
+    },
+    {
+      "code": "MD4277",
+      "name": "Career in Data Analysis",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "AIDS",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "AIDS_Complete_2025-26.pdf",
+      "page": 14,
+      "authoritative": true
+    },
+    {
+      "code": "MD4278",
+      "name": "Concepts of Data Visualization and Storytelling",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "AIDS",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "AIDS_Complete_2025-26.pdf",
+      "page": 14,
+      "authoritative": true
+    },
+    {
+      "code": "MD4279",
+      "name": "AWS Certified Solutions Architect",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "AIDS",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "AIDS_Complete_2025-26.pdf",
+      "page": 14,
+      "authoritative": true
+    },
+    {
+      "code": "MD4280",
+      "name": "IT Security Specialist",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "AIDS",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "AIDS_Complete_2025-26.pdf",
+      "page": 14,
+      "authoritative": true
+    },
+    {
+      "code": "MD4281",
+      "name": "Technical Program Management",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "AIDS",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "AIDS_Complete_2025-26.pdf",
+      "page": 14,
+      "authoritative": true
+    },
+    {
+      "code": "ML2001",
+      "name": "Fundamentals of Data Structures",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "AIML",
+      "applicableDepartments": [
+        "AIML"
+      ],
+      "sourcePdf": "AIML_Complete_2025-26.pdf",
+      "page": 13,
+      "authoritative": false
+    },
+    {
+      "code": "ML2002",
+      "name": "Engineering Design and Innovation - III 2",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "AIML",
+      "applicableDepartments": [
+        "AIML"
+      ],
+      "sourcePdf": "AIML_Complete_2025-26.pdf",
+      "page": 13,
+      "authoritative": false
+    },
+    {
+      "code": "ML2003",
+      "name": "Object Oriented Programming",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "AIML",
+      "applicableDepartments": [
+        "AIML"
+      ],
+      "sourcePdf": "AIML_Complete_2025-26.pdf",
+      "page": 39,
+      "authoritative": false
+    },
+    {
+      "code": "ML2004",
+      "name": "Digital Electronics and Microprocessor",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "AIML",
+      "applicableDepartments": [
+        "AIML"
+      ],
+      "sourcePdf": "AIML_Complete_2025-26.pdf",
+      "page": 46,
+      "authoritative": false
+    },
+    {
+      "code": "ML2301",
+      "name": "Data Structures",
+      "credits": 4,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "AIML",
+      "applicableDepartments": [
+        "AIML"
+      ],
+      "sourcePdf": "AIML_SY_2026-27.pdf",
+      "page": 13,
+      "authoritative": true
+    },
+    {
+      "code": "ML2302",
+      "name": "Database Management Systems",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "AIML",
+      "applicableDepartments": [
+        "AIML"
+      ],
+      "sourcePdf": "AIML_SY_2026-27.pdf",
+      "page": 13,
+      "authoritative": true
+    },
+    {
+      "code": "ML2303",
+      "name": "Object Oriented Programming",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "AIML",
+      "applicableDepartments": [
+        "AIML"
+      ],
+      "sourcePdf": "AIML_SY_2026-27.pdf",
+      "page": 13,
+      "authoritative": true
+    },
+    {
+      "code": "ML2304",
+      "name": "Digital Electronics and Microprocessor",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "AIML",
+      "applicableDepartments": [
+        "AIML"
+      ],
+      "sourcePdf": "AIML_SY_2026-27.pdf",
+      "page": 13,
+      "authoritative": true
+    },
+    {
+      "code": "ML2305",
+      "name": "Design Thinking-1",
+      "credits": 1,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "AIML",
+      "applicableDepartments": [
+        "AIML"
+      ],
+      "sourcePdf": "AIML_SY_2026-27.pdf",
+      "page": 66,
+      "authoritative": true
+    },
+    {
+      "code": "ML2306",
+      "name": "Engineering Design And Innovation",
+      "credits": 2,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "AIML",
+      "applicableDepartments": [
+        "AIML"
+      ],
+      "sourcePdf": "AIML_SY_2026-27.pdf",
+      "page": 72,
+      "authoritative": true
+    },
+    {
+      "code": "ML2307",
+      "name": "Advanced Data Structures",
+      "credits": 4,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "AIML",
+      "applicableDepartments": [
+        "AIML"
+      ],
+      "sourcePdf": "AIML_SY_2026-27.pdf",
+      "page": 77,
+      "authoritative": true
+    },
+    {
+      "code": "ML2308",
+      "name": "Artificial Intelligence",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "AIML",
+      "applicableDepartments": [
+        "AIML"
+      ],
+      "sourcePdf": "AIML_SY_2026-27.pdf",
+      "page": 16,
+      "authoritative": true
+    },
+    {
+      "code": "ML2309",
+      "name": "Operating Systems",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "AIML",
+      "applicableDepartments": [
+        "AIML"
+      ],
+      "sourcePdf": "AIML_SY_2026-27.pdf",
+      "page": 56,
+      "authoritative": true
+    },
+    {
+      "code": "ML2310",
+      "name": "Automata Theory and Compiler Design",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "AIML",
+      "applicableDepartments": [
+        "AIML"
+      ],
+      "sourcePdf": "AIML_SY_2026-27.pdf",
+      "page": 58,
+      "authoritative": true
+    },
+    {
+      "code": "ML2311",
+      "name": "Design Thinking",
+      "credits": 1,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "AIML",
+      "applicableDepartments": [
+        "AIML"
+      ],
+      "sourcePdf": "AIML_SY_2026-27.pdf",
+      "page": 16,
+      "authoritative": true
+    },
+    {
+      "code": "ML2312",
+      "name": "Engineering Design And Innovation",
+      "credits": 2,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "AIML",
+      "applicableDepartments": [
+        "AIML"
+      ],
+      "sourcePdf": "AIML_SY_2026-27.pdf",
+      "page": 16,
+      "authoritative": true
+    },
+    {
+      "code": "MLM001",
+      "name": "Multidisciplinary Minor - MDM (Discrete Mathematics)",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "AIML",
+      "applicableDepartments": [
+        "AIML"
+      ],
+      "sourcePdf": "AIML_Complete_2025-26.pdf",
+      "page": 13,
+      "authoritative": false
+    },
+    {
+      "code": "MLM002",
+      "name": "Data Visualization",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "AIML",
+      "applicableDepartments": [
+        "AIML"
+      ],
+      "sourcePdf": "AIML_Complete_2025-26.pdf",
+      "page": 87,
+      "authoritative": false
+    },
+    {
+      "code": "MM0302",
+      "name": "Data Visualization",
+      "credits": 3,
+      "courseType": "MULTI_DISCIPLINARY",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "AIML",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "AIML_SY_2026-27.pdf",
+      "page": 16,
+      "authoritative": true
+    },
+    {
+      "code": "MM0303",
+      "name": "Internet of Things",
+      "credits": 3,
+      "courseType": "MULTI_DISCIPLINARY",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "AIML",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "AIML_SY_2026-27.pdf",
+      "page": 16,
+      "authoritative": true
+    },
+    {
+      "code": "MM0304",
+      "name": "Discrete Mathematics",
+      "credits": 3,
+      "courseType": "MULTI_DISCIPLINARY",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "AIML",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "AIML_SY_2026-27.pdf",
+      "page": 42,
+      "authoritative": true
+    },
+    {
+      "code": "ML3001",
+      "name": "Computer Network Technology",
+      "credits": 4,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 3,
+      "departmentCode": "AIML",
+      "applicableDepartments": [
+        "AIML"
+      ],
+      "sourcePdf": "AIML_Complete_2025-26.pdf",
+      "page": 93,
+      "authoritative": false
+    },
+    {
+      "code": "ML3002",
+      "name": "Design and Analysis of Algorithms",
+      "credits": 4,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 3,
+      "departmentCode": "AIML",
+      "applicableDepartments": [
+        "AIML"
+      ],
+      "sourcePdf": "AIML_Complete_2025-26.pdf",
+      "page": 101,
+      "authoritative": false
+    },
+    {
+      "code": "ML3003",
+      "name": "Machine Learning",
+      "credits": 4,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 3,
+      "departmentCode": "AIML",
+      "applicableDepartments": [
+        "AIML"
+      ],
+      "sourcePdf": "AIML_Complete_2025-26.pdf",
+      "page": 105,
+      "authoritative": false
+    },
+    {
+      "code": "ML3004",
+      "name": "Cloud Computing",
+      "credits": 4,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 3,
+      "departmentCode": "AIML",
+      "applicableDepartments": [
+        "AIML"
+      ],
+      "sourcePdf": "AIML_Complete_2025-26.pdf",
+      "page": 111,
+      "authoritative": false
+    },
+    {
+      "code": "ML3008",
+      "name": "Software Engineering",
+      "credits": 4,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 3,
+      "departmentCode": "AIML",
+      "applicableDepartments": [
+        "AIML"
+      ],
+      "sourcePdf": "AIML_Complete_2025-26.pdf",
+      "page": 121,
+      "authoritative": false
+    },
+    {
+      "code": "ML3009",
+      "name": "Cyber Security and Blockchain",
+      "credits": 4,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 3,
+      "departmentCode": "AIML",
+      "applicableDepartments": [
+        "AIML"
+      ],
+      "sourcePdf": "AIML_Complete_2025-26.pdf",
+      "page": 128,
+      "authoritative": false
+    },
+    {
+      "code": "ML3010",
+      "name": "DEEP LEARNING",
+      "credits": 4,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 3,
+      "departmentCode": "AIML",
+      "applicableDepartments": [
+        "AIML"
+      ],
+      "sourcePdf": "AIML_Complete_2025-26.pdf",
+      "page": 138,
+      "authoritative": false
+    },
+    {
+      "code": "ML4003",
+      "name": "Generative AI",
+      "credits": 2,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "AIML",
+      "applicableDepartments": [
+        "AIML"
+      ],
+      "sourcePdf": "AIML_Complete_2025-26.pdf",
+      "page": 147,
+      "authoritative": false
+    },
+    {
+      "code": "ML4004",
+      "name": "Natural Language Processing (Swayam)",
+      "credits": 2,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "AIML",
+      "applicableDepartments": [
+        "AIML"
+      ],
+      "sourcePdf": "AIML_Complete_2025-26.pdf",
+      "page": 150,
+      "authoritative": false
+    },
+    {
+      "code": "ML4007",
+      "name": "Major Project",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "AIML",
+      "applicableDepartments": [
+        "AIML"
+      ],
+      "sourcePdf": "AIML_Complete_2025-26.pdf",
+      "page": 162,
+      "authoritative": false
+    },
+    {
+      "code": "CH4203",
+      "name": "PLANT ENGINEERING AND PROJECT ECONOMICS",
+      "credits": 2,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "CHEM",
+      "applicableDepartments": [
+        "CHEM"
+      ],
+      "sourcePdf": "CHEM_Merged_2026-27.pdf",
+      "page": 9,
+      "authoritative": false
+    },
+    {
+      "code": "CH4205",
+      "name": "TRANSPORT PHENOMENA",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "CHEM",
+      "applicableDepartments": [
+        "CHEM"
+      ],
+      "sourcePdf": "CHEM_Complete_BTech.pdf",
+      "page": 14,
+      "authoritative": false
+    },
+    {
+      "code": "CH4255",
+      "name": "NANOSCIENCE AND NANOTECHNOLOGY",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "CHEM",
+      "applicableDepartments": [
+        "CHEM"
+      ],
+      "sourcePdf": "CHEM_Complete_BTech.pdf",
+      "page": 29,
+      "authoritative": false
+    },
+    {
+      "code": "CH4259",
+      "name": "INDUSTRIAL POLLUTION CONTROL",
+      "credits": 2,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "CHEM",
+      "applicableDepartments": [
+        "CHEM"
+      ],
+      "sourcePdf": "CHEM_Merged_2026-27.pdf",
+      "page": 9,
+      "authoritative": false
+    },
+    {
+      "code": "CH4285",
+      "name": "Chemical Process Intensification",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "CHEM",
+      "applicableDepartments": [
+        "CHEM"
+      ],
+      "sourcePdf": "CHEM_Merged_2026-27.pdf",
+      "page": 13,
+      "authoritative": false
+    },
+    {
+      "code": "CH4288",
+      "name": "MAJOR PROJECT",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "CHEM",
+      "applicableDepartments": [
+        "CHEM"
+      ],
+      "sourcePdf": "CHEM_Complete_BTech.pdf",
+      "page": 34,
+      "authoritative": false
+    },
+    {
+      "code": "CH4289",
+      "name": "MAJOR PROJECT",
+      "credits": 10,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "CHEM",
+      "applicableDepartments": [
+        "CHEM"
+      ],
+      "sourcePdf": "CHEM_Merged_2026-27.pdf",
+      "page": 20,
+      "authoritative": false
+    },
+    {
+      "code": "CH4291",
+      "name": "RESEARCH INTERNSHIP",
+      "credits": 24,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "CHEM",
+      "applicableDepartments": [
+        "CHEM"
+      ],
+      "sourcePdf": "CHEM_Merged_2026-27.pdf",
+      "page": 39,
+      "authoritative": false
+    },
+    {
+      "code": "CH4292",
+      "name": "PROJECT INTERNSHIP",
+      "credits": 24,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "CHEM",
+      "applicableDepartments": [
+        "CHEM"
+      ],
+      "sourcePdf": "CHEM_Merged_2026-27.pdf",
+      "page": 41,
+      "authoritative": false
+    },
+    {
+      "code": "CH4293",
+      "name": "INDUSTRY INTERNSHIP",
+      "credits": 24,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "CHEM",
+      "applicableDepartments": [
+        "CHEM"
+      ],
+      "sourcePdf": "CHEM_Merged_2026-27.pdf",
+      "page": 38,
+      "authoritative": false
+    },
+    {
+      "code": "CH4294",
+      "name": "INTERNATIONAL INTERNSHIP",
+      "credits": 24,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "CHEM",
+      "applicableDepartments": [
+        "CHEM"
+      ],
+      "sourcePdf": "CHEM_Merged_2026-27.pdf",
+      "page": 40,
+      "authoritative": false
+    },
+    {
+      "code": "CH4353",
+      "name": "BIOPROCESS ENGINEERING",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "CHEM",
+      "applicableDepartments": [
+        "CHEM"
+      ],
+      "sourcePdf": "CHEM_Complete_BTech.pdf",
+      "page": 24,
+      "authoritative": false
+    },
+    {
+      "code": "CS2008",
+      "name": "Operating Systems",
+      "credits": 4,
+      "courseType": "CORE",
+      "lectureHours": 2,
+      "tutorialHours": 1,
+      "practicalHours": 2,
+      "studyYear": 2,
+      "departmentCode": "CSE",
+      "applicableDepartments": [
+        "CSE"
+      ],
+      "sourcePdf": "CSE_Full_2024-25.pdf",
+      "page": 55,
+      "authoritative": true
+    },
+    {
+      "code": "CS2065",
+      "name": "Data Structures",
+      "credits": 4,
+      "courseType": "CORE",
+      "lectureHours": 2,
+      "tutorialHours": 1,
+      "practicalHours": 2,
+      "studyYear": 2,
+      "departmentCode": "CSE",
+      "applicableDepartments": [
+        "CSE"
+      ],
+      "sourcePdf": "CSE_Full_2024-25.pdf",
+      "page": 51,
+      "authoritative": true
+    },
+    {
+      "code": "CS2218",
+      "name": "Object Oriented Programming",
+      "credits": 4,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 1,
+      "practicalHours": 2,
+      "studyYear": 2,
+      "departmentCode": "CSE",
+      "applicableDepartments": [
+        "CSE"
+      ],
+      "sourcePdf": "CSE_Full_2024-25.pdf",
+      "page": 30,
+      "authoritative": true
+    },
+    {
+      "code": "CS2221",
+      "name": "MD: Internet of Things",
+      "credits": 4,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 1,
+      "practicalHours": 2,
+      "studyYear": 2,
+      "departmentCode": "CSE",
+      "applicableDepartments": [
+        "CSE"
+      ],
+      "sourcePdf": "CSE_Full_2024-25.pdf",
+      "page": 9,
+      "authoritative": true
+    },
+    {
+      "code": "CS2227",
+      "name": "Database Management Systems",
+      "credits": 4,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 1,
+      "practicalHours": 2,
+      "studyYear": 2,
+      "departmentCode": "CSE",
+      "applicableDepartments": [
+        "CSE"
+      ],
+      "sourcePdf": "CSE_Full_2024-25.pdf",
+      "page": 36,
+      "authoritative": true
+    },
+    {
+      "code": "CS2229",
+      "name": "Design Thinking-3",
+      "credits": 1,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "CSE",
+      "applicableDepartments": [
+        "CSE"
+      ],
+      "sourcePdf": "CSE_Full_2024-25.pdf",
+      "page": 9,
+      "authoritative": true
+    },
+    {
+      "code": "CS2235",
+      "name": "Computer Organization and Architecture",
+      "credits": 2,
+      "courseType": "CORE",
+      "lectureHours": 2,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "CSE",
+      "applicableDepartments": [
+        "CSE"
+      ],
+      "sourcePdf": "CSE_Full_2024-25.pdf",
+      "page": 41,
+      "authoritative": true
+    },
+    {
+      "code": "CS2242",
+      "name": "Engineering Design and Innovation",
+      "credits": 4,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 8,
+      "studyYear": 2,
+      "departmentCode": "CSE",
+      "applicableDepartments": [
+        "CSE"
+      ],
+      "sourcePdf": "CSE_Full_2024-25.pdf",
+      "page": 9,
+      "authoritative": true
+    },
+    {
+      "code": "CS2245",
+      "name": "MD: Microprocessors & Microcontrollers",
+      "credits": 4,
+      "courseType": "CORE",
+      "lectureHours": 2,
+      "tutorialHours": 1,
+      "practicalHours": 2,
+      "studyYear": 2,
+      "departmentCode": "CSE",
+      "applicableDepartments": [
+        "CSE"
+      ],
+      "sourcePdf": "CSE_Full_2024-25.pdf",
+      "page": 60,
+      "authoritative": true
+    },
+    {
+      "code": "CS2246",
+      "name": "Computer Graphics and Virtual Reality",
+      "credits": 4,
+      "courseType": "CORE",
+      "lectureHours": 2,
+      "tutorialHours": 1,
+      "practicalHours": 2,
+      "studyYear": 2,
+      "departmentCode": "CSE",
+      "applicableDepartments": [
+        "CSE"
+      ],
+      "sourcePdf": "CSE_Full_2024-25.pdf",
+      "page": 66,
+      "authoritative": true
+    },
+    {
+      "code": "CS2247",
+      "name": "Theory of Computation",
+      "credits": 2,
+      "courseType": "CORE",
+      "lectureHours": 2,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "CSE",
+      "applicableDepartments": [
+        "CSE"
+      ],
+      "sourcePdf": "CSE_Full_2024-25.pdf",
+      "page": 72,
+      "authoritative": true
+    },
+    {
+      "code": "CS227",
+      "name": "DATABASE MANAGEMENT SYSTEMS",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "CSE",
+      "applicableDepartments": [
+        "CSE"
+      ],
+      "sourcePdf": "ENTC_Merged_2024-25.pdf",
+      "page": 7,
+      "authoritative": false
+    },
+    {
+      "code": "CS2302",
+      "name": "Logic Design and Microprocessor",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 2,
+      "tutorialHours": 0,
+      "practicalHours": 2,
+      "studyYear": 2,
+      "departmentCode": "CSE",
+      "applicableDepartments": [
+        "CSE"
+      ],
+      "sourcePdf": "CSE_SY_2026-27.pdf",
+      "page": 23,
+      "authoritative": true
+    },
+    {
+      "code": "CS2303",
+      "name": "Object Oriented Programming",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 2,
+      "tutorialHours": 0,
+      "practicalHours": 2,
+      "studyYear": 2,
+      "departmentCode": "CSE",
+      "applicableDepartments": [
+        "CSE"
+      ],
+      "sourcePdf": "CSE_SY_2026-27.pdf",
+      "page": 28,
+      "authoritative": true
+    },
+    {
+      "code": "CS2304",
+      "name": "Database Management System",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 2,
+      "tutorialHours": 0,
+      "practicalHours": 2,
+      "studyYear": 2,
+      "departmentCode": "CSE",
+      "applicableDepartments": [
+        "CSE"
+      ],
+      "sourcePdf": "CSE_SY_2026-27.pdf",
+      "page": 34,
+      "authoritative": true
+    },
+    {
+      "code": "CS2305",
+      "name": "Data Structures-I",
+      "credits": 4,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 2,
+      "studyYear": 2,
+      "departmentCode": "CSE",
+      "applicableDepartments": [
+        "CSE"
+      ],
+      "sourcePdf": "CSE_SY_2026-27.pdf",
+      "page": 16,
+      "authoritative": true
+    },
+    {
+      "code": "CS2306",
+      "name": "Design Thinking",
+      "credits": 1,
+      "courseType": "SKILL_ENHANCEMENT",
+      "lectureHours": 3,
+      "tutorialHours": 1,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "CSE",
+      "applicableDepartments": [
+        "CSE"
+      ],
+      "sourcePdf": "CSE_SY_2026-27.pdf",
+      "page": 10,
+      "authoritative": true
+    },
+    {
+      "code": "CS2308",
+      "name": "Data Structures- II",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 2,
+      "tutorialHours": 0,
+      "practicalHours": 2,
+      "studyYear": 2,
+      "departmentCode": "CSE",
+      "applicableDepartments": [
+        "CSE"
+      ],
+      "sourcePdf": "CSE_SY_2026-27.pdf",
+      "page": 54,
+      "authoritative": true
+    },
+    {
+      "code": "CS2309",
+      "name": "Theory of Computation",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "CSE",
+      "applicableDepartments": [
+        "CSE"
+      ],
+      "sourcePdf": "CSE_SY_2026-27.pdf",
+      "page": 59,
+      "authoritative": true
+    },
+    {
+      "code": "CS2310",
+      "name": "Operating System",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 2,
+      "tutorialHours": 0,
+      "practicalHours": 2,
+      "studyYear": 2,
+      "departmentCode": "CSE",
+      "applicableDepartments": [
+        "CSE"
+      ],
+      "sourcePdf": "CSE_SY_2026-27.pdf",
+      "page": 64,
+      "authoritative": true
+    },
+    {
+      "code": "CS2311",
+      "name": "Software Engineering",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 2,
+      "tutorialHours": 0,
+      "practicalHours": 2,
+      "studyYear": 2,
+      "departmentCode": "CSE",
+      "applicableDepartments": [
+        "CSE"
+      ],
+      "sourcePdf": "CSE_SY_2026-27.pdf",
+      "page": 69,
+      "authoritative": true
+    },
+    {
+      "code": "CS2312",
+      "name": "Mobile Application Development",
+      "credits": 1,
+      "courseType": "CORE",
+      "lectureHours": 0,
+      "tutorialHours": 0,
+      "practicalHours": 2,
+      "studyYear": 2,
+      "departmentCode": "CSE",
+      "applicableDepartments": [
+        "CSE"
+      ],
+      "sourcePdf": "CSE_SY_2026-27.pdf",
+      "page": 74,
+      "authoritative": true
+    },
+    {
+      "code": "CS2313",
+      "name": "Design Thinking - 1",
+      "credits": 1,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "CSE",
+      "applicableDepartments": [
+        "CSE"
+      ],
+      "sourcePdf": "CSE_SY_2026-27.pdf",
+      "page": 47,
+      "authoritative": false
+    },
+    {
+      "code": "CS2314",
+      "name": "Engineering Design And Innovation - 1",
+      "credits": 2,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "CSE",
+      "applicableDepartments": [
+        "CSE"
+      ],
+      "sourcePdf": "CSE_SY_2026-27.pdf",
+      "page": 49,
+      "authoritative": false
+    },
+    {
+      "code": "HS2001",
+      "name": "Reasoning and Aptitude Development-3",
+      "credits": 1,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 1,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "CSE",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "CSE_SY_2026-27.pdf",
+      "page": 10,
+      "authoritative": true
+    },
+    {
+      "code": "HS2002",
+      "name": "Reasoning and Aptitude Development-4",
+      "credits": 2,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "CSE",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "CSE_SY_2026-27.pdf",
+      "page": 10,
+      "authoritative": true
+    },
+    {
+      "code": "HS2003",
+      "name": "From Campus to Corporate-2",
+      "credits": 2,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "CSE",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "CSE_SY_2026-27.pdf",
+      "page": 43,
+      "authoritative": true
+    },
+    {
+      "code": "HS2004",
+      "name": "Reasoning And Aptitude Development",
+      "credits": 1,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "CSE",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "AIML_SY_2026-27.pdf",
+      "page": 45,
+      "authoritative": true
+    },
+    {
+      "code": "MD2201",
+      "name": "Data Science",
+      "credits": 4,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 1,
+      "practicalHours": 2,
+      "studyYear": 2,
+      "departmentCode": "CSE",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "CSE_Full_2024-25.pdf",
+      "page": 19,
+      "authoritative": true
+    },
+    {
+      "code": "MD2221",
+      "name": "Internet of Things",
+      "credits": 4,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "CSE",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "CSE_Full_2024-25.pdf",
+      "page": 24,
+      "authoritative": false
+    },
+    {
+      "code": "MM0702",
+      "name": "Microcontroller",
+      "credits": 3,
+      "courseType": "MULTI_DISCIPLINARY",
+      "lectureHours": 2,
+      "tutorialHours": 1,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "CSE",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "CSE_SY_2026-27.pdf",
+      "page": 79,
+      "authoritative": true
+    },
+    {
+      "code": "MM0703",
+      "name": "Internet of Things",
+      "credits": 3,
+      "courseType": "MULTI_DISCIPLINARY",
+      "lectureHours": 2,
+      "tutorialHours": 1,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "CSE",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "CSE_SY_2026-27.pdf",
+      "page": 84,
+      "authoritative": true
+    },
+    {
+      "code": "MM0705",
+      "name": "Discrete Mathematics",
+      "credits": 3,
+      "courseType": "MULTI_DISCIPLINARY",
+      "lectureHours": 2,
+      "tutorialHours": 1,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "CSE",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "CSE_SY_2026-27.pdf",
+      "page": 39,
+      "authoritative": true
+    },
+    {
+      "code": "SH2001",
+      "name": "IBISI C: Reasoning and Aptitude Development",
+      "credits": 1,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "CSE",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "CSE_Full_2024-25.pdf",
+      "page": 9,
+      "authoritative": true
+    },
+    {
+      "code": "CS3052",
+      "name": "Computer Networks",
+      "credits": 4,
+      "courseType": "CORE",
+      "lectureHours": 2,
+      "tutorialHours": 1,
+      "practicalHours": 2,
+      "studyYear": 3,
+      "departmentCode": "CSE",
+      "applicableDepartments": [
+        "CSE"
+      ],
+      "sourcePdf": "CSE_Full_2024-25.pdf",
+      "page": 78,
+      "authoritative": true
+    },
+    {
+      "code": "CS3053",
+      "name": "Compiler Design",
+      "credits": 4,
+      "courseType": "CORE",
+      "lectureHours": 2,
+      "tutorialHours": 1,
+      "practicalHours": 2,
+      "studyYear": 3,
+      "departmentCode": "CSE",
+      "applicableDepartments": [
+        "CSE"
+      ],
+      "sourcePdf": "CSE_Full_2024-25.pdf",
+      "page": 127,
+      "authoritative": true
+    },
+    {
+      "code": "CS3057",
+      "name": "Engineering Design and Innovation - V",
+      "credits": 6,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 12,
+      "studyYear": 3,
+      "departmentCode": "CSE",
+      "applicableDepartments": [
+        "CSE"
+      ],
+      "sourcePdf": "CSE_TY_BTech_2025-26.pdf",
+      "page": 9,
+      "authoritative": true
+    },
+    {
+      "code": "CS3059",
+      "name": "Design Thinking-5",
+      "credits": 1,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 3,
+      "departmentCode": "CSE",
+      "applicableDepartments": [
+        "CSE"
+      ],
+      "sourcePdf": "CSE_Full_2024-25.pdf",
+      "page": 44,
+      "authoritative": true
+    },
+    {
+      "code": "CS3060",
+      "name": "Engineering Design and Innovation",
+      "credits": 6,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 12,
+      "studyYear": 3,
+      "departmentCode": "CSE",
+      "applicableDepartments": [
+        "CSE"
+      ],
+      "sourcePdf": "CSE_Full_2024-25.pdf",
+      "page": 46,
+      "authoritative": true
+    },
+    {
+      "code": "CS3061",
+      "name": "Software Modelling and Design",
+      "credits": 4,
+      "courseType": "CORE",
+      "lectureHours": 2,
+      "tutorialHours": 1,
+      "practicalHours": 2,
+      "studyYear": 3,
+      "departmentCode": "CSE",
+      "applicableDepartments": [
+        "CSE"
+      ],
+      "sourcePdf": "CSE_Full_2024-25.pdf",
+      "page": 99,
+      "authoritative": true
+    },
+    {
+      "code": "CS3062",
+      "name": "Design Thinking-6",
+      "credits": 1,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 3,
+      "departmentCode": "CSE",
+      "applicableDepartments": [
+        "CSE"
+      ],
+      "sourcePdf": "CSE_TY_BTech_2025-26.pdf",
+      "page": 12,
+      "authoritative": true
+    },
+    {
+      "code": "CS3063",
+      "name": "Engineering Design and Innovation - VI",
+      "credits": 6,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 12,
+      "studyYear": 3,
+      "departmentCode": "CSE",
+      "applicableDepartments": [
+        "CSE"
+      ],
+      "sourcePdf": "CSE_TY_BTech_2025-26.pdf",
+      "page": 12,
+      "authoritative": true
+    },
+    {
+      "code": "CS3202",
+      "name": "Artificial Intelligence",
+      "credits": 4,
+      "courseType": "CORE",
+      "lectureHours": 2,
+      "tutorialHours": 1,
+      "practicalHours": 2,
+      "studyYear": 3,
+      "departmentCode": "CSE",
+      "applicableDepartments": [
+        "CSE"
+      ],
+      "sourcePdf": "CSE_Full_2024-25.pdf",
+      "page": 113,
+      "authoritative": true
+    },
+    {
+      "code": "CS3205",
+      "name": "Design and Analysis of Algorithms",
+      "credits": 4,
+      "courseType": "CORE",
+      "lectureHours": 2,
+      "tutorialHours": 1,
+      "practicalHours": 2,
+      "studyYear": 3,
+      "departmentCode": "CSE",
+      "applicableDepartments": [
+        "CSE"
+      ],
+      "sourcePdf": "CSE_Full_2024-25.pdf",
+      "page": 86,
+      "authoritative": true
+    },
+    {
+      "code": "CS3215",
+      "name": "Web Technology",
+      "credits": 4,
+      "courseType": "CORE",
+      "lectureHours": 2,
+      "tutorialHours": 1,
+      "practicalHours": 2,
+      "studyYear": 3,
+      "departmentCode": "CSE",
+      "applicableDepartments": [
+        "CSE"
+      ],
+      "sourcePdf": "CSE_Full_2024-25.pdf",
+      "page": 93,
+      "authoritative": true
+    },
+    {
+      "code": "CS3220",
+      "name": "Cryptography and Information Security",
+      "credits": 4,
+      "courseType": "CORE",
+      "lectureHours": 2,
+      "tutorialHours": 1,
+      "practicalHours": 2,
+      "studyYear": 3,
+      "departmentCode": "CSE",
+      "applicableDepartments": [
+        "CSE"
+      ],
+      "sourcePdf": "CSE_Full_2024-25.pdf",
+      "page": 119,
+      "authoritative": true
+    },
+    {
+      "code": "CS3226",
+      "name": "Cloud Computing",
+      "credits": 4,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 3,
+      "departmentCode": "CSE",
+      "applicableDepartments": [
+        "CSE"
+      ],
+      "sourcePdf": "CSE_Full_2024-25.pdf",
+      "page": 106,
+      "authoritative": false
+    },
+    {
+      "code": "SH3001",
+      "name": "Reasoning and Aptitude Development-1",
+      "credits": 1,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 3,
+      "departmentCode": "CSE",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "CSE_Full_2024-25.pdf",
+      "page": 11,
+      "authoritative": true
+    },
+    {
+      "code": "SH3002",
+      "name": "Reasoning And Aptitude Development-2",
+      "credits": 1,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 3,
+      "departmentCode": "CSE",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "CSE_TY_BTech_2025-26.pdf",
+      "page": 12,
+      "authoritative": true
+    },
+    {
+      "code": "CS4202",
+      "name": "Research Internship",
+      "credits": 19,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 32,
+      "studyYear": 4,
+      "departmentCode": "CSE",
+      "applicableDepartments": [
+        "CSE"
+      ],
+      "sourcePdf": "CSE_Full_2024-25.pdf",
+      "page": 163,
+      "authoritative": true
+    },
+    {
+      "code": "CS4209",
+      "name": "Parallel Computing",
+      "credits": 2,
+      "courseType": "CORE",
+      "lectureHours": 2,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "CSE",
+      "applicableDepartments": [
+        "CSE"
+      ],
+      "sourcePdf": "CSE_TY_BTech_2025-26.pdf",
+      "page": 80,
+      "authoritative": true
+    },
+    {
+      "code": "CS4217",
+      "name": "Human Computer Interaction",
+      "credits": 2,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "CSE",
+      "applicableDepartments": [
+        "CSE"
+      ],
+      "sourcePdf": "CSE_Full_2024-25.pdf",
+      "page": 139,
+      "authoritative": true
+    },
+    {
+      "code": "CS4222",
+      "name": "Image Processing",
+      "credits": 2,
+      "courseType": "CORE",
+      "lectureHours": 2,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "CSE",
+      "applicableDepartments": [
+        "CSE"
+      ],
+      "sourcePdf": "CSE_Full_2024-25.pdf",
+      "page": 147,
+      "authoritative": true
+    },
+    {
+      "code": "CS4225",
+      "name": "Major Project",
+      "credits": 10,
+      "courseType": "CORE",
+      "lectureHours": 0,
+      "tutorialHours": 0,
+      "practicalHours": 20,
+      "studyYear": 4,
+      "departmentCode": "CSE",
+      "applicableDepartments": [
+        "CSE"
+      ],
+      "sourcePdf": "CSE_Full_2024-25.pdf",
+      "page": 13,
+      "authoritative": true
+    },
+    {
+      "code": "CS4226",
+      "name": "Major Project",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "CSE",
+      "applicableDepartments": [
+        "CSE"
+      ],
+      "sourcePdf": "CSE_Full_2024-25.pdf",
+      "page": 159,
+      "authoritative": false
+    },
+    {
+      "code": "CS4232",
+      "name": "Industry Internship",
+      "credits": 19,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 32,
+      "studyYear": 4,
+      "departmentCode": "CSE",
+      "applicableDepartments": [
+        "CSE"
+      ],
+      "sourcePdf": "CSE_Full_2024-25.pdf",
+      "page": 15,
+      "authoritative": true
+    },
+    {
+      "code": "CS4234",
+      "name": "International Internship",
+      "credits": 19,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 32,
+      "studyYear": 4,
+      "departmentCode": "CSE",
+      "applicableDepartments": [
+        "CSE"
+      ],
+      "sourcePdf": "CSE_Full_2024-25.pdf",
+      "page": 15,
+      "authoritative": true
+    },
+    {
+      "code": "CS4272",
+      "name": "Neural Networks",
+      "credits": 2,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "CSE",
+      "applicableDepartments": [
+        "CSE"
+      ],
+      "sourcePdf": "CSE_Full_2024-25.pdf",
+      "page": 143,
+      "authoritative": true
+    },
+    {
+      "code": "CS4275",
+      "name": "Introduction to Machine Learning ( To be completed from NPTEL/SWAYAM )",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "CSE",
+      "applicableDepartments": [
+        "CSE"
+      ],
+      "sourcePdf": "CSE_Full_2024-25.pdf",
+      "page": 157,
+      "authoritative": false
+    },
+    {
+      "code": "CS4276",
+      "name": "Deep Learning ( To be completed from NPTEL/SWAYAM )",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "CSE",
+      "applicableDepartments": [
+        "CSE"
+      ],
+      "sourcePdf": "CSE_Full_2024-25.pdf",
+      "page": 158,
+      "authoritative": false
+    },
+    {
+      "code": "CS4292",
+      "name": "Design Thinking -7",
+      "credits": 1,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "CSE",
+      "applicableDepartments": [
+        "CSE"
+      ],
+      "sourcePdf": "CSE_TY_BTech_2025-26.pdf",
+      "page": 95,
+      "authoritative": true
+    },
+    {
+      "code": "LL4001",
+      "name": "Generative AI",
+      "credits": 2,
+      "courseType": "CORE",
+      "lectureHours": 2,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "CSE",
+      "applicableDepartments": [
+        "CSE"
+      ],
+      "sourcePdf": "CSE_Full_2024-25.pdf",
+      "page": 137,
+      "authoritative": true
+    },
+    {
+      "code": "MD4202",
+      "name": "Project Management",
+      "credits": 2,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "CSE",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "CSE_Full_2024-25.pdf",
+      "page": 134,
+      "authoritative": true
+    },
+    {
+      "code": "MD4228",
+      "name": "IBM Full Stack Software Developer",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "CSE",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "CSE_Full_2024-25.pdf",
+      "page": 12,
+      "authoritative": true
+    },
+    {
+      "code": "MD4230",
+      "name": "IBM Back-End Developer",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "CSE",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "CSE_Full_2024-25.pdf",
+      "page": 12,
+      "authoritative": true
+    },
+    {
+      "code": "MD4238",
+      "name": "Microsoft Cybersecurity Analyst",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "CSE",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "CSE_Full_2024-25.pdf",
+      "page": 12,
+      "authoritative": true
+    },
+    {
+      "code": "MD4243",
+      "name": "IBM Data Engineering",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "CSE",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "CSE_Full_2024-25.pdf",
+      "page": 12,
+      "authoritative": true
+    },
+    {
+      "code": "MD4248",
+      "name": "IBM DevOps and Software Engineering",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "CSE",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "CSE_Full_2024-25.pdf",
+      "page": 12,
+      "authoritative": true
+    },
+    {
+      "code": "MD4262",
+      "name": "Salesforce Sales Development Representative",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "CSE",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "CSE_Full_2024-25.pdf",
+      "page": 12,
+      "authoritative": true
+    },
+    {
+      "code": "CS1012",
+      "name": "Problem Solving and Programming",
+      "credits": 4,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 1,
+      "departmentCode": "DESH",
+      "applicableDepartments": [
+        "DESH"
+      ],
+      "sourcePdf": "DESH_FY_2025-26.pdf",
+      "page": 2,
+      "authoritative": true
+    },
+    {
+      "code": "CS1018",
+      "name": "Python for Engineers",
+      "credits": 2,
+      "courseType": "CORE",
+      "lectureHours": 1,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 1,
+      "departmentCode": "DESH",
+      "applicableDepartments": [
+        "DESH"
+      ],
+      "sourcePdf": "DESH_FY_2025-26.pdf",
+      "page": 2,
+      "authoritative": true
+    },
+    {
+      "code": "CV1017",
+      "name": "Elements of Construction Engineering",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 1,
+      "departmentCode": "DESH",
+      "applicableDepartments": [
+        "DESH"
+      ],
+      "sourcePdf": "DESH_FY_2025-26.pdf",
+      "page": 2,
+      "authoritative": true
+    },
+    {
+      "code": "CV1019",
+      "name": "Engineering Mechanics",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 1,
+      "departmentCode": "DESH",
+      "applicableDepartments": [
+        "DESH"
+      ],
+      "sourcePdf": "DESH_FY_2025-26.pdf",
+      "page": 2,
+      "authoritative": true
+    },
+    {
+      "code": "CV1020",
+      "name": "Surveying",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 1,
+      "departmentCode": "DESH",
+      "applicableDepartments": [
+        "DESH"
+      ],
+      "sourcePdf": "DESH_FY_2025-26.pdf",
+      "page": 2,
+      "authoritative": true
+    },
+    {
+      "code": "ES1056",
+      "name": "Scientific Research Methods",
+      "credits": 1,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 1,
+      "departmentCode": "DESH",
+      "applicableDepartments": [
+        "DESH"
+      ],
+      "sourcePdf": "DESH_FY_2025-26.pdf",
+      "page": 4,
+      "authoritative": true
+    },
+    {
+      "code": "ES1057",
+      "name": "Applied Science and Engineering Project",
+      "credits": 2,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 1,
+      "departmentCode": "DESH",
+      "applicableDepartments": [
+        "DESH"
+      ],
+      "sourcePdf": "DESH_FY_2025-26.pdf",
+      "page": 4,
+      "authoritative": true
+    },
+    {
+      "code": "ET1012",
+      "name": "Applied Electromechanics",
+      "credits": 4,
+      "courseType": "ENGINEERING_SCIENCE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 1,
+      "departmentCode": "DESH",
+      "applicableDepartments": [
+        "DESH"
+      ],
+      "sourcePdf": "DESH_FY_2025-26.pdf",
+      "page": 2,
+      "authoritative": true
+    },
+    {
+      "code": "ET1017",
+      "name": "Digital Logic Design and Testing",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 1,
+      "departmentCode": "DESH",
+      "applicableDepartments": [
+        "DESH"
+      ],
+      "sourcePdf": "DESH_FY_2025-26.pdf",
+      "page": 2,
+      "authoritative": true
+    },
+    {
+      "code": "HS1027",
+      "name": "Induction Training",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 1,
+      "departmentCode": "DESH",
+      "applicableDepartments": [
+        "DESH"
+      ],
+      "sourcePdf": "DESH_FY_2025-26.pdf",
+      "page": 2,
+      "authoritative": true
+    },
+    {
+      "code": "HS1036",
+      "name": "Indian Democracy and Constitution",
+      "credits": 3,
+      "courseType": "AUDIT",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 1,
+      "departmentCode": "DESH",
+      "applicableDepartments": [
+        "DESH"
+      ],
+      "sourcePdf": "DESH_FY_2025-26.pdf",
+      "page": 2,
+      "authoritative": true
+    },
+    {
+      "code": "HS1072",
+      "name": "Reasoning and Aptitude Development",
+      "credits": 1,
+      "courseType": "HUMANITIES",
+      "lectureHours": 3,
+      "tutorialHours": 1,
+      "practicalHours": 0,
+      "studyYear": 1,
+      "departmentCode": "DESH",
+      "applicableDepartments": [
+        "DESH"
+      ],
+      "sourcePdf": "DESH_FY_2025-26.pdf",
+      "page": 2,
+      "authoritative": true
+    },
+    {
+      "code": "HS1073",
+      "name": "Universal Human Values",
+      "credits": 2,
+      "courseType": "CORE",
+      "lectureHours": 2,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 1,
+      "departmentCode": "DESH",
+      "applicableDepartments": [
+        "DESH"
+      ],
+      "sourcePdf": "DESH_FY_2025-26.pdf",
+      "page": 2,
+      "authoritative": true
+    },
+    {
+      "code": "HS1074",
+      "name": "General Proficiency",
+      "credits": 1,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 1,
+      "departmentCode": "DESH",
+      "applicableDepartments": [
+        "DESH"
+      ],
+      "sourcePdf": "DESH_FY_2025-26.pdf",
+      "page": 2,
+      "authoritative": true
+    },
+    {
+      "code": "HS1077",
+      "name": "Universal Human Values",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 1,
+      "departmentCode": "DESH",
+      "applicableDepartments": [
+        "DESH"
+      ],
+      "sourcePdf": "DESH_FY_2025-26.pdf",
+      "page": 2,
+      "authoritative": true
+    },
+    {
+      "code": "HS1079",
+      "name": "Reasoning and Aptitude Development",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 1,
+      "departmentCode": "DESH",
+      "applicableDepartments": [
+        "DESH"
+      ],
+      "sourcePdf": "DESH_FY_2025-26.pdf",
+      "page": 2,
+      "authoritative": true
+    },
+    {
+      "code": "HS1080",
+      "name": "General Proficiency",
+      "credits": 1,
+      "courseType": "CO_CURRICULAR",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 1,
+      "departmentCode": "DESH",
+      "applicableDepartments": [
+        "DESH"
+      ],
+      "sourcePdf": "DESH_FY_2025-26.pdf",
+      "page": 2,
+      "authoritative": true
+    },
+    {
+      "code": "HS1082",
+      "name": "Environmental Studies",
+      "credits": 1,
+      "courseType": "CORE",
+      "lectureHours": 1,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 1,
+      "departmentCode": "DESH",
+      "applicableDepartments": [
+        "DESH"
+      ],
+      "sourcePdf": "DESH_FY_2025-26.pdf",
+      "page": 2,
+      "authoritative": true
+    },
+    {
+      "code": "HS1083",
+      "name": "Student Activity",
+      "credits": 1,
+      "courseType": "CORE",
+      "lectureHours": 0,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 1,
+      "departmentCode": "DESH",
+      "applicableDepartments": [
+        "DESH"
+      ],
+      "sourcePdf": "DESH_FY_2025-26.pdf",
+      "page": 2,
+      "authoritative": true
+    },
+    {
+      "code": "HS1084",
+      "name": "Linear Algebra",
+      "credits": 4,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 1,
+      "practicalHours": 0,
+      "studyYear": 1,
+      "departmentCode": "DESH",
+      "applicableDepartments": [
+        "DESH"
+      ],
+      "sourcePdf": "DESH_FY_2025-26.pdf",
+      "page": 2,
+      "authoritative": true
+    },
+    {
+      "code": "HS1085",
+      "name": "Calculus",
+      "credits": 4,
+      "courseType": "BASIC_SCIENCE",
+      "lectureHours": 3,
+      "tutorialHours": 1,
+      "practicalHours": 0,
+      "studyYear": 1,
+      "departmentCode": "DESH",
+      "applicableDepartments": [
+        "DESH"
+      ],
+      "sourcePdf": "DESH_FY_2025-26.pdf",
+      "page": 2,
+      "authoritative": true
+    },
+    {
+      "code": "ME1017",
+      "name": "Engineering Graphics",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 1,
+      "departmentCode": "DESH",
+      "applicableDepartments": [
+        "DESH"
+      ],
+      "sourcePdf": "DESH_FY_2025-26.pdf",
+      "page": 2,
+      "authoritative": true
+    },
+    {
+      "code": "ME1019",
+      "name": "Mechanical Systems Engineering",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 1,
+      "departmentCode": "DESH",
+      "applicableDepartments": [
+        "DESH"
+      ],
+      "sourcePdf": "DESH_FY_2025-26.pdf",
+      "page": 2,
+      "authoritative": true
+    },
+    {
+      "code": "ME1020",
+      "name": "Mechanics of Machine Elements",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 1,
+      "departmentCode": "DESH",
+      "applicableDepartments": [
+        "DESH"
+      ],
+      "sourcePdf": "DESH_FY_2025-26.pdf",
+      "page": 2,
+      "authoritative": true
+    },
+    {
+      "code": "ME1501",
+      "name": "Mechanical System Design",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 1,
+      "departmentCode": "DESH",
+      "applicableDepartments": [
+        "DESH"
+      ],
+      "sourcePdf": "MECH_Complete_2026-27.pdf",
+      "page": 169,
+      "authoritative": false
+    },
+    {
+      "code": "ME1501C",
+      "name": "IC Engine and Alternative fuels",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 1,
+      "departmentCode": "DESH",
+      "applicableDepartments": [
+        "DESH"
+      ],
+      "sourcePdf": "MECH_Complete_2026-27.pdf",
+      "page": 128,
+      "authoritative": false
+    },
+    {
+      "code": "MM1501",
+      "name": "Mechatronics",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 1,
+      "departmentCode": "DESH",
+      "applicableDepartments": [
+        "DESH"
+      ],
+      "sourcePdf": "MECH_Complete_2026-27.pdf",
+      "page": 116,
+      "authoritative": false
+    },
+    {
+      "code": "MM1501B",
+      "name": "Advanced Manufacturing",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 1,
+      "departmentCode": "DESH",
+      "applicableDepartments": [
+        "DESH"
+      ],
+      "sourcePdf": "MECH_Complete_2026-27.pdf",
+      "page": 122,
+      "authoritative": false
+    },
+    {
+      "code": "MM1532",
+      "name": "Data Analytics and Machine Learning",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 1,
+      "departmentCode": "DESH",
+      "applicableDepartments": [
+        "DESH"
+      ],
+      "sourcePdf": "MECH_Complete_2026-27.pdf",
+      "page": 44,
+      "authoritative": false
+    },
+    {
+      "code": "MM1533",
+      "name": "Industry 4.0",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 1,
+      "departmentCode": "DESH",
+      "applicableDepartments": [
+        "DESH"
+      ],
+      "sourcePdf": "MECH_Complete_2026-27.pdf",
+      "page": 48,
+      "authoritative": false
+    },
+    {
+      "code": "XX1011",
+      "name": "Applied Science & Engineering Project-1",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 1,
+      "departmentCode": "DESH",
+      "applicableDepartments": [
+        "DESH"
+      ],
+      "sourcePdf": "DESH_FY_2025-26.pdf",
+      "page": 2,
+      "authoritative": true
+    },
+    {
+      "code": "XX1013",
+      "name": "Scientific Research Methods",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 1,
+      "departmentCode": "DESH",
+      "applicableDepartments": [
+        "DESH"
+      ],
+      "sourcePdf": "DESH_FY_2025-26.pdf",
+      "page": 2,
+      "authoritative": true
+    },
+    {
+      "code": "XX1014",
+      "name": "Applied Science and Engineering Project",
+      "credits": 2,
+      "courseType": "BASIC_SCIENCE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 1,
+      "departmentCode": "DESH",
+      "applicableDepartments": [
+        "DESH"
+      ],
+      "sourcePdf": "DESH_FY_2025-26.pdf",
+      "page": 2,
+      "authoritative": true
+    },
+    {
+      "code": "XX1015",
+      "name": "Scientific Research Methods",
+      "credits": 1,
+      "courseType": "ENGINEERING_SCIENCE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 1,
+      "departmentCode": "DESH",
+      "applicableDepartments": [
+        "DESH"
+      ],
+      "sourcePdf": "DESH_FY_2025-26.pdf",
+      "page": 2,
+      "authoritative": true
+    },
+    {
+      "code": "XX1016",
+      "name": "Engineering Mechanics",
+      "credits": 2,
+      "courseType": "CORE",
+      "lectureHours": 2,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 1,
+      "departmentCode": "DESH",
+      "applicableDepartments": [
+        "DESH"
+      ],
+      "sourcePdf": "DESH_FY_2025-26.pdf",
+      "page": 2,
+      "authoritative": true
+    },
+    {
+      "code": "XX1017",
+      "name": "Elements of Construction Engineering",
+      "credits": 2,
+      "courseType": "CORE",
+      "lectureHours": 1,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 1,
+      "departmentCode": "DESH",
+      "applicableDepartments": [
+        "DESH"
+      ],
+      "sourcePdf": "DESH_FY_2025-26.pdf",
+      "page": 2,
+      "authoritative": true
+    },
+    {
+      "code": "XX1020",
+      "name": "Scientific Research Methods",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 1,
+      "departmentCode": "DESH",
+      "applicableDepartments": [
+        "DESH"
+      ],
+      "sourcePdf": "DESH_FY_2025-26.pdf",
+      "page": 2,
+      "authoritative": true
+    },
+    {
+      "code": "ET2204",
+      "name": "Communication Engineering",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "ENTC",
+      "applicableDepartments": [
+        "ENTC"
+      ],
+      "sourcePdf": "ENTC_Merged_2024-25.pdf",
+      "page": 13,
+      "authoritative": true
+    },
+    {
+      "code": "ET2245",
+      "name": "DESIGN THINKING-3",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "ENTC",
+      "applicableDepartments": [
+        "ENTC"
+      ],
+      "sourcePdf": "ENTC_Merged_2024-25.pdf",
+      "page": 7,
+      "authoritative": false
+    },
+    {
+      "code": "ET2270",
+      "name": "Advanced Data Structures",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "ENTC",
+      "applicableDepartments": [
+        "ENTC"
+      ],
+      "sourcePdf": "ENTC_Merged_2024-25.pdf",
+      "page": 7,
+      "authoritative": true
+    },
+    {
+      "code": "ET2271",
+      "name": "Digital System",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "ENTC",
+      "applicableDepartments": [
+        "ENTC"
+      ],
+      "sourcePdf": "ENTC_Merged_2024-25.pdf",
+      "page": 7,
+      "authoritative": true
+    },
+    {
+      "code": "ET2290",
+      "name": "Signals And Systems",
+      "credits": 2,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "ENTC",
+      "applicableDepartments": [
+        "ENTC"
+      ],
+      "sourcePdf": "ENTC_Merged_2024-25.pdf",
+      "page": 7,
+      "authoritative": true
+    },
+    {
+      "code": "ET2291",
+      "name": "Network Theory",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "ENTC",
+      "applicableDepartments": [
+        "ENTC"
+      ],
+      "sourcePdf": "ENTC_Merged_2024-25.pdf",
+      "page": 7,
+      "authoritative": true
+    },
+    {
+      "code": "ET2292",
+      "name": "ENGINEERING DESIGN AND INNOVATION - III",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "ENTC",
+      "applicableDepartments": [
+        "ENTC"
+      ],
+      "sourcePdf": "ENTC_Merged_2024-25.pdf",
+      "page": 7,
+      "authoritative": false
+    },
+    {
+      "code": "ET2293",
+      "name": "Semiconductor Devices and Circuits",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "ENTC",
+      "applicableDepartments": [
+        "ENTC"
+      ],
+      "sourcePdf": "ENTC_Merged_2024-25.pdf",
+      "page": 7,
+      "authoritative": true
+    },
+    {
+      "code": "ET3002",
+      "name": "Digital Signal Processing",
+      "credits": 4,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 3,
+      "departmentCode": "ENTC",
+      "applicableDepartments": [
+        "ENTC"
+      ],
+      "sourcePdf": "ENTC_Merged_2024-25.pdf",
+      "page": 7,
+      "authoritative": true
+    },
+    {
+      "code": "ET3203",
+      "name": "Power Electronics And Drives",
+      "credits": 4,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 3,
+      "departmentCode": "ENTC",
+      "applicableDepartments": [
+        "ENTC"
+      ],
+      "sourcePdf": "ENTC_Merged_2024-25.pdf",
+      "page": 8,
+      "authoritative": true
+    },
+    {
+      "code": "ET3206",
+      "name": "Digital Design",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 3,
+      "departmentCode": "ENTC",
+      "applicableDepartments": [
+        "ENTC"
+      ],
+      "sourcePdf": "ENTC_Merged_2024-25.pdf",
+      "page": 7,
+      "authoritative": true
+    },
+    {
+      "code": "ET3207",
+      "name": "INFORMATION THEORY & CODING TECHNIQUES",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 3,
+      "departmentCode": "ENTC",
+      "applicableDepartments": [
+        "ENTC"
+      ],
+      "sourcePdf": "ENTC_Merged_2024-25.pdf",
+      "page": 7,
+      "authoritative": false
+    },
+    {
+      "code": "ET3221",
+      "name": "Computer Vision",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 3,
+      "departmentCode": "ENTC",
+      "applicableDepartments": [
+        "ENTC"
+      ],
+      "sourcePdf": "ENTC_Merged_2024-25.pdf",
+      "page": 7,
+      "authoritative": true
+    },
+    {
+      "code": "ET3241",
+      "name": "Engineering Design and Innovation - VI",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 3,
+      "departmentCode": "ENTC",
+      "applicableDepartments": [
+        "ENTC"
+      ],
+      "sourcePdf": "ENTC_Merged_2024-25.pdf",
+      "page": 18,
+      "authoritative": true
+    },
+    {
+      "code": "ET3265",
+      "name": "Control Systems",
+      "credits": 4,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 3,
+      "departmentCode": "ENTC",
+      "applicableDepartments": [
+        "ENTC"
+      ],
+      "sourcePdf": "ENTC_Merged_2024-25.pdf",
+      "page": 141,
+      "authoritative": true
+    },
+    {
+      "code": "ET3271",
+      "name": "Embedded System Design",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 3,
+      "departmentCode": "ENTC",
+      "applicableDepartments": [
+        "ENTC"
+      ],
+      "sourcePdf": "ENTC_Merged_2024-25.pdf",
+      "page": 7,
+      "authoritative": true
+    },
+    {
+      "code": "ET3272",
+      "name": "Design and Analysis of Algorithms",
+      "credits": 4,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 3,
+      "departmentCode": "ENTC",
+      "applicableDepartments": [
+        "ENTC"
+      ],
+      "sourcePdf": "ENTC_Merged_2024-25.pdf",
+      "page": 7,
+      "authoritative": true
+    },
+    {
+      "code": "ET3274",
+      "name": "Operating Systems",
+      "credits": 4,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 3,
+      "departmentCode": "ENTC",
+      "applicableDepartments": [
+        "ENTC"
+      ],
+      "sourcePdf": "ENTC_Merged_2024-25.pdf",
+      "page": 7,
+      "authoritative": true
+    },
+    {
+      "code": "ET3277",
+      "name": "Digital Communication",
+      "credits": 4,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 3,
+      "departmentCode": "ENTC",
+      "applicableDepartments": [
+        "ENTC"
+      ],
+      "sourcePdf": "ENTC_Merged_2024-25.pdf",
+      "page": 8,
+      "authoritative": true
+    },
+    {
+      "code": "ET3279",
+      "name": "Engineering Design and Innovation - V",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 3,
+      "departmentCode": "ENTC",
+      "applicableDepartments": [
+        "ENTC"
+      ],
+      "sourcePdf": "ENTC_Merged_2024-25.pdf",
+      "page": 8,
+      "authoritative": true
+    },
+    {
+      "code": "ET3282",
+      "name": "Design Thinking",
+      "credits": 1,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 3,
+      "departmentCode": "ENTC",
+      "applicableDepartments": [
+        "ENTC"
+      ],
+      "sourcePdf": "ENTC_Merged_2024-25.pdf",
+      "page": 8,
+      "authoritative": true
+    },
+    {
+      "code": "ET3283",
+      "name": "ENGINEERING DESIGN AND INNOVATIONS-3",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 3,
+      "departmentCode": "ENTC",
+      "applicableDepartments": [
+        "ENTC"
+      ],
+      "sourcePdf": "ENTC_Merged_2024-25.pdf",
+      "page": 7,
+      "authoritative": false
+    },
+    {
+      "code": "ET3285",
+      "name": "Computer Network Security",
+      "credits": 4,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 3,
+      "departmentCode": "ENTC",
+      "applicableDepartments": [
+        "ENTC"
+      ],
+      "sourcePdf": "ENTC_Merged_2024-25.pdf",
+      "page": 8,
+      "authoritative": true
+    },
+    {
+      "code": "ET3286",
+      "name": "Design Thinking",
+      "credits": 1,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 3,
+      "departmentCode": "ENTC",
+      "applicableDepartments": [
+        "ENTC"
+      ],
+      "sourcePdf": "ENTC_Merged_2024-25.pdf",
+      "page": 18,
+      "authoritative": true
+    },
+    {
+      "code": "ET4206",
+      "name": "Digital Communication using GNU Radio",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "ENTC",
+      "applicableDepartments": [
+        "ENTC"
+      ],
+      "sourcePdf": "ENTC_Merged_2024-25.pdf",
+      "page": 9,
+      "authoritative": true
+    },
+    {
+      "code": "ET4230",
+      "name": "Natural Language Processing",
+      "credits": 2,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "ENTC",
+      "applicableDepartments": [
+        "ENTC"
+      ],
+      "sourcePdf": "CSE_Full_2024-25.pdf",
+      "page": 152,
+      "authoritative": true
+    },
+    {
+      "code": "ET4232",
+      "name": "Deep Learning",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "ENTC",
+      "applicableDepartments": [
+        "ENTC"
+      ],
+      "sourcePdf": "ENTC_Merged_2024-25.pdf",
+      "page": 8,
+      "authoritative": true
+    },
+    {
+      "code": "ET4292",
+      "name": "MODERN DIGITAL COMMUNICATION TECHNIQUES",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "ENTC",
+      "applicableDepartments": [
+        "ENTC"
+      ],
+      "sourcePdf": "ENTC_Merged_2024-25.pdf",
+      "page": 8,
+      "authoritative": false
+    },
+    {
+      "code": "ET4430",
+      "name": "VLSI Design Flow: RTL To GDS",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "ENTC",
+      "applicableDepartments": [
+        "ENTC"
+      ],
+      "sourcePdf": "ENTC_Merged_2024-25.pdf",
+      "page": 9,
+      "authoritative": false
+    },
+    {
+      "code": "ET4431",
+      "name": "Design Thinking",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "ENTC",
+      "applicableDepartments": [
+        "ENTC"
+      ],
+      "sourcePdf": "ENTC_Merged_2024-25.pdf",
+      "page": 9,
+      "authoritative": true
+    },
+    {
+      "code": "ET4432",
+      "name": "Digital IC Design",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "ENTC",
+      "applicableDepartments": [
+        "ENTC"
+      ],
+      "sourcePdf": "ENTC_Merged_2024-25.pdf",
+      "page": 9,
+      "authoritative": true
+    },
+    {
+      "code": "MD4203",
+      "name": "BUSINESS PROPOSAL WRITING",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "ENTC",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "ENTC_Merged_2024-25.pdf",
+      "page": 8,
+      "authoritative": false
+    },
+    {
+      "code": "MD4206",
+      "name": "MARKETING MANAGEMENT",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "ENTC",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "MECH_Complete_2026-27.pdf",
+      "page": 8,
+      "authoritative": false
+    },
+    {
+      "code": "MD4229",
+      "name": "Meta Back-End Developer",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "ENTC",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "ENTC_Merged_2024-25.pdf",
+      "page": 8,
+      "authoritative": true
+    },
+    {
+      "code": "MD4233",
+      "name": "Microsoft Power BI Data Analyst",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "ENTC",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "ENTC_Merged_2024-25.pdf",
+      "page": 8,
+      "authoritative": true
+    },
+    {
+      "code": "MD4234",
+      "name": "Tableau Business Intelligence Analyst",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "ENTC",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "ENTC_Merged_2024-25.pdf",
+      "page": 8,
+      "authoritative": true
+    },
+    {
+      "code": "MD4237",
+      "name": "IBM Cybersecurity Analyst",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "ENTC",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "ENTC_Merged_2024-25.pdf",
+      "page": 22,
+      "authoritative": true
+    },
+    {
+      "code": "MD4239",
+      "name": "Google Cybersecurity",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "ENTC",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "ENTC_Merged_2024-25.pdf",
+      "page": 8,
+      "authoritative": false
+    },
+    {
+      "code": "MD4240",
+      "name": "Google Data Analytics",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "ENTC",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "ENTC_Merged_2024-25.pdf",
+      "page": 8,
+      "authoritative": false
+    },
+    {
+      "code": "MD4241",
+      "name": "IBM Data Analyst",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "ENTC",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "ENTC_Merged_2024-25.pdf",
+      "page": 8,
+      "authoritative": false
+    },
+    {
+      "code": "MD4244",
+      "name": "Meta Database Engineer",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "ENTC",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "ENTC_Merged_2024-25.pdf",
+      "page": 8,
+      "authoritative": false
+    },
+    {
+      "code": "MD4245",
+      "name": "IBM Data Science",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "ENTC",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "ENTC_Merged_2024-25.pdf",
+      "page": 8,
+      "authoritative": false
+    },
+    {
+      "code": "MD4246",
+      "name": "Fractal Data Science",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "ENTC",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "ENTC_Merged_2024-25.pdf",
+      "page": 8,
+      "authoritative": false
+    },
+    {
+      "code": "MD4249",
+      "name": "Google Digital Marketing and E-Commerce",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "ENTC",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "ENTC_Merged_2024-25.pdf",
+      "page": 8,
+      "authoritative": false
+    },
+    {
+      "code": "MD4250",
+      "name": "Meta Front-End Developer",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "ENTC",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "ENTC_Merged_2024-25.pdf",
+      "page": 8,
+      "authoritative": false
+    },
+    {
+      "code": "MD4251",
+      "name": "IBM Front-End Developer",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "ENTC",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "ENTC_Merged_2024-25.pdf",
+      "page": 8,
+      "authoritative": false
+    },
+    {
+      "code": "MD4253",
+      "name": "Meta iOS Developer",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "ENTC",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "ENTC_Merged_2024-25.pdf",
+      "page": 8,
+      "authoritative": false
+    },
+    {
+      "code": "MD4254",
+      "name": "IBM IT Project Manager",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "ENTC",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "ENTC_Merged_2024-25.pdf",
+      "page": 8,
+      "authoritative": false
+    },
+    {
+      "code": "MD4255",
+      "name": "Google IT Support Structure and",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "ENTC",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "ENTC_Merged_2024-25.pdf",
+      "page": 199,
+      "authoritative": false
+    },
+    {
+      "code": "MD4257",
+      "name": "IBM Mainframe Developer",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "ENTC",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "ENTC_Merged_2024-25.pdf",
+      "page": 200,
+      "authoritative": false
+    },
+    {
+      "code": "MD4258",
+      "name": "Meta Marketing Analytics",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "ENTC",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "ENTC_Merged_2024-25.pdf",
+      "page": 8,
+      "authoritative": false
+    },
+    {
+      "code": "MD4259",
+      "name": "Akamai Network Engineering",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "ENTC",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "ENTC_Merged_2024-25.pdf",
+      "page": 8,
+      "authoritative": false
+    },
+    {
+      "code": "MD4260",
+      "name": "Google Project Management",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "ENTC",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "ENTC_Merged_2024-25.pdf",
+      "page": 8,
+      "authoritative": false
+    },
+    {
+      "code": "MD4266",
+      "name": "SAP Technology Consultant",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "ENTC",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "ENTC_Merged_2024-25.pdf",
+      "page": 8,
+      "authoritative": false
+    },
+    {
+      "code": "MD4267",
+      "name": "AWS Cloud Technology Consultant",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "ENTC",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "ENTC_Merged_2024-25.pdf",
+      "page": 8,
+      "authoritative": false
+    },
+    {
+      "code": "MD4268",
+      "name": "Google UX Design",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "ENTC",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "ENTC_Merged_2024-25.pdf",
+      "page": 8,
+      "authoritative": false
+    },
+    {
+      "code": "SITES4237",
+      "name": "IBM Cybersecurity Analyst",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "ENTC",
+      "applicableDepartments": [
+        "ENTC"
+      ],
+      "sourcePdf": "ENTC_Merged_2024-25.pdf",
+      "page": 185,
+      "authoritative": false
+    },
+    {
+      "code": "IC2236",
+      "name": "DESIGN THINKING-1",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "INST",
+      "applicableDepartments": [
+        "INST"
+      ],
+      "sourcePdf": "INST_Complete_2025-26.pdf",
+      "page": 28,
+      "authoritative": false
+    },
+    {
+      "code": "IC2240",
+      "name": "Engineering Design and Innovation - I",
+      "credits": 2,
+      "courseType": "CORE",
+      "lectureHours": 0,
+      "tutorialHours": 0,
+      "practicalHours": 4,
+      "studyYear": 2,
+      "departmentCode": "INST",
+      "applicableDepartments": [
+        "INST"
+      ],
+      "sourcePdf": "INST_Complete_2025-26.pdf",
+      "page": 32,
+      "authoritative": true
+    },
+    {
+      "code": "IC2302",
+      "name": "Advanced Data Structures",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 2,
+      "tutorialHours": 0,
+      "practicalHours": 2,
+      "studyYear": 2,
+      "departmentCode": "INST",
+      "applicableDepartments": [
+        "INST"
+      ],
+      "sourcePdf": "INST_Complete_2025-26.pdf",
+      "page": 36,
+      "authoritative": true
+    },
+    {
+      "code": "IC2304",
+      "name": "Internet of Things",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 2,
+      "tutorialHours": 0,
+      "practicalHours": 2,
+      "studyYear": 2,
+      "departmentCode": "INST",
+      "applicableDepartments": [
+        "INST"
+      ],
+      "sourcePdf": "INST_Complete_2025-26.pdf",
+      "page": 14,
+      "authoritative": true
+    },
+    {
+      "code": "IC2305",
+      "name": "OBJECT ORIENTED PROGRAMMING",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "INST",
+      "applicableDepartments": [
+        "INST"
+      ],
+      "sourcePdf": "INST_Complete_2025-26.pdf",
+      "page": 17,
+      "authoritative": false
+    },
+    {
+      "code": "IC2306",
+      "name": "Signal and Image Processing",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 2,
+      "tutorialHours": 0,
+      "practicalHours": 2,
+      "studyYear": 2,
+      "departmentCode": "INST",
+      "applicableDepartments": [
+        "INST"
+      ],
+      "sourcePdf": "INST_Complete_2025-26.pdf",
+      "page": 44,
+      "authoritative": true
+    },
+    {
+      "code": "IC2307",
+      "name": "DATABASE MANAGEMENT SYSTEMS",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "INST",
+      "applicableDepartments": [
+        "INST"
+      ],
+      "sourcePdf": "INST_Complete_2025-26.pdf",
+      "page": 24,
+      "authoritative": false
+    },
+    {
+      "code": "IC2308",
+      "name": "INDUSTRIAL AUTOMATION",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "INST",
+      "applicableDepartments": [
+        "INST"
+      ],
+      "sourcePdf": "INST_Complete_2025-26.pdf",
+      "page": 47,
+      "authoritative": false
+    },
+    {
+      "code": "IC2316",
+      "name": "Design Thinking-2",
+      "credits": 1,
+      "courseType": "CORE",
+      "lectureHours": 0,
+      "tutorialHours": 1,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "INST",
+      "applicableDepartments": [
+        "INST"
+      ],
+      "sourcePdf": "INST_Complete_2025-26.pdf",
+      "page": 52,
+      "authoritative": true
+    },
+    {
+      "code": "IC2317",
+      "name": "Engineering Design and Innovation - II",
+      "credits": 2,
+      "courseType": "CORE",
+      "lectureHours": 0,
+      "tutorialHours": 0,
+      "practicalHours": 4,
+      "studyYear": 2,
+      "departmentCode": "INST",
+      "applicableDepartments": [
+        "INST"
+      ],
+      "sourcePdf": "INST_Complete_2025-26.pdf",
+      "page": 56,
+      "authoritative": true
+    },
+    {
+      "code": "MD2301",
+      "name": "DATA SCIENCE",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "INST",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "INST_Complete_2025-26.pdf",
+      "page": 11,
+      "authoritative": false
+    },
+    {
+      "code": "IC3222",
+      "name": "Batch Process Control",
+      "credits": 2,
+      "courseType": "CORE",
+      "lectureHours": 2,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 3,
+      "departmentCode": "INST",
+      "applicableDepartments": [
+        "INST"
+      ],
+      "sourcePdf": "INST_Complete_2025-26.pdf",
+      "page": 123,
+      "authoritative": true
+    },
+    {
+      "code": "IC3231",
+      "name": "Process Instrumentation",
+      "credits": 4,
+      "courseType": "CORE",
+      "lectureHours": 2,
+      "tutorialHours": 1,
+      "practicalHours": 2,
+      "studyYear": 3,
+      "departmentCode": "INST",
+      "applicableDepartments": [
+        "INST"
+      ],
+      "sourcePdf": "INST_Complete_2025-26.pdf",
+      "page": 69,
+      "authoritative": true
+    },
+    {
+      "code": "IC3233",
+      "name": "Measurement Systems",
+      "credits": 4,
+      "courseType": "CORE",
+      "lectureHours": 2,
+      "tutorialHours": 1,
+      "practicalHours": 2,
+      "studyYear": 3,
+      "departmentCode": "INST",
+      "applicableDepartments": [
+        "INST"
+      ],
+      "sourcePdf": "INST_Complete_2025-26.pdf",
+      "page": 76,
+      "authoritative": true
+    },
+    {
+      "code": "IC3234",
+      "name": "Building and Process Automation",
+      "credits": 4,
+      "courseType": "CORE",
+      "lectureHours": 2,
+      "tutorialHours": 1,
+      "practicalHours": 2,
+      "studyYear": 3,
+      "departmentCode": "INST",
+      "applicableDepartments": [
+        "INST"
+      ],
+      "sourcePdf": "INST_Complete_2025-26.pdf",
+      "page": 98,
+      "authoritative": true
+    },
+    {
+      "code": "IC3237",
+      "name": "Control Theory",
+      "credits": 4,
+      "courseType": "CORE",
+      "lectureHours": 2,
+      "tutorialHours": 1,
+      "practicalHours": 2,
+      "studyYear": 3,
+      "departmentCode": "INST",
+      "applicableDepartments": [
+        "INST"
+      ],
+      "sourcePdf": "INST_Complete_2025-26.pdf",
+      "page": 80,
+      "authoritative": true
+    },
+    {
+      "code": "IC3240",
+      "name": "Computer Network and Web Technologies",
+      "credits": 4,
+      "courseType": "CORE",
+      "lectureHours": 2,
+      "tutorialHours": 1,
+      "practicalHours": 2,
+      "studyYear": 3,
+      "departmentCode": "INST",
+      "applicableDepartments": [
+        "INST"
+      ],
+      "sourcePdf": "INST_Complete_2025-26.pdf",
+      "page": 104,
+      "authoritative": true
+    },
+    {
+      "code": "IC3243",
+      "name": "A L",
+      "credits": 4,
+      "courseType": "CORE",
+      "lectureHours": 2,
+      "tutorialHours": 1,
+      "practicalHours": 2,
+      "studyYear": 3,
+      "departmentCode": "INST",
+      "applicableDepartments": [
+        "INST"
+      ],
+      "sourcePdf": "INST_Complete_2025-26.pdf",
+      "page": 83,
+      "authoritative": true
+    },
+    {
+      "code": "IC3252",
+      "name": "Engineering Design and Innovation - V",
+      "credits": 6,
+      "courseType": "CORE",
+      "lectureHours": 0,
+      "tutorialHours": 0,
+      "practicalHours": 12,
+      "studyYear": 3,
+      "departmentCode": "INST",
+      "applicableDepartments": [
+        "INST"
+      ],
+      "sourcePdf": "INST_Complete_2025-26.pdf",
+      "page": 90,
+      "authoritative": true
+    },
+    {
+      "code": "IC3254",
+      "name": "Engineering Design and Innovation - VI",
+      "credits": 6,
+      "courseType": "CORE",
+      "lectureHours": 0,
+      "tutorialHours": 0,
+      "practicalHours": 12,
+      "studyYear": 3,
+      "departmentCode": "INST",
+      "applicableDepartments": [
+        "INST"
+      ],
+      "sourcePdf": "INST_Complete_2025-26.pdf",
+      "page": 118,
+      "authoritative": true
+    },
+    {
+      "code": "IC3255",
+      "name": "DESIGN THINKING -5",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 3,
+      "departmentCode": "INST",
+      "applicableDepartments": [
+        "INST"
+      ],
+      "sourcePdf": "INST_Complete_2025-26.pdf",
+      "page": 88,
+      "authoritative": false
+    },
+    {
+      "code": "IC3257",
+      "name": "DESIGN THINKING -6",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 3,
+      "departmentCode": "INST",
+      "applicableDepartments": [
+        "INST"
+      ],
+      "sourcePdf": "INST_Complete_2025-26.pdf",
+      "page": 116,
+      "authoritative": false
+    },
+    {
+      "code": "IC3259",
+      "name": "CYBER SECURITY",
+      "credits": 4,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 3,
+      "departmentCode": "INST",
+      "applicableDepartments": [
+        "INST"
+      ],
+      "sourcePdf": "INST_Complete_2025-26.pdf",
+      "page": 112,
+      "authoritative": false
+    },
+    {
+      "code": "IC3260",
+      "name": "Instrumentation Project Engineering",
+      "credits": 4,
+      "courseType": "CORE",
+      "lectureHours": 2,
+      "tutorialHours": 1,
+      "practicalHours": 2,
+      "studyYear": 3,
+      "departmentCode": "INST",
+      "applicableDepartments": [
+        "INST"
+      ],
+      "sourcePdf": "INST_Complete_2025-26.pdf",
+      "page": 96,
+      "authoritative": true
+    },
+    {
+      "code": "IC4201",
+      "name": "INDUSTRIAL ELECTRONICS",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "INST",
+      "applicableDepartments": [
+        "INST"
+      ],
+      "sourcePdf": "INST_Complete_2025-26.pdf",
+      "page": 136,
+      "authoritative": false
+    },
+    {
+      "code": "IC4211",
+      "name": "Industry Internship",
+      "credits": 18,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 30,
+      "studyYear": 4,
+      "departmentCode": "INST",
+      "applicableDepartments": [
+        "INST"
+      ],
+      "sourcePdf": "INST_Complete_2025-26.pdf",
+      "page": 165,
+      "authoritative": true
+    },
+    {
+      "code": "IC4224",
+      "name": "Global Internship",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "INST",
+      "applicableDepartments": [
+        "INST"
+      ],
+      "sourcePdf": "INST_Complete_2025-26.pdf",
+      "page": 166,
+      "authoritative": true
+    },
+    {
+      "code": "IC4226",
+      "name": "Research Internship",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "INST",
+      "applicableDepartments": [
+        "INST"
+      ],
+      "sourcePdf": "INST_Complete_2025-26.pdf",
+      "page": 167,
+      "authoritative": true
+    },
+    {
+      "code": "IC4240",
+      "name": "Project",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "INST",
+      "applicableDepartments": [
+        "INST"
+      ],
+      "sourcePdf": "INST_Complete_2025-26.pdf",
+      "page": 168,
+      "authoritative": true
+    },
+    {
+      "code": "IC4242",
+      "name": "DEEP LEARNING",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "INST",
+      "applicableDepartments": [
+        "INST"
+      ],
+      "sourcePdf": "INST_Complete_2025-26.pdf",
+      "page": 158,
+      "authoritative": false
+    },
+    {
+      "code": "IC4243",
+      "name": "MAJOR PROJECT",
+      "credits": 9,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "INST",
+      "applicableDepartments": [
+        "INST"
+      ],
+      "sourcePdf": "INST_Complete_2025-26.pdf",
+      "page": 163,
+      "authoritative": false
+    },
+    {
+      "code": "IC4244",
+      "name": "MAJOR PROJECT",
+      "credits": 9,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "INST",
+      "applicableDepartments": [
+        "INST"
+      ],
+      "sourcePdf": "INST_Complete_2025-26.pdf",
+      "page": 169,
+      "authoritative": false
+    },
+    {
+      "code": "IC4372",
+      "name": "Design",
+      "credits": 1,
+      "courseType": "CORE",
+      "lectureHours": 0,
+      "tutorialHours": 1,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "INST",
+      "applicableDepartments": [
+        "INST"
+      ],
+      "sourcePdf": "INST_Complete_2025-26.pdf",
+      "page": 134,
+      "authoritative": true
+    },
+    {
+      "code": "IT2268",
+      "name": "DESIGN THINKING-III",
+      "credits": 1,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "IT",
+      "applicableDepartments": [
+        "IT"
+      ],
+      "sourcePdf": "IT_Final_2025-26.pdf",
+      "page": 25,
+      "authoritative": false
+    },
+    {
+      "code": "IT2272",
+      "name": "ENGINEERING DESIGN AND INNOVATION III",
+      "credits": 2,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "IT",
+      "applicableDepartments": [
+        "IT"
+      ],
+      "sourcePdf": "IT_Final_2025-26.pdf",
+      "page": 27,
+      "authoritative": false
+    },
+    {
+      "code": "IT2275",
+      "name": "DIGITAL ELECTRONICS AND MICROPROCESSOR",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "IT",
+      "applicableDepartments": [
+        "IT"
+      ],
+      "sourcePdf": "IT_Final_2025-26.pdf",
+      "page": 20,
+      "authoritative": false
+    },
+    {
+      "code": "IT2301",
+      "name": "Data Structures",
+      "credits": 4,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "IT",
+      "applicableDepartments": [
+        "IT"
+      ],
+      "sourcePdf": "IT_Final_2025-26.pdf",
+      "page": 11,
+      "authoritative": false
+    },
+    {
+      "code": "IT2304",
+      "name": "Discrete Mathematics",
+      "credits": 2,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "IT",
+      "applicableDepartments": [
+        "IT"
+      ],
+      "sourcePdf": "IT_Final_2025-26.pdf",
+      "page": 23,
+      "authoritative": false
+    },
+    {
+      "code": "IT2305",
+      "name": "Object Oriented Programming",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "IT",
+      "applicableDepartments": [
+        "IT"
+      ],
+      "sourcePdf": "IT_Final_2025-26.pdf",
+      "page": 16,
+      "authoritative": false
+    },
+    {
+      "code": "IT2306",
+      "name": "Database Management Systems",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "IT",
+      "applicableDepartments": [
+        "IT"
+      ],
+      "sourcePdf": "IT_Final_2025-26.pdf",
+      "page": 35,
+      "authoritative": false
+    },
+    {
+      "code": "IT2307",
+      "name": "Software Engineering & Project Management",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "IT",
+      "applicableDepartments": [
+        "IT"
+      ],
+      "sourcePdf": "IT_Final_2025-26.pdf",
+      "page": 39,
+      "authoritative": false
+    },
+    {
+      "code": "IT2308",
+      "name": "Automata",
+      "credits": 2,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "IT",
+      "applicableDepartments": [
+        "IT"
+      ],
+      "sourcePdf": "IT_Final_2025-26.pdf",
+      "page": 43,
+      "authoritative": false
+    },
+    {
+      "code": "IT3202",
+      "name": "SYSTEM PROGRAMMING",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 3,
+      "departmentCode": "IT",
+      "applicableDepartments": [
+        "IT"
+      ],
+      "sourcePdf": "IT_Final_2025-26.pdf",
+      "page": 59,
+      "authoritative": false
+    },
+    {
+      "code": "IT3214",
+      "name": "ENGINEERING DESIGN AND INNOVATION V",
+      "credits": 4,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 3,
+      "departmentCode": "IT",
+      "applicableDepartments": [
+        "IT"
+      ],
+      "sourcePdf": "IT_Final_2025-26.pdf",
+      "page": 71,
+      "authoritative": false
+    },
+    {
+      "code": "IT3215",
+      "name": "DESIGN AND ANALYSIS OF ALGORITHMS",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 3,
+      "departmentCode": "IT",
+      "applicableDepartments": [
+        "IT"
+      ],
+      "sourcePdf": "IT_Final_2025-26.pdf",
+      "page": 74,
+      "authoritative": false
+    },
+    {
+      "code": "IT3216",
+      "name": "MACHINE LEARNING AND DEEP LEARNING",
+      "credits": 4,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 3,
+      "departmentCode": "IT",
+      "applicableDepartments": [
+        "IT"
+      ],
+      "sourcePdf": "IT_Final_2025-26.pdf",
+      "page": 79,
+      "authoritative": false
+    },
+    {
+      "code": "IT3218",
+      "name": "ARTIFICIAL INTELLIGENCE",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 3,
+      "departmentCode": "IT",
+      "applicableDepartments": [
+        "IT"
+      ],
+      "sourcePdf": "IT_Final_2025-26.pdf",
+      "page": 65,
+      "authoritative": false
+    },
+    {
+      "code": "IT3221",
+      "name": "Operating System",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 3,
+      "departmentCode": "IT",
+      "applicableDepartments": [
+        "IT"
+      ],
+      "sourcePdf": "IT_Final_2025-26.pdf",
+      "page": 52,
+      "authoritative": false
+    },
+    {
+      "code": "IT3224",
+      "name": "ENGINEERING DESIGN AND INNOVATION VI",
+      "credits": 1,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 3,
+      "departmentCode": "IT",
+      "applicableDepartments": [
+        "IT"
+      ],
+      "sourcePdf": "IT_Final_2025-26.pdf",
+      "page": 91,
+      "authoritative": false
+    },
+    {
+      "code": "IT3225",
+      "name": "Design and Thinking V",
+      "credits": 1,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 3,
+      "departmentCode": "IT",
+      "applicableDepartments": [
+        "IT"
+      ],
+      "sourcePdf": "IT_Final_2025-26.pdf",
+      "page": 69,
+      "authoritative": false
+    },
+    {
+      "code": "IT3227",
+      "name": "Design and Thinking VI",
+      "credits": 1,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 3,
+      "departmentCode": "IT",
+      "applicableDepartments": [
+        "IT"
+      ],
+      "sourcePdf": "IT_Final_2025-26.pdf",
+      "page": 94,
+      "authoritative": false
+    },
+    {
+      "code": "IT3229",
+      "name": "CLOUD COMPUTING",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 3,
+      "departmentCode": "IT",
+      "applicableDepartments": [
+        "IT"
+      ],
+      "sourcePdf": "IT_Final_2025-26.pdf",
+      "page": 87,
+      "authoritative": false
+    },
+    {
+      "code": "IT4207",
+      "name": "MAJOR PROJECT",
+      "credits": 10,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "IT",
+      "applicableDepartments": [
+        "IT"
+      ],
+      "sourcePdf": "IT_Final_2025-26.pdf",
+      "page": 108,
+      "authoritative": false
+    },
+    {
+      "code": "IT4216",
+      "name": "DATA MANAGEMENT, PROTECTION AND GOVERNANCE",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "IT",
+      "applicableDepartments": [
+        "IT"
+      ],
+      "sourcePdf": "IT_Final_2025-26.pdf",
+      "page": 97,
+      "authoritative": false
+    },
+    {
+      "code": "IT4218",
+      "name": "NETWORK SECURITY",
+      "credits": 2,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "IT",
+      "applicableDepartments": [
+        "IT"
+      ],
+      "sourcePdf": "IT_Final_2025-26.pdf",
+      "page": 101,
+      "authoritative": false
+    },
+    {
+      "code": "IT4230",
+      "name": "Cyber Security and Privacy",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "IT",
+      "applicableDepartments": [
+        "IT"
+      ],
+      "sourcePdf": "IT_Final_2025-26.pdf",
+      "page": 104,
+      "authoritative": false
+    },
+    {
+      "code": "IT4263",
+      "name": "Responsible & Safe AI Systems",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "IT",
+      "applicableDepartments": [
+        "IT"
+      ],
+      "sourcePdf": "IT_Final_2025-26.pdf",
+      "page": 106,
+      "authoritative": false
+    },
+    {
+      "code": "ME2203",
+      "name": "Strength of Materials",
+      "credits": 4,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "MECH",
+      "applicableDepartments": [
+        "MECH"
+      ],
+      "sourcePdf": "MECH_Complete_2026-27.pdf",
+      "page": 30,
+      "authoritative": false
+    },
+    {
+      "code": "ME2205",
+      "name": "3-D Printing",
+      "credits": 4,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "MECH",
+      "applicableDepartments": [
+        "MECH"
+      ],
+      "sourcePdf": "ENTC_Merged_2024-25.pdf",
+      "page": 10,
+      "authoritative": true
+    },
+    {
+      "code": "ME2301",
+      "name": "Engineering Materials",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "MECH",
+      "applicableDepartments": [
+        "MECH"
+      ],
+      "sourcePdf": "MECH_Complete_2026-27.pdf",
+      "page": 16,
+      "authoritative": false
+    },
+    {
+      "code": "ME2302",
+      "name": "MANUFACTURING PROCESSES",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "MECH",
+      "applicableDepartments": [
+        "MECH"
+      ],
+      "sourcePdf": "MECH_Complete_2026-27.pdf",
+      "page": 23,
+      "authoritative": false
+    },
+    {
+      "code": "ME2304",
+      "name": "THERMODYNAMICS",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "MECH",
+      "applicableDepartments": [
+        "MECH"
+      ],
+      "sourcePdf": "MECH_Complete_2026-27.pdf",
+      "page": 62,
+      "authoritative": false
+    },
+    {
+      "code": "ME2305",
+      "name": "Machine Design",
+      "credits": 4,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "MECH",
+      "applicableDepartments": [
+        "MECH"
+      ],
+      "sourcePdf": "MECH_Complete_2026-27.pdf",
+      "page": 69,
+      "authoritative": false
+    },
+    {
+      "code": "ME2306",
+      "name": "Fluid Engineering",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "MECH",
+      "applicableDepartments": [
+        "MECH"
+      ],
+      "sourcePdf": "MECH_Complete_2026-27.pdf",
+      "page": 75,
+      "authoritative": false
+    },
+    {
+      "code": "ME2308",
+      "name": "Machine Drawing & CAD",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "MECH",
+      "applicableDepartments": [
+        "MECH"
+      ],
+      "sourcePdf": "MECH_Complete_2026-27.pdf",
+      "page": 35,
+      "authoritative": false
+    },
+    {
+      "code": "ME2309",
+      "name": "KINEMATICS OF MACHINES AND MECHANISMS",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 2,
+      "departmentCode": "MECH",
+      "applicableDepartments": [
+        "MECH"
+      ],
+      "sourcePdf": "MECH_Complete_2026-27.pdf",
+      "page": 80,
+      "authoritative": false
+    },
+    {
+      "code": "ME3205",
+      "name": "Heat Transfer",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 3,
+      "departmentCode": "MECH",
+      "applicableDepartments": [
+        "MECH"
+      ],
+      "sourcePdf": "MECH_Complete_2026-27.pdf",
+      "page": 163,
+      "authoritative": false
+    },
+    {
+      "code": "ME3209A",
+      "name": "COMPUTER AIDED DESIGN AND MANUFACTURING",
+      "credits": 4,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 3,
+      "departmentCode": "MECH",
+      "applicableDepartments": [
+        "MECH"
+      ],
+      "sourcePdf": "MECH_Complete_2026-27.pdf",
+      "page": 105,
+      "authoritative": false
+    },
+    {
+      "code": "ME3211",
+      "name": "HYDRAULIC MACHINES AND FLUID POWER",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 3,
+      "departmentCode": "MECH",
+      "applicableDepartments": [
+        "MECH"
+      ],
+      "sourcePdf": "MECH_Complete_2026-27.pdf",
+      "page": 144,
+      "authoritative": false
+    },
+    {
+      "code": "ME3266",
+      "name": "APPLIED THERMAL ENGINEERING",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 3,
+      "departmentCode": "MECH",
+      "applicableDepartments": [
+        "MECH"
+      ],
+      "sourcePdf": "MECH_Complete_2026-27.pdf",
+      "page": 94,
+      "authoritative": false
+    },
+    {
+      "code": "IE4005",
+      "name": "Operations Scheduling",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "MECH",
+      "applicableDepartments": [
+        "MECH"
+      ],
+      "sourcePdf": "MECH_Complete_2026-27.pdf",
+      "page": 231,
+      "authoritative": false
+    },
+    {
+      "code": "IE4206",
+      "name": "MARKETING MANAGEMENT",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "MECH",
+      "applicableDepartments": [
+        "MECH"
+      ],
+      "sourcePdf": "MECH_Complete_2026-27.pdf",
+      "page": 217,
+      "authoritative": false
+    },
+    {
+      "code": "IE4211",
+      "name": "DESIGN FOR X AND PRODUCT LIFECYCLE MANAGEMENT",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "MECH",
+      "applicableDepartments": [
+        "MECH"
+      ],
+      "sourcePdf": "MECH_Complete_2026-27.pdf",
+      "page": 223,
+      "authoritative": false
+    },
+    {
+      "code": "IE4212",
+      "name": "DATA ANALYTICS FOR ENGINEERS",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "MECH",
+      "applicableDepartments": [
+        "MECH"
+      ],
+      "sourcePdf": "MECH_Complete_2026-27.pdf",
+      "page": 226,
+      "authoritative": false
+    },
+    {
+      "code": "IE4214",
+      "name": "OPERATION SCHEDULING",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "MECH",
+      "applicableDepartments": [
+        "MECH"
+      ],
+      "sourcePdf": "MECH_Complete_2026-27.pdf",
+      "page": 231,
+      "authoritative": false
+    },
+    {
+      "code": "MD4282",
+      "name": "N D",
+      "credits": 1,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "MECH",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "INST_Complete_2025-26.pdf",
+      "page": 8,
+      "authoritative": true
+    },
+    {
+      "code": "MD4283",
+      "name": "Prompt Engineering Skills",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "MECH",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "MECH_Complete_2026-27.pdf",
+      "page": 8,
+      "authoritative": false
+    },
+    {
+      "code": "MD4284",
+      "name": "Essentials in Generative AI",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "MECH",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "MECH_Complete_2026-27.pdf",
+      "page": 8,
+      "authoritative": false
+    },
+    {
+      "code": "MD4285",
+      "name": "Python in Finance",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "MECH",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "MECH_Complete_2026-27.pdf",
+      "page": 8,
+      "authoritative": false
+    },
+    {
+      "code": "MD4286",
+      "name": "Understanding Quantum Computing",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "MECH",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "MECH_Complete_2026-27.pdf",
+      "page": 8,
+      "authoritative": false
+    },
+    {
+      "code": "MD4287",
+      "name": "F L",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "MECH",
+      "applicableDepartments": [
+        "CSE",
+        "AIML",
+        "AIDS",
+        "IT",
+        "MECH",
+        "ENTC",
+        "CHEM",
+        "INST"
+      ],
+      "sourcePdf": "INST_Complete_2025-26.pdf",
+      "page": 8,
+      "authoritative": true
+    },
+    {
+      "code": "ME4202",
+      "name": "COMPUTER INTEGRATED MANUFACTURING",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "MECH",
+      "applicableDepartments": [
+        "MECH"
+      ],
+      "sourcePdf": "MECH_Complete_2026-27.pdf",
+      "page": 234,
+      "authoritative": false
+    },
+    {
+      "code": "ME4251",
+      "name": "CAD/CAM/CAE",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "MECH",
+      "applicableDepartments": [
+        "MECH"
+      ],
+      "sourcePdf": "MECH_Complete_2026-27.pdf",
+      "page": 8,
+      "authoritative": false
+    },
+    {
+      "code": "ME4253",
+      "name": "VIBRATION ANALYSIS",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "MECH",
+      "applicableDepartments": [
+        "MECH"
+      ],
+      "sourcePdf": "MECH_Complete_2026-27.pdf",
+      "page": 207,
+      "authoritative": false
+    },
+    {
+      "code": "ME4254",
+      "name": "REFRIGERATION AND AIR CONDITIONING",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "MECH",
+      "applicableDepartments": [
+        "MECH"
+      ],
+      "sourcePdf": "MECH_Complete_2026-27.pdf",
+      "page": 9,
+      "authoritative": false
+    },
+    {
+      "code": "ME4255",
+      "name": "MAJOR PROJECT",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "MECH",
+      "applicableDepartments": [
+        "MECH"
+      ],
+      "sourcePdf": "MECH_Complete_2026-27.pdf",
+      "page": 237,
+      "authoritative": false
+    },
+    {
+      "code": "ME4261",
+      "name": "POWER PLANT ENGINEERING 2 Elective -3 s04",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "MECH",
+      "applicableDepartments": [
+        "MECH"
+      ],
+      "sourcePdf": "MECH_Complete_2026-27.pdf",
+      "page": 9,
+      "authoritative": false
+    },
+    {
+      "code": "ME4273",
+      "name": "RESEARCH INTERNSHIP",
+      "credits": 16,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "MECH",
+      "applicableDepartments": [
+        "MECH"
+      ],
+      "sourcePdf": "MECH_Complete_2026-27.pdf",
+      "page": 240,
+      "authoritative": false
+    },
+    {
+      "code": "ME4275",
+      "name": "PROJECT INTERNSHIP",
+      "credits": 16,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "MECH",
+      "applicableDepartments": [
+        "MECH"
+      ],
+      "sourcePdf": "MECH_Complete_2026-27.pdf",
+      "page": 242,
+      "authoritative": false
+    },
+    {
+      "code": "ME4276",
+      "name": "INDUSTRY INTERNSHIP / (CAPSTONE PROJECT)",
+      "credits": 16,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "MECH",
+      "applicableDepartments": [
+        "MECH"
+      ],
+      "sourcePdf": "MECH_Complete_2026-27.pdf",
+      "page": 244,
+      "authoritative": false
+    },
+    {
+      "code": "ME4277",
+      "name": "INTERNATIONAL INTERNSHIP",
+      "credits": 16,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "MECH",
+      "applicableDepartments": [
+        "MECH"
+      ],
+      "sourcePdf": "MECH_Complete_2026-27.pdf",
+      "page": 246,
+      "authoritative": false
+    },
+    {
+      "code": "ME4280",
+      "name": "COMPUTATIONAL FLUID DYNAMICS",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "MECH",
+      "applicableDepartments": [
+        "MECH"
+      ],
+      "sourcePdf": "MECH_Complete_2026-27.pdf",
+      "page": 202,
+      "authoritative": false
+    },
+    {
+      "code": "ME4311",
+      "name": "APPLIED COMPUTATIONAL FLUID DYNAMICS",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "MECH",
+      "applicableDepartments": [
+        "MECH"
+      ],
+      "sourcePdf": "MECH_Complete_2026-27.pdf",
+      "page": 9,
+      "authoritative": false
+    },
+    {
+      "code": "ME4315",
+      "name": "Fundamentals of Electric Vehicle Powertrain Design",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "MECH",
+      "applicableDepartments": [
+        "MECH"
+      ],
+      "sourcePdf": "MECH_Complete_2026-27.pdf",
+      "page": 9,
+      "authoritative": false
+    },
+    {
+      "code": "ME4316",
+      "name": "Fundamentals of Electric Vehicle Battery Pack Design",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "MECH",
+      "applicableDepartments": [
+        "MECH"
+      ],
+      "sourcePdf": "MECH_Complete_2026-27.pdf",
+      "page": 9,
+      "authoritative": false
+    },
+    {
+      "code": "PR4203",
+      "name": "DIE AND MOLD DESIGN",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "MECH",
+      "applicableDepartments": [
+        "MECH"
+      ],
+      "sourcePdf": "MECH_Complete_2026-27.pdf",
+      "page": 204,
+      "authoritative": false
+    },
+    {
+      "code": "PR4213",
+      "name": "WORLD CLASS MANUFACTURING & INDUSTRY 4.0",
+      "credits": 3,
+      "courseType": "CORE",
+      "lectureHours": 3,
+      "tutorialHours": 0,
+      "practicalHours": 0,
+      "studyYear": 4,
+      "departmentCode": "MECH",
+      "applicableDepartments": [
+        "MECH"
+      ],
+      "sourcePdf": "MECH_Complete_2026-27.pdf",
+      "page": 220,
+      "authoritative": false
+    }
+  ]
+}

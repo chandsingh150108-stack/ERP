@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Timetable — Student ERP</title>
+<link rel="stylesheet" href="/common/shared.css">
+<style>
+.timetable-grid { display: grid; grid-template-columns: 60px repeat(6, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; }
+.timetable-cell { background: var(--bg-card); padding: 8px; min-height: 70px; font-size: 11px; position: relative; }
+.timetable-cell.header { background: var(--bg-hover); font-weight: 600; text-align: center; padding: 10px 4px; min-height: auto; }
+.timetable-cell.time { background: var(--bg-hover); font-size: 11px; color: var(--text-dim); text-align: right; padding: 8px 6px; }
+.timetable-cell.filled { cursor: pointer; transition: background 0.15s; }
+.timetable-cell.filled:hover { background: var(--bg-hover); }
+.timetable-cell.filled .course-code { font-weight: 600; font-size: 12px; color: var(--primary); }
+.timetable-cell.filled .room { color: var(--text-dim); font-size: 10px; }
+.timetable-cell.filled .faculty { color: var(--text-muted); font-size: 10px; }
+.timetable-cell.empty { background: var(--bg-dark); }
+.timetable-cell .type-badge { font-size: 9px; padding: 1px 5px; border-radius: 3px; display: inline-block; margin-top: 3px; }
+.type-LECTURE { background: #1e3a5f; color: #60a5fa; }
+.type-PRACTICAL { background: #1e3a2f; color: #4ade80; }
+.type-TUTORIAL { background: #2d1b4e; color: #a78bfa; }
+.legend { display: flex; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
+.legend-item { display: flex; align-items: center; gap: 4px; font-size: 12px; color: var(--text-muted); }
+.legend-color { width: 14px; height: 14px; border-radius: 3px; }
+</style>
+</head>
+<body>
+<div class="header">
+  <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+    <h1><span>T</span>IMETABLE</h1>
+    <div class="student-badge" id="studentBadge">
+      <span class="name" id="badgeName">Student</span>
+      <span style="color:#475569">•</span>
+      <span class="course" id="badgeCourse">Course</span>
+      <span style="color:#475569">•</span>
+      <span class="year" id="badgeYear">Year</span>
+    </div>
+  </div>
+  <div class="header-actions">
+    <button class="profile-btn" onclick="openProfileModal()">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      Profile
+    </button>
+    <button class="btn btn-sm btn-outline" onclick="window.print()">Print</button>
+    <a href="/academics" class="back">Academics</a>
+    <a href="/" class="back">Dashboard</a>
+  </div>
+</div>
+
+<div class="container">
+  <div class="stats-bar" id="statsBar">
+    <div class="stat"><div class="num" id="totalSlots">0</div><div class="lbl">Weekly Slots</div></div>
+    <div class="stat success"><div class="num" id="lectureCount">0</div><div class="lbl">Lectures</div></div>
+    <div class="stat warning"><div class="num" id="labCount">0</div><div class="lbl">Labs</div></div>
+    <div class="stat"><div class="num" id="freeSlots">0</div><div class="lbl">Free Slots</div></div>
+  </div>
+
+  <div class="legend">
+    <div class="legend-item"><div class="legend-color" style="background:#1e3a5f"></div> Lecture</div>
+    <div class="legend-item"><div class="legend-color" style="background:#1e3a2f"></div> Practical</div>
+    <div class="legend-item"><div class="legend-color" style="background:#2d1b4e"></div> Tutorial</div>
+  </div>
+
+  <div class="filter-bar" style="margin-bottom:16px">
+    <select id="viewSelect" onchange="loadTimetable()">
+      <option value="student">My Timetable</option>
+      <option value="faculty" id="facultyViewOption" style="display:none">Faculty View</option>
+    </select>
+    <button class="btn btn-sm btn-primary" id="generateBtn" onclick="generateTimetable()" style="display:none">Generate Timetable</button>
+  </div>
+
+  <div class="timetable-grid" id="timetableGrid"></div>
+
+    <div class="empty" id="emptyState" style="display:none;margin-top:24px">
+      <h3>No timetable available</h3>
+      <p>Timetable will appear here once scheduled.</p>
+    </div>
+
+  <div style="margin-top:24px">
+    <div class="card">
+      <div class="card-header"><h2>Today's Schedule</h2></div>
+      <div id="todaySchedule"></div>
+    </div>
+  </div>
+</div>
+
+<div id="toastContainer" class="toast-container"></div>
+
+<script src="/common/auth.js"></script>
+<script>
+const DAYS = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+const SLOT_TIMES = ['8:00', '9:00', '10:00', '11:00', '12:00', '14:00', '15:00', '16:00'];
+const DAY_NAMES = { MON: 'Monday', TUE: 'Tuesday', WED: 'Wednesday', THU: 'Thursday', FRI: 'Friday', SAT: 'Saturday' };
+
+let timeSlots = [];
+let currentUser = { roles: [], student: null };
+
+if (!requireAuth()) throw new Error('Not authenticated');
+
+async function init() {
+  currentUser.roles = await loadCurrentUserRoles();
+  currentUser.student = await loadStudentProfile();
+
+  if (currentUser.student) {
+    document.getElementById('studentBadge').style.display = 'flex';
+    document.getElementById('badgeName').textContent = currentUser.student.firstName + ' ' + currentUser.student.lastName;
+    document.getElementById('badgeCourse').textContent = currentUser.student.course || 'N/A';
+    document.getElementById('badgeYear').textContent = currentUser.student.year || 'N/A';
+  }
+
+  if (hasRole(currentUser.roles, 'ADMIN')) {
+    document.getElementById('generateBtn').style.display = 'inline-flex';
+  }
+  if (hasRole(currentUser.roles, 'FACULTY') || hasRole(currentUser.roles, 'ADMIN')) {
+    document.getElementById('facultyViewOption').style.display = '';
+  }
+
+  await loadTimetable();
+}
+
+async function loadTimetable() {
+  try {
+    const view = document.getElementById('viewSelect').value;
+    let res;
+    if (view === 'faculty') {
+      res = await apiFetch('/api/timetable/faculty/me');
+    } else {
+      res = await apiFetch('/api/timetable/me');
+    }
+    timeSlots = await res.json();
+    renderTimetable();
+    updateStats();
+    renderToday();
+  } catch (e) {
+    showToast('Failed to load timetable', 'error');
+  }
+}
+
+function renderTimetable() {
+  const grid = document.getElementById('timetableGrid');
+  const empty = document.getElementById('emptyState');
+
+  if (timeSlots.length === 0) {
+    grid.innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+
+  let html = '<div class="timetable-cell header">Time</div>';
+  DAYS.forEach(d => { html += `<div class="timetable-cell header">${d}</div>`; });
+
+  for (let slot = 1; slot <= 8; slot++) {
+    html += `<div class="timetable-cell time">${SLOT_TIMES[slot - 1] || (7 + slot) + ':00'}</div>`;
+    DAYS.forEach(day => {
+      const slotData = timeSlots.find(ts => ts.dayOfWeek === day && ts.slotNumber === slot);
+      if (slotData) {
+        const typeClass = 'type-' + (slotData.type || 'LECTURE');
+        html += `
+          <div class="timetable-cell filled" title="${slotData.course?.name || ''}\n${slotData.faculty?.firstName || ''} ${slotData.faculty?.lastName || ''}\nRoom: ${slotData.room?.name || 'TBD'}">
+            <div class="course-code">${slotData.course?.code || ''}</div>
+            <div class="room">${slotData.room?.name || 'TBD'}</div>
+            <div class="faculty">${slotData.faculty?.firstName || ''} ${slotData.faculty?.lastName ? slotData.faculty.lastName[0] + '.' : ''}</div>
+            <div class="type-badge ${typeClass}">${slotData.type || 'LECTURE'}</div>
+          </div>
+        `;
+      } else {
+        html += '<div class="timetable-cell empty"></div>';
+      }
+    });
+  }
+
+  grid.innerHTML = html;
+}
+
+function updateStats() {
+  document.getElementById('totalSlots').textContent = timeSlots.length;
+  document.getElementById('lectureCount').textContent = timeSlots.filter(s => s.type === 'LECTURE').length;
+  document.getElementById('labCount').textContent = timeSlots.filter(s => s.type === 'PRACTICAL').length;
+  document.getElementById('freeSlots').textContent = (48 - timeSlots.length);
+}
+
+function renderToday() {
+  const container = document.getElementById('todaySchedule');
+  const dayMap = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+  const today = dayMap[new Date().getDay()];
+  const todaySlots = timeSlots.filter(s => s.dayOfWeek === today).sort((a, b) => a.slotNumber - b.slotNumber);
+
+  if (todaySlots.length === 0) {
+    container.innerHTML = '<p style="color:var(--text-dim);font-size:13px">No classes today.</p>';
+    return;
+  }
+
+  container.innerHTML = todaySlots.map(s => `
+    <div style="display:flex;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid var(--border)">
+      <div style="min-width:60px;font-size:12px;color:var(--text-dim)">${SLOT_TIMES[s.slotNumber - 1]}</div>
+      <div style="flex:1">
+        <div style="font-size:13px;font-weight:500">${s.course?.code || ''} - ${s.course?.name || ''}</div>
+        <div style="font-size:11px;color:var(--text-dim)">${s.faculty?.firstName || ''} ${s.faculty?.lastName || ''} • ${s.room?.name || 'TBD'}</div>
+      </div>
+      <span class="type-badge type-${s.type || 'LECTURE'}">${s.type || 'LECTURE'}</span>
+    </div>
+  `).join('');
+}
+
+async function generateTimetable() {
+  if (!confirm('Generate timetable from faculty course assignments? This may create duplicate slots if run multiple times.')) return;
+  try {
+    const res = await apiFetch('/api/timetable/generate', { method: 'POST', headers: { 'Content-Type': 'application/json' } });
+    const data = await res.json();
+    showToast(data.message || 'Generated!', 'success');
+    loadTimetable();
+  } catch (e) {
+    showToast('Failed to generate', 'error');
+  }
+}
+
+init();
+</script>
+</body>
+</html>

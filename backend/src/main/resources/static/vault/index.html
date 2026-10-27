@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vault - Student ERP</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#0f172a;color:#e2e8f0;min-height:100vh}
+.header{background:#1e293b;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #334155}
+.header h1{font-size:20px;font-weight:600}
+.header h1 span{color:#3b82f6}
+.header .back{color:#94a3b8;text-decoration:none;font-size:14px;padding:6px 12px;border:1px solid #475569;border-radius:6px;transition:all .2s}
+.header .back:hover{color:#e2e8f0;border-color:#64748b}
+.container{max-width:1100px;margin:0 auto;padding:24px}
+.tabs{display:flex;gap:4px;margin-bottom:24px;background:#1e293b;padding:4px;border-radius:10px;width:fit-content}
+.tab{padding:8px 20px;border-radius:8px;cursor:pointer;font-size:14px;font-weight:500;color:#94a3b8;border:none;background:none;transition:all .2s}
+.tab.active{background:#3b82f6;color:#fff}
+.tab:hover:not(.active){color:#e2e8f0;background:#334155}
+.panel{display:none}.panel.active{display:block}
+.card{background:#1e293b;border:1px solid #334155;border-radius:12px;padding:20px;margin-bottom:16px}
+.card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.card-header h2{font-size:16px;font-weight:600}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.form-group{display:flex;flex-direction:column;gap:4px}
+.form-group.full{grid-column:1/-1}
+label{font-size:12px;color:#94a3b8;font-weight:500;text-transform:uppercase;letter-spacing:.5px}
+input,select,textarea{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:10px 12px;color:#e2e8f0;font-size:14px;outline:none;transition:border-color .2s}
+input:focus,select:focus,textarea:focus{border-color:#3b82f6}
+textarea{resize:vertical;min-height:60px}
+.btn{padding:10px 20px;border-radius:8px;border:none;cursor:pointer;font-size:14px;font-weight:500;transition:all .2s}
+.btn-primary{background:#3b82f6;color:#fff}.btn-primary:hover{background:#2563eb}
+.btn-danger{background:#ef4444;color:#fff}.btn-danger:hover{background:#dc2626}
+.btn-sm{padding:6px 12px;font-size:12px}
+.btn-outline{background:transparent;border:1px solid #475569;color:#94a3b8}.btn-outline:hover{border-color:#64748b;color:#e2e8f0}
+.subjects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.subject-card{background:#0f172a;border:1px solid #334155;border-radius:10px;padding:16px;position:relative;transition:border-color .2s}
+.subject-card:hover{border-color:#3b82f6}
+.subject-card .color-dot{width:12px;height:12px;border-radius:50%;display:inline-block;margin-right:8px}
+.subject-card h3{font-size:15px;font-weight:600;margin-bottom:4px;display:inline}
+.subject-card p{font-size:13px;color:#64748b;margin-bottom:8px}
+.subject-card .course-tag{font-size:11px;background:#1e3a5f;color:#60a5fa;padding:2px 8px;border-radius:4px;display:inline-block;margin-bottom:8px}
+.subject-card .actions{display:flex;gap:6px;margin-top:8px}
+.items-list{display:flex;flex-direction:column;gap:8px}
+.item-row{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;transition:border-color .2s}
+.item-row:hover{border-color:#3b82f6}
+.item-info{flex:1;min-width:0}
+.item-info h4{font-size:14px;font-weight:500;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.item-info .meta{font-size:12px;color:#64748b;display:flex;gap:12px;flex-wrap:wrap}
+.item-info .category-tag{font-size:11px;padding:2px 8px;border-radius:4px;font-weight:500}
+.cat-notes{background:#1e3a5f;color:#60a5fa}.cat-assignments{background:#1e3a2f;color:#4ade80}
+.cat-papers{background:#3b1f2b;color:#f472b6}.cat-reference{background:#2d1b4e;color:#a78bfa}
+.cat-other{background:#334155;color:#94a3b8}
+.item-actions{display:flex;gap:6px;flex-shrink:0}
+.empty{text-align:center;padding:48px;color:#475569}
+.empty p{margin-top:8px;font-size:14px}
+.stats-bar{display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap}
+.stat{background:#1e293b;border:1px solid #334155;border-radius:8px;padding:12px 16px;min-width:120px}
+.stat .num{font-size:24px;font-weight:700;color:#3b82f6}
+.stat .lbl{font-size:11px;color:#64748b;text-transform:uppercase;letter-spacing:.5px;margin-top:2px}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:100;align-items:center;justify-content:center}
+.modal-overlay.show{display:flex}
+.modal{background:#1e293b;border:1px solid #334155;border-radius:12px;padding:24px;width:90%;max-width:480px}
+.modal h3{font-size:16px;font-weight:600;margin-bottom:16px}
+.modal .form-group{margin-bottom:12px}
+.modal .modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:20px}
+.color-options{display:flex;gap:6px;flex-wrap:wrap}
+.color-opt{width:28px;height:28px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:border-color .2s}
+.color-opt.selected{border-color:#fff}
+.filter-bar{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;align-items:center}
+.filter-bar select{min-width:150px}
+.toast{position:fixed;bottom:24px;right:24px;background:#1e293b;border:1px solid #334155;border-radius:8px;padding:12px 20px;font-size:14px;z-index:200;animation:slideUp .3s ease}
+.toast.success{border-color:#22c55e;color:#4ade80}
+.toast.error{border-color:#ef4444;color:#f87171}
+.profile-btn{background:linear-gradient(135deg,#1e293b,#0f172a);color:#38bdf8;border:1px solid #38bdf8;padding:6px 14px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:all .2s ease;box-shadow:0 2px 6px rgba(56,189,248,.15)}
+.profile-btn:hover{background:#38bdf8;color:#0f172a;box-shadow:0 4px 12px rgba(56,189,248,.3);transform:translateY(-1px)}
+@keyframes slideUp{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
+</style>
+</head>
+<body>
+<div class="header">
+  <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+    <h1><span>V</span>AULT</h1>
+    <div id="student-badge" style="display:none;align-items:center;background:#0f172a;border:1px solid #334155;border-radius:20px;padding:4px 14px;font-size:12px;gap:8px;">
+      <span id="badge-name" style="color:#e2e8f0;font-weight:600">Student</span>
+      <span style="color:#475569">•</span>
+      <span id="badge-course" style="color:#60a5fa;font-weight:600">Course</span>
+      <span style="color:#475569">•</span>
+      <span id="badge-year" style="color:#4ade80;font-weight:600">Year</span>
+    </div>
+  </div>
+  <div style="display:flex;align-items:center;gap:10px">
+    <button id="btn-profile" class="profile-btn" onclick="openProfileModal()">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>Profile
+    </button>
+    <a href="/faculty" class="back">Faculty Directory</a>
+    <a href="/" class="back">Dashboard</a>
+  </div>
+</div>
+<div class="container">
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab('subjects')">Subjects</button>
+    <button class="tab" onclick="switchTab('materials')">Materials</button>
+  </div>
+
+  <div id="subjects-panel" class="panel active">
+    <div class="card">
+      <div class="card-header">
+        <h2>Add New Subject</h2>
+      </div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Subject Name</label>
+          <input type="text" id="subj-name" placeholder="e.g. Operating Systems">
+        </div>
+        <div class="form-group">
+          <label>Link to Course Subject (Enrolled Curriculum)</label>
+          <select id="subj-course"><option value="">Custom Subject</option></select>
+        </div>
+        <div class="form-group">
+          <label>Description</label>
+          <input type="text" id="subj-desc" placeholder="Optional description">
+        </div>
+        <div class="form-group">
+          <label>Color</label>
+          <div class="color-options" id="color-options">
+            <div class="color-opt selected" data-color="#3b82f6" style="background:#3b82f6"></div>
+            <div class="color-opt" data-color="#ef4444" style="background:#ef4444"></div>
+            <div class="color-opt" data-color="#22c55e" style="background:#22c55e"></div>
+            <div class="color-opt" data-color="#f59e0b" style="background:#f59e0b"></div>
+            <div class="color-opt" data-color="#8b5cf6" style="background:#8b5cf6"></div>
+            <div class="color-opt" data-color="#ec4899" style="background:#ec4899"></div>
+            <div class="color-opt" data-color="#06b6d4" style="background:#06b6d4"></div>
+            <div class="color-opt" data-color="#f97316" style="background:#f97316"></div>
+          </div>
+        </div>
+        <div class="form-group full">
+          <button class="btn btn-primary" onclick="createSubject()">Add Subject</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Filter & Actions Bar -->
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px">
+      <div style="display:flex;gap:6px;" id="year-filter-btns">
+        <button class="btn btn-sm btn-primary y-btn" data-year="ALL" onclick="setYearFilter('ALL')">All Subjects</button>
+        <button class="btn btn-sm btn-outline y-btn" data-year="FY" onclick="setYearFilter('FY')">FY Subjects</button>
+        <button class="btn btn-sm btn-outline y-btn" data-year="SY" onclick="setYearFilter('SY')">SY Subjects</button>
+        <button class="btn btn-sm btn-outline y-btn" data-year="TY" onclick="setYearFilter('TY')">TY Subjects</button>
+      </div>
+      <button class="btn btn-sm btn-outline" onclick="syncCurriculum()" title="Reload subjects from your enrolled curriculum">🔄 Sync Curriculum</button>
+    </div>
+
+    <div class="subjects-grid" id="subjects-grid"></div>
+  </div>
+
+  <div id="materials-panel" class="panel">
+    <div class="stats-bar" id="stats-bar"></div>
+    <div class="card">
+      <div class="card-header"><h2>Upload Material</h2></div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label>File</label>
+          <input type="file" id="item-file">
+        </div>
+        <div class="form-group">
+          <label>Title</label>
+          <input type="text" id="item-title" placeholder="e.g. Chapter 5 Notes">
+        </div>
+        <div class="form-group">
+          <label>Subject</label>
+          <select id="item-subject"><option value="">No Subject</option></select>
+        </div>
+        <div class="form-group">
+          <label>Category</label>
+          <select id="item-category">
+            <option value="notes">Notes</option>
+            <option value="assignments">Assignments</option>
+            <option value="papers">Papers / Exams</option>
+            <option value="reference">Reference</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="form-group full">
+          <label>Description</label>
+          <textarea id="item-desc" placeholder="Optional description"></textarea>
+        </div>
+        <div class="form-group full">
+          <button class="btn btn-primary" onclick="uploadItem()">Upload</button>
+        </div>
+      </div>
+    </div>
+    <div class="filter-bar">
+      <select id="filter-subject" onchange="loadItems()">
+        <option value="">All Subjects</option>
+      </select>
+      <select id="filter-category" onchange="loadItems()">
+        <option value="">All Categories</option>
+        <option value="notes">Notes</option>
+        <option value="assignments">Assignments</option>
+        <option value="papers">Papers / Exams</option>
+        <option value="reference">Reference</option>
+        <option value="other">Other</option>
+      </select>
+    </div>
+    <div class="items-list" id="items-list"></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="edit-modal">
+  <div class="modal">
+    <h3 id="modal-title">Edit Subject</h3>
+    <input type="hidden" id="edit-id">
+    <div class="form-group">
+      <label>Name</label>
+      <input type="text" id="edit-name">
+    </div>
+    <div class="form-group">
+      <label>Description</label>
+      <input type="text" id="edit-desc">
+    </div>
+    <div class="form-group">
+      <label>Color</label>
+      <div class="color-options" id="edit-color-options">
+        <div class="color-opt" data-color="#3b82f6" style="background:#3b82f6"></div>
+        <div class="color-opt" data-color="#ef4444" style="background:#ef4444"></div>
+        <div class="color-opt" data-color="#22c55e" style="background:#22c55e"></div>
+        <div class="color-opt" data-color="#f59e0b" style="background:#f59e0b"></div>
+        <div class="color-opt" data-color="#8b5cf6" style="background:#8b5cf6"></div>
+        <div class="color-opt" data-color="#ec4899" style="background:#ec4899"></div>
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-outline" onclick="closeModal()">Cancel</button>
+      <button class="btn btn-primary" onclick="saveEdit()">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- Student Profile Modal -->
+<div class="modal-overlay" id="profile-modal" onclick="if(event.target===this)closeProfileModal()">
+  <div class="modal" style="max-width:480px;border-color:#38bdf8">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;border-bottom:1px solid #334155;padding-bottom:12px">
+      <div style="display:flex;align-items:center;gap:12px">
+        <div style="width:42px;height:42px;border-radius:50%;background:#0284c7;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:16px" id="prof-avatar">ST</div>
+        <div>
+          <h3 style="margin:0;font-size:17px;color:#f8fafc" id="prof-fullname">Student Profile</h3>
+          <span style="font-size:12px;color:#94a3b8" id="prof-rollno">Roll No</span>
+        </div>
+      </div>
+      <button onclick="closeProfileModal()" style="background:none;border:none;color:#94a3b8;font-size:22px;cursor:pointer;line-height:1">&times;</button>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px">
+      <div style="background:#0f172a;padding:10px 12px;border-radius:8px;border:1px solid #334155">
+        <div style="font-size:11px;color:#64748b;text-transform:uppercase;font-weight:600">Course / Branch</div>
+        <div style="font-size:14px;color:#38bdf8;font-weight:600;margin-top:2px" id="prof-course">-</div>
+      </div>
+      <div style="background:#0f172a;padding:10px 12px;border-radius:8px;border:1px solid #334155">
+        <div style="font-size:11px;color:#64748b;text-transform:uppercase;font-weight:600">Class / Year</div>
+        <div style="font-size:14px;color:#4ade80;font-weight:600;margin-top:2px" id="prof-year">-</div>
+      </div>
+      <div style="background:#0f172a;padding:10px 12px;border-radius:8px;border:1px solid #334155">
+        <div style="font-size:11px;color:#64748b;text-transform:uppercase;font-weight:600">Current Semester</div>
+        <div style="font-size:14px;color:#e2e8f0;font-weight:600;margin-top:2px" id="prof-sem">-</div>
+      </div>
+      <div style="background:#0f172a;padding:10px 12px;border-radius:8px;border:1px solid #334155">
+        <div style="font-size:11px;color:#64748b;text-transform:uppercase;font-weight:600">Account Status</div>
+        <div style="font-size:14px;color:#a855f7;font-weight:600;margin-top:2px" id="prof-status">ACTIVE</div>
+      </div>
+      <div style="background:#0f172a;padding:10px 12px;border-radius:8px;border:1px solid #334155;grid-column:1 / -1">
+        <div style="font-size:11px;color:#64748b;text-transform:uppercase;font-weight:600">Degree Program</div>
+        <div style="font-size:13px;color:#e2e8f0;font-weight:500;margin-top:2px" id="prof-program">-</div>
+      </div>
+      <div style="background:#0f172a;padding:10px 12px;border-radius:8px;border:1px solid #334155;grid-column:1 / -1">
+        <div style="font-size:11px;color:#64748b;text-transform:uppercase;font-weight:600">College Email</div>
+        <div style="font-size:13px;color:#94a3b8;font-weight:500;margin-top:2px" id="prof-email">-</div>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:flex-end">
+      <button class="btn btn-outline" onclick="closeProfileModal()">Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const API = '';
+let subjects = [];
+let items = [];
+let courses = [];
+let studentProfile = null;
+let currentYearFilter = 'ALL';
+let selectedColor = '#3b82f6';
+let editingType = '';
+
+function getToken() { return localStorage.getItem('token'); }
+function authHeaders() { return { 'Authorization': 'Bearer ' + getToken(), 'Content-Type': 'application/json' }; }
+
+async function api(path, opts = {}) {
+  const res = await fetch(API + path, { ...opts, headers: opts.headers || authHeaders() });
+  if (!res.ok) { const e = await res.text(); throw new Error(e); }
+  if (res.status === 204 || opts.method === 'DELETE') return null;
+  const ct = res.headers.get('content-type');
+  if (ct && ct.includes('application/json')) return res.json();
+  return res;
+}
+
+function toast(msg, type = 'success') {
+  const t = document.createElement('div');
+  t.className = 'toast ' + type;
+  t.textContent = msg;
+  document.body.appendChild(t);
+  setTimeout(() => t.remove(), 3000);
+}
+
+function switchTab(tab) {
+  document.querySelectorAll('.tab').forEach((t, i) => t.classList.toggle('active', (tab === 'subjects' ? i === 0 : i === 1)));
+  document.getElementById('subjects-panel').classList.toggle('active', tab === 'subjects');
+  document.getElementById('materials-panel').classList.toggle('active', tab === 'materials');
+  if (tab === 'materials') loadItems();
+}
+
+function formatSize(bytes) {
+  if (bytes < 1024) return bytes + ' B';
+  if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
+  return (bytes / 1048576).toFixed(1) + ' MB';
+}
+
+function catClass(c) { return 'cat-' + (c || 'other'); }
+
+async function loadProfile() {
+  try {
+    studentProfile = await api('/api/vault/profile');
+    if (studentProfile) {
+      document.getElementById('badge-name').textContent = (studentProfile.firstName || 'Student') + ' ' + (studentProfile.lastName || '');
+      document.getElementById('badge-course').textContent = studentProfile.course || 'CSE AIML';
+      document.getElementById('badge-year').textContent = (studentProfile.year || 'SY') + ' (Year ' + (studentProfile.studyYear || 2) + ')';
+      document.getElementById('student-badge').style.display = 'inline-flex';
+      updateProfileModalData();
+    }
+  } catch(e) {
+    console.warn('Profile fetch skipped', e);
+  }
+}
+
+function updateProfileModalData() {
+  if (!studentProfile) return;
+  const fn = (studentProfile.firstName || '') + ' ' + (studentProfile.lastName || '');
+  document.getElementById('prof-fullname').textContent = fn.trim() || 'Student';
+  document.getElementById('prof-rollno').textContent = 'Roll No: ' + (studentProfile.rollNumber || 'N/A');
+  const initials = ((studentProfile.firstName?.[0] || '') + (studentProfile.lastName?.[0] || '')).toUpperCase() || 'ST';
+  document.getElementById('prof-avatar').textContent = initials;
+  document.getElementById('prof-course').textContent = studentProfile.course || 'N/A';
+  document.getElementById('prof-year').textContent = (studentProfile.year || 'N/A') + ' (Year ' + (studentProfile.studyYear || '-') + ')';
+  document.getElementById('prof-sem').textContent = studentProfile.currentSemester ? ('Semester ' + studentProfile.currentSemester) : 'N/A';
+  document.getElementById('prof-status').textContent = studentProfile.status || 'ACTIVE';
+  document.getElementById('prof-program').textContent = studentProfile.program ? (studentProfile.program.name + ' (' + studentProfile.program.code + ')') : (studentProfile.course || 'Undergraduate Degree');
+  document.getElementById('prof-email').textContent = studentProfile.email || (studentProfile.rollNumber ? (studentProfile.rollNumber.toLowerCase() + '@college.edu') : 'N/A');
+}
+
+function openProfileModal() {
+  updateProfileModalData();
+  document.getElementById('profile-modal').classList.add('show');
+}
+
+function closeProfileModal() {
+  document.getElementById('profile-modal').classList.remove('show');
+}
+
+function setYearFilter(y) {
+  currentYearFilter = y;
+  document.querySelectorAll('#year-filter-btns .y-btn').forEach(btn => {
+    const isAct = btn.dataset.year === y;
+    btn.className = 'btn btn-sm y-btn ' + (isAct ? 'btn-primary' : 'btn-outline');
+  });
+  renderSubjects();
+}
+
+// Subjects
+async function loadSubjects() {
+  try {
+    subjects = await api('/api/vault/subjects');
+    renderSubjects();
+    updateSubjectDropdowns();
+  } catch(e) {
+    console.error('Error loading subjects:', e);
+  }
+}
+
+async function syncCurriculum() {
+  try {
+    subjects = await api('/api/vault/sync', { method: 'POST' });
+    renderSubjects();
+    updateSubjectDropdowns();
+    toast('Curriculum subjects synchronized!');
+  } catch(e) {
+    toast('Sync failed: ' + e.message, 'error');
+  }
+}
+
+function renderSubjects() {
+  const g = document.getElementById('subjects-grid');
+  let filtered = subjects;
+  if (currentYearFilter !== 'ALL') {
+    filtered = subjects.filter(s => {
+      const y = s.year || (s.studyYear === 1 ? 'FY' : (s.studyYear === 2 ? 'SY' : 'TY'));
+      return y === currentYearFilter;
+    });
+  }
+
+  if (!filtered.length) {
+    g.innerHTML = `<div class="empty"><p>No subjects found for ${currentYearFilter === 'ALL' ? 'this vault' : currentYearFilter}.</p></div>`;
+    return;
+  }
+
+  g.innerHTML = filtered.map(s => {
+    const yBadge = s.year || (s.studyYear === 1 ? 'FY' : (s.studyYear === 2 ? 'SY' : 'TY'));
+    return `
+      <div class="subject-card">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+          <div>
+            <div class="color-dot" style="background:${s.color || '#3b82f6'}"></div>
+            <h3>${esc(s.name)}</h3>
+          </div>
+          <span class="category-tag cat-notes" style="font-weight:700;font-size:11px">${esc(yBadge)}</span>
+        </div>
+        ${s.course ? '<span class="course-tag">' + esc(s.course.code || s.course.name) + '</span>' : ''}
+        ${s.description ? '<p>' + esc(s.description) + '</p>' : ''}
+        <div class="actions">
+          <button class="btn btn-sm btn-outline" onclick="editSubject(${s.id})">Edit</button>
+          <button class="btn btn-sm btn-danger" onclick="deleteSubject(${s.id})">Delete</button>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function updateSubjectDropdowns() {
+  const opts = subjects.map(s => '<option value="' + s.id + '">' + esc(s.name) + ' (' + (s.year || 'FY') + ')</option>').join('');
+  document.getElementById('item-subject').innerHTML = '<option value="">No Subject</option>' + opts;
+  document.getElementById('filter-subject').innerHTML = '<option value="">All Subjects</option>' + opts;
+}
+
+async function loadCourses() {
+  try {
+    courses = await api('/api/vault/courses');
+    const select = document.getElementById('subj-course');
+    select.innerHTML = '<option value="">Custom Subject</option>';
+
+    // Group by studyYear
+    const groups = { 'FY': [], 'SY': [], 'TY': [] };
+    courses.forEach(c => {
+      const y = c.year || (c.studyYear === 1 ? 'FY' : (c.studyYear === 2 ? 'SY' : 'TY'));
+      if (groups[y]) groups[y].push(c);
+      else groups['TY'].push(c);
+    });
+
+    const cName = studentProfile?.course || 'Course';
+    ['FY', 'SY', 'TY'].forEach(yKey => {
+      const list = groups[yKey];
+      if (list && list.length > 0) {
+        const og = document.createElement('optgroup');
+        og.label = (yKey === 'FY' ? 'FY Foundation (' + cName + ')' : yKey + ' Core (' + cName + ')');
+        list.forEach(c => {
+          const opt = document.createElement('option');
+          opt.value = c.id;
+          opt.textContent = `${c.code} - ${c.name}`;
+          og.appendChild(opt);
+        });
+        select.appendChild(og);
+      }
+    });
+
+    // Auto-fill subject name when selecting from dropdown
+    select.onchange = function() {
+      const cid = parseInt(this.value);
+      if (cid) {
+        const c = courses.find(x => x.id === cid);
+        if (c) {
+          document.getElementById('subj-name').value = c.name;
+          const y = c.year || (c.studyYear === 1 ? 'FY' : 'SY');
+          document.getElementById('subj-desc').value = `${y} Subject (${c.code})`;
+        }
+      }
+    };
+  } catch(e) {
+    console.warn('Failed to load course options', e);
+  }
+}
+
+async function createSubject() {
+  const name = document.getElementById('subj-name').value.trim();
+  if (!name) return toast('Subject name required', 'error');
+  try {
+    const courseId = document.getElementById('subj-course').value ? parseInt(document.getElementById('subj-course').value) : null;
+    let sYear = 2;
+    let sYearStr = 'SY';
+    if (courseId) {
+      const c = courses.find(x => x.id === courseId);
+      if (c) {
+        sYear = c.studyYear || 2;
+        sYearStr = c.year || 'SY';
+      }
+    }
+
+    await api('/api/vault/subjects', {
+      method: 'POST',
+      body: JSON.stringify({
+        name,
+        description: document.getElementById('subj-desc').value.trim(),
+        color: selectedColor,
+        studyYear: sYear,
+        year: sYearStr,
+        course: courseId ? { id: courseId } : null
+      })
+    });
+    document.getElementById('subj-name').value = '';
+    document.getElementById('subj-desc').value = '';
+    document.getElementById('subj-course').value = '';
+    loadSubjects();
+    toast('Subject created');
+  } catch(e) { toast('Error: ' + e.message, 'error'); }
+}
+
+function editSubject(id) {
+  const s = subjects.find(x => x.id === id);
+  if (!s) return;
+  editingType = 'subject';
+  document.getElementById('edit-id').value = id;
+  document.getElementById('edit-name').value = s.name;
+  document.getElementById('edit-desc').value = s.description || '';
+  document.getElementById('modal-title').textContent = 'Edit Subject';
+  document.getElementById('edit-modal').classList.add('show');
+  document.querySelectorAll('#edit-color-options .color-opt').forEach(c => {
+    c.classList.toggle('selected', c.dataset.color === (s.color || '#3b82f6'));
+    c.onclick = function() {
+      document.querySelectorAll('#edit-color-options .color-opt').forEach(x => x.classList.remove('selected'));
+      this.classList.add('selected');
+    };
+  });
+}
+
+async function saveEdit() {
+  const id = document.getElementById('edit-id').value;
+  const color = document.querySelector('#edit-color-options .color-opt.selected')?.dataset.color || '#3b82f6';
+  try {
+    await api('/api/vault/subjects/' + id, {
+      method: 'PUT',
+      body: JSON.stringify({
+        name: document.getElementById('edit-name').value.trim(),
+        description: document.getElementById('edit-desc').value.trim(),
+        color
+      })
+    });
+    closeModal();
+    loadSubjects();
+    toast('Subject updated');
+  } catch(e) { toast('Error: ' + e.message, 'error'); }
+}
+
+function closeModal() {
+  document.getElementById('edit-modal').classList.remove('show');
+}
+
+async function deleteSubject(id) {
+  if (!confirm('Delete this subject and all its materials?')) return;
+  try {
+    await api('/api/vault/subjects/' + id, { method: 'DELETE' });
+    loadSubjects();
+    toast('Subject deleted');
+  } catch(e) { toast('Error: ' + e.message, 'error'); }
+}
+
+// Materials
+async function loadItems() {
+  const sId = document.getElementById('filter-subject').value;
+  const cat = document.getElementById('filter-category').value;
+  let q = [];
+  if (sId) q.push('subjectId=' + sId);
+  if (cat) q.push('category=' + cat);
+  const qs = q.length ? '?' + q.join('&') : '';
+  try {
+    items = await api('/api/vault/items' + qs);
+    renderItems();
+    renderStats();
+  } catch(e) { console.error(e); }
+}
+
+function renderStats() {
+  const total = items.length;
+  const notes = items.filter(x => x.category === 'notes').length;
+  const assigns = items.filter(x => x.category === 'assignments').length;
+  const papers = items.filter(x => x.category === 'papers').length;
+  document.getElementById('stats-bar').innerHTML = `
+    <div class="stat"><div class="num">${total}</div><div class="lbl">Total Items</div></div>
+    <div class="stat"><div class="num">${notes}</div><div class="lbl">Notes</div></div>
+    <div class="stat"><div class="num">${assigns}</div><div class="lbl">Assignments</div></div>
+    <div class="stat"><div class="num">${papers}</div><div class="lbl">Past Papers</div></div>
+  `;
+}
+
+function renderItems() {
+  const el = document.getElementById('items-list');
+  if (!items.length) { el.innerHTML = '<div class="empty"><p>No materials uploaded yet.</p></div>'; return; }
+  el.innerHTML = items.map(it => `
+    <div class="item-row">
+      <div class="item-info">
+        <h4>${esc(it.title)}</h4>
+        <div class="meta">
+          <span class="category-tag ${catClass(it.category)}">${esc(it.category || 'other')}</span>
+          ${it.subject ? '<span>' + esc(it.subject.name) + '</span>' : ''}
+          <span>${formatSize(it.fileSize)}</span>
+          <span>${esc(it.fileName)}</span>
+        </div>
+      </div>
+      <div class="item-actions">
+        <button class="btn btn-sm btn-primary" onclick="downloadItem(${it.id})">Download</button>
+        <button class="btn btn-sm btn-danger" onclick="deleteItem(${it.id})">Delete</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+async function uploadItem() {
+  const file = document.getElementById('item-file').files[0];
+  const title = document.getElementById('item-title').value.trim();
+  if (!file) return toast('Select a file to upload', 'error');
+  if (!title) return toast('Title required', 'error');
+
+  const fd = new FormData();
+  fd.append('file', file);
+  fd.append('title', title);
+  fd.append('description', document.getElementById('item-desc').value.trim());
+  fd.append('category', document.getElementById('item-category').value);
+  const sid = document.getElementById('item-subject').value;
+  if (sid) fd.append('subjectId', sid);
+
+  try {
+    const res = await fetch(API + '/api/vault/items', {
+      method: 'POST',
+      headers: { 'Authorization': 'Bearer ' + getToken() },
+      body: fd
+    });
+    if (!res.ok) throw new Error(await res.text());
+    document.getElementById('item-file').value = '';
+    document.getElementById('item-title').value = '';
+    document.getElementById('item-desc').value = '';
+    loadItems();
+    toast('File uploaded successfully');
+  } catch(e) { toast('Upload failed: ' + e.message, 'error'); }
+}
+
+async function downloadItem(id) {
+  window.open(API + '/api/vault/items/' + id + '/download', '_blank');
+}
+
+async function deleteItem(id) {
+  if (!confirm('Delete this material?')) return;
+  try {
+    await api('/api/vault/items/' + id, { method: 'DELETE' });
+    loadItems();
+    toast('Material deleted');
+  } catch(e) { toast('Error: ' + e.message, 'error'); }
+}
+
+function esc(s) { if (!s) return ''; const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+
+// Color picker
+document.querySelectorAll('#color-options .color-opt').forEach(c => {
+  c.onclick = function() {
+    document.querySelectorAll('#color-options .color-opt').forEach(x => x.classList.remove('selected'));
+    this.classList.add('selected');
+    selectedColor = this.dataset.color;
+  };
+});
+
+// Init
+if (!getToken()) {
+  window.location.href = '/';
+} else {
+  loadProfile().then(() => {
+    loadSubjects();
+    loadCourses();
+  });
+}
+</script>
+</body>
+</html>

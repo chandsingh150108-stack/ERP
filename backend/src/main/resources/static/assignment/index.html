@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Assignments — Student ERP</title>
+<link rel="stylesheet" href="/common/shared.css">
+<style>
+.submission-card { background: var(--bg-dark); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 14px; margin-bottom: 8px; }
+.submission-card .meta { font-size: 12px; color: var(--text-dim); margin-top: 4px; }
+.grade-input { width: 80px; padding: 4px 8px; font-size: 13px; }
+</style>
+</head>
+<body>
+<div class="header">
+  <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+    <h1><span>A</span>SSIGNMENTS</h1>
+    <div class="student-badge" id="studentBadge">
+      <span class="name" id="badgeName">Student</span>
+      <span style="color:#475569">•</span>
+      <span class="course" id="badgeCourse">Course</span>
+      <span style="color:#475569">•</span>
+      <span class="year" id="badgeYear">Year</span>
+    </div>
+  </div>
+  <div class="header-actions">
+    <button class="profile-btn" onclick="openProfileModal()">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      Profile
+    </button>
+    <a href="/academics" class="back">Academics</a>
+    <a href="/events" class="back">Events</a>
+    <a href="/" class="back">Dashboard</a>
+  </div>
+</div>
+
+<div class="container">
+  <div class="tabs" id="mainTabs">
+    <button class="tab active" onclick="switchTab('my')">My Assignments</button>
+    <button class="tab" id="createTab" onclick="switchTab('create')" style="display:none">Create</button>
+    <button class="tab" id="submissionsTab" onclick="switchTab('submissions')" style="display:none">Submissions</button>
+  </div>
+
+  <div id="myPanel">
+    <div class="filter-bar">
+      <select id="courseFilter" onchange="loadAssignments()">
+        <option value="">All Courses</option>
+      </select>
+      <select id="statusFilter" onchange="loadAssignments()">
+        <option value="">All Status</option>
+        <option value="pending">Pending</option>
+        <option value="submitted">Submitted</option>
+        <option value="graded">Graded</option>
+        <option value="late">Late</option>
+      </select>
+    </div>
+    <div id="assignmentsList"></div>
+    <div class="empty" id="emptyMy" style="display:none">
+      <h3>No assignments</h3>
+      <p>Assignments for your enrolled sections will appear here.</p>
+    </div>
+  </div>
+
+  <div id="createPanel" style="display:none">
+    <div class="card">
+      <div class="card-header"><h2>Create Assignment</h2></div>
+      <form id="createForm" onsubmit="return saveAssignment(event)">
+        <div class="form-group">
+          <label>Title *</label>
+          <input type="text" id="aTitle" required placeholder="e.g. Assignment 3: Graph Algorithms">
+        </div>
+        <div class="form-group">
+          <label>Description</label>
+          <textarea id="aDesc" placeholder="Assignment description..."></textarea>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Course *</label>
+            <select id="aCourse" required></select>
+          </div>
+          <div class="form-group">
+            <label>Section *</label>
+            <select id="aSection" required></select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Due Date *</label>
+            <input type="date" id="aDueDate" required>
+          </div>
+          <div class="form-group">
+            <label>Max Marks</label>
+            <input type="number" id="aMaxMarks" placeholder="e.g. 100">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Type</label>
+            <select id="aType">
+              <option value="THEORY">Theory</option>
+              <option value="PRACTICAL">Practical</option>
+              <option value="PROJECT">Project</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Attachment</label>
+            <input type="file" id="aFile">
+          </div>
+        </div>
+        <div class="modal-actions" style="border:none;padding:0;margin-top:16px">
+          <button type="submit" class="btn btn-primary">Create Assignment</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="submissionsPanel" style="display:none">
+    <div class="card">
+      <div class="card-header"><h2>Submissions</h2></div>
+      <div id="submissionsList"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Submit Modal -->
+<div class="modal-overlay" id="submitModal">
+  <div class="modal">
+    <h3>Submit Assignment</h3>
+    <p style="color:var(--text-muted);margin-bottom:16px" id="submitAssignmentTitle"></p>
+    <form id="submitForm" onsubmit="return submitAssignment(event)">
+      <input type="hidden" id="submitAssignmentId">
+      <div class="form-group">
+        <label>Text Answer</label>
+        <textarea id="submitText" placeholder="Enter your answer..."></textarea>
+      </div>
+      <div class="form-group">
+        <label>Upload File</label>
+        <input type="file" id="submitFile">
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-outline" onclick="closeModal('submitModal')">Cancel</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Edit Modal -->
+<div class="modal-overlay" id="editModal">
+  <div class="modal">
+    <h3>Edit Assignment</h3>
+    <form id="editForm" onsubmit="return updateAssignment(event)">
+      <input type="hidden" id="editId">
+      <div class="form-group">
+        <label>Title *</label>
+        <input type="text" id="editTitle" required>
+      </div>
+      <div class="form-group">
+        <label>Description</label>
+        <textarea id="editDesc"></textarea>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Due Date *</label>
+          <input type="date" id="editDueDate" required>
+        </div>
+        <div class="form-group">
+          <label>Max Marks</label>
+          <input type="number" id="editMaxMarks">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Status</label>
+          <select id="editStatus">
+            <option value="DRAFT">Draft</option>
+            <option value="PUBLISHED">Published</option>
+            <option value="CLOSED">Closed</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Type</label>
+          <select id="editType">
+            <option value="THEORY">Theory</option>
+            <option value="PRACTICAL">Practical</option>
+            <option value="PROJECT">Project</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-outline" onclick="closeModal('editModal')">Cancel</button>
+        <button type="submit" class="btn btn-primary">Update</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div id="toastContainer" class="toast-container"></div>
+
+<script src="/common/auth.js"></script>
+<script>
+let currentUser = { roles: [], student: null, faculty: null };
+let assignments = [];
+let courses = [];
+let sections = [];
+
+if (!requireAuth()) throw new Error('Not authenticated');
+
+async function init() {
+  currentUser.roles = await loadCurrentUserRoles();
+  currentUser.student = await loadStudentProfile();
+
+  if (currentUser.student) {
+    document.getElementById('studentBadge').style.display = 'flex';
+    document.getElementById('badgeName').textContent = currentUser.student.firstName + ' ' + currentUser.student.lastName;
+    document.getElementById('badgeCourse').textContent = currentUser.student.course || 'N/A';
+    document.getElementById('badgeYear').textContent = currentUser.student.year || 'N/A';
+  }
+
+  await loadCourses();
+  const isFaculty = hasRole(currentUser.roles, 'FACULTY') || hasRole(currentUser.roles, 'ADMIN');
+  if (isFaculty) {
+    document.getElementById('createTab').style.display = 'inline-block';
+    document.getElementById('submissionsTab').style.display = 'inline-block';
+    await loadSections();
+  }
+
+  await loadAssignments();
+}
+
+async function loadAssignments() {
+  try {
+    const res = await apiFetch('/api/assignments');
+    assignments = await res.json();
+    populateCourseFilter();
+    renderAssignments();
+  } catch (e) {
+    showToast('Failed to load assignments', 'error');
+  }
+}
+
+function populateCourseFilter() {
+  const filter = document.getElementById('courseFilter');
+  const aCourse = document.getElementById('aCourse');
+  const uniqueCourses = [...new Map(assignments.map(a => [a.course?.id, a.course])).values()].filter(c => c);
+
+  filter.innerHTML = '<option value="">All Courses</option>';
+  if (aCourse) aCourse.innerHTML = '<option value="">Select Course</option>';
+
+  uniqueCourses.forEach(c => {
+    filter.innerHTML += `<option value="${c.id}">${c.code} - ${c.name}</option>`;
+    if (aCourse) aCourse.innerHTML += `<option value="${c.id}">${c.code} - ${c.name}</option>`;
+  });
+}
+
+async function loadCourses() {
+  try {
+    const isStudent = currentUser.student && !hasRole(currentUser.roles, 'FACULTY') && !hasRole(currentUser.roles, 'ADMIN');
+    const endpoint = isStudent ? '/api/assignments/courses/for-student' : '/api/courses';
+    const res = await apiFetch(endpoint);
+    courses = await res.json();
+    const aCourse = document.getElementById('aCourse');
+    if (aCourse) {
+      aCourse.innerHTML = '<option value="">Select Course</option>';
+      courses.forEach(c => {
+        aCourse.innerHTML += `<option value="${c.id}">${c.code} - ${c.name}</option>`;
+      });
+    }
+  } catch (e) {}
+}
+
+async function loadSections() {
+  try {
+    const res = await apiFetch('/api/sections');
+    sections = await res.json();
+    const aSection = document.getElementById('aSection');
+    aSection.innerHTML = '<option value="">Select Section</option>';
+    sections.forEach(s => {
+      aSection.innerHTML += `<option value="${s.id}">${s.name} (Sem ${s.semester})</option>`;
+    });
+  } catch (e) {}
+}
+
+function renderAssignments() {
+  const list = document.getElementById('assignmentsList');
+  const empty = document.getElementById('emptyMy');
+  const courseFilter = document.getElementById('courseFilter').value;
+  const statusFilter = document.getElementById('statusFilter').value;
+
+  let filtered = assignments;
+  if (courseFilter) filtered = filtered.filter(a => a.course?.id == courseFilter);
+  if (statusFilter) {
+    filtered = filtered.filter(a => {
+      const s = getAssignmentStatus(a);
+      return s === statusFilter;
+    });
+  }
+
+  if (filtered.length === 0) {
+    list.innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+
+  const isFaculty = hasRole(currentUser.roles, 'FACULTY') || hasRole(currentUser.roles, 'ADMIN');
+  list.innerHTML = filtered.map(a => {
+    const status = getAssignmentStatus(a);
+    const dueDate = formatDate(a.dueDate);
+    const isOverdue = new Date(a.dueDate) < new Date() && status === 'pending';
+
+    let actions = '';
+    if (currentUser.student && status === 'pending') {
+      actions = `<button class="btn btn-sm btn-primary" onclick="openSubmitModal(${a.id}, '${escapeHtml(a.title)}')">Submit</button>`;
+    } else if (currentUser.student && status === 'submitted') {
+      actions = `<span class="badge badge-warning">Submitted</span>`;
+    } else if (currentUser.student && status === 'graded') {
+      actions = `<span class="badge badge-success">Graded</span>`;
+    } else if (currentUser.student && status === 'late') {
+      actions = `<span class="badge badge-danger">Late</span>`;
+    }
+
+    if (isFaculty) {
+      actions += `
+        <button class="btn btn-sm btn-outline" onclick="viewSubmissions(${a.id})">Submissions</button>
+        <button class="btn btn-sm btn-outline" onclick='openEditModal(${JSON.stringify(a)})'>Edit</button>
+        <button class="btn btn-sm btn-danger" onclick="deleteAssignment(${a.id})">Delete</button>
+      `;
+    }
+
+    return `
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px">
+          <div style="flex:1">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+              <h3 style="font-size:14px;font-weight:600">${escapeHtml(a.title)}</h3>
+              <span class="badge ${getBadgeClass(status)}">${status}</span>
+            </div>
+            <div style="font-size:12px;color:var(--text-dim);display:flex;gap:12px;flex-wrap:wrap">
+              ${a.course ? `<span>${a.course.code}</span>` : ''}
+              ${a.section ? `<span>Section ${a.section.name}</span>` : ''}
+              <span style="color:${isOverdue ? 'var(--danger)' : ''}">Due: ${dueDate}</span>
+              ${a.maxMarks ? `<span>Max: ${a.maxMarks}</span>` : ''}
+            </div>
+            ${a.description ? `<p style="font-size:12px;color:var(--text-muted);margin-top:6px">${escapeHtml(a.description)}</p>` : ''}
+            ${a.attachmentName ? `<div style="font-size:12px;color:var(--info);margin-top:6px">📎 ${escapeHtml(a.attachmentName)}</div>` : ''}
+          </div>
+          <div style="display:flex;gap:6px;flex-shrink:0">${actions}</div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function getAssignmentStatus(assignment) {
+  if (assignment.status === 'DRAFT') return 'draft';
+  if (assignment.status === 'CLOSED') return 'closed';
+  if (new Date(assignment.dueDate) < new Date() && assignment.status !== 'GRADED') return 'late';
+  return 'pending';
+}
+
+function switchTab(tab) {
+  document.querySelectorAll('#mainTabs .tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('#mainTabs .tab').forEach(t => {
+    if (t.textContent.toLowerCase().includes(tab === 'my' ? 'my' : tab)) t.classList.add('active');
+  });
+  document.getElementById('myPanel').style.display = tab === 'my' ? 'block' : 'none';
+  document.getElementById('createPanel').style.display = tab === 'create' ? 'block' : 'none';
+  document.getElementById('submissionsPanel').style.display = tab === 'submissions' ? 'block' : 'none';
+}
+
+function openSubmitModal(id, title) {
+  document.getElementById('submitAssignmentId').value = id;
+  document.getElementById('submitAssignmentTitle').textContent = title;
+  document.getElementById('submitForm').reset();
+  openModal('submitModal');
+}
+
+async function submitAssignment(e) {
+  e.preventDefault();
+  const id = document.getElementById('submitAssignmentId').value;
+  const formData = new FormData();
+  const file = document.getElementById('submitFile').files[0];
+  if (file) formData.append('file', file);
+  const text = document.getElementById('submitText').value;
+  if (text) formData.append('textSubmission', text);
+
+  try {
+    const res = await apiFetch(`/api/assignments/${id}/submit`, {
+      method: 'POST',
+      body: formData,
+      headers: {}
+    });
+    if (res.ok) {
+      showToast('Assignment submitted!', 'success');
+      closeModal('submitModal');
+      loadAssignments();
+    } else {
+      const err = await res.json();
+      showToast(err.message || 'Submission failed', 'error');
+    }
+  } catch (e) {
+    showToast('Network error', 'error');
+  }
+  return false;
+}
+
+async function saveAssignment(e) {
+  e.preventDefault();
+  const formData = new FormData();
+  formData.append('title', document.getElementById('aTitle').value);
+  formData.append('description', document.getElementById('aDesc').value);
+  formData.append('course', JSON.stringify({ id: parseInt(document.getElementById('aCourse').value) }));
+  formData.append('section', JSON.stringify({ id: parseInt(document.getElementById('aSection').value) }));
+  formData.append('dueDate', document.getElementById('aDueDate').value);
+  formData.append('maxMarks', document.getElementById('aMaxMarks').value);
+  formData.append('assignmentType', document.getElementById('aType').value);
+  const file = document.getElementById('aFile').files[0];
+  if (file) formData.append('file', file);
+
+  try {
+    const res = await apiFetch('/api/assignments', {
+      method: 'POST',
+      body: formData,
+      headers: {}
+    });
+    if (res.ok) {
+      showToast('Assignment created!', 'success');
+      document.getElementById('createForm').reset();
+      switchTab('my');
+      loadAssignments();
+    } else {
+      const err = await res.json();
+      showToast(err.message || 'Failed to create', 'error');
+    }
+  } catch (e) {
+    showToast('Network error', 'error');
+  }
+  return false;
+}
+
+function openEditModal(a) {
+  document.getElementById('editId').value = a.id;
+  document.getElementById('editTitle').value = a.title || '';
+  document.getElementById('editDesc').value = a.description || '';
+  document.getElementById('editDueDate').value = a.dueDate || '';
+  document.getElementById('editMaxMarks').value = a.maxMarks || '';
+  document.getElementById('editStatus').value = a.status || 'PUBLISHED';
+  document.getElementById('editType').value = a.assignmentType || 'THEORY';
+  openModal('editModal');
+}
+
+async function updateAssignment(e) {
+  e.preventDefault();
+  const id = document.getElementById('editId').value;
+  const formData = new FormData();
+  formData.append('title', document.getElementById('editTitle').value);
+  formData.append('description', document.getElementById('editDesc').value);
+  formData.append('dueDate', document.getElementById('editDueDate').value);
+  formData.append('maxMarks', document.getElementById('editMaxMarks').value);
+  formData.append('status', document.getElementById('editStatus').value);
+  formData.append('assignmentType', document.getElementById('editType').value);
+
+  try {
+    const res = await apiFetch(`/api/assignments/${id}`, {
+      method: 'PUT',
+      body: formData,
+      headers: {}
+    });
+    if (res.ok) {
+      showToast('Assignment updated!', 'success');
+      closeModal('editModal');
+      loadAssignments();
+    } else {
+      const err = await res.json();
+      showToast(err.message || 'Failed to update', 'error');
+    }
+  } catch (e) {
+    showToast('Network error', 'error');
+  }
+  return false;
+}
+
+async function deleteAssignment(id) {
+  if (!confirm('Delete this assignment?')) return;
+  try {
+    const res = await apiDelete(`/api/assignments/${id}`);
+    if (res.ok) {
+      showToast('Assignment deleted', 'success');
+      loadAssignments();
+    }
+  } catch (e) {
+    showToast('Failed to delete', 'error');
+  }
+}
+
+async function viewSubmissions(assignmentId) {
+  switchTab('submissions');
+  try {
+    const res = await apiFetch(`/api/assignments/${assignmentId}/submissions`);
+    const subs = await res.json();
+    renderSubmissions(subs);
+  } catch (e) {
+    showToast('Failed to load submissions', 'error');
+  }
+}
+
+function renderSubmissions(subs) {
+  const list = document.getElementById('submissionsList');
+  if (!subs || subs.length === 0) {
+    list.innerHTML = '<div class="empty"><p>No submissions yet.</p></div>';
+    return;
+  }
+  list.innerHTML = subs.map(s => `
+    <div class="submission-card">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div>
+          <strong>${escapeHtml(s.student?.firstName || 'Unknown')} ${escapeHtml(s.student?.lastName || '')}</strong>
+          <div class="meta">${formatDateTime(s.submittedAt)} <span class="badge ${getBadgeClass(s.status)}">${s.status}</span></div>
+          ${s.textSubmission ? `<div style="margin-top:6px;font-size:13px;color:var(--text-muted)">${escapeHtml(s.textSubmission)}</div>` : ''}
+          ${s.fileName ? `<div style="font-size:12px;color:var(--info)">📎 ${escapeHtml(s.fileName)}</div>` : ''}
+          ${s.marksObtained != null ? `<div style="margin-top:4px">Marks: <strong>${s.marksObtained}</strong>/ ${s.assignment?.maxMarks || '?'}</div>` : ''}
+          ${s.feedback ? `<div style="font-size:12px;color:var(--text-dim);margin-top:4px">Feedback: ${escapeHtml(s.feedback)}</div>` : ''}
+        </div>
+        ${s.status !== 'GRADED' ? `<div style="display:flex;align-items:center;gap:6px">
+          <input type="number" class="grade-input" id="grade-${s.id}" placeholder="Marks" style="width:60px">
+          <button class="btn btn-sm btn-success" onclick="gradeSubmission(${s.id})">Grade</button>
+        </div>` : ''}
+      </div>
+    </div>
+  `).join('');
+}
+
+async function gradeSubmission(submissionId) {
+  const marks = document.getElementById(`grade-${submissionId}`).value;
+  if (!marks) { showToast('Enter marks', 'warning'); return; }
+  try {
+    const res = await apiFetch(`/api/assignments/submissions/${submissionId}/grade?marks=${marks}`, {
+      method: 'PUT'
+    });
+    if (res.ok) {
+      showToast('Graded!', 'success');
+      loadAssignments();
+    }
+  } catch (e) {
+    showToast('Failed to grade', 'error');
+  }
+}
+
+init();
+</script>
+</body>
+</html>

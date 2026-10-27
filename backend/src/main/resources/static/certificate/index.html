@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Certificates — Student ERP</title>
+<link rel="stylesheet" href="/common/shared.css">
+</head>
+<body>
+<div class="header">
+  <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+    <h1><span>C</span>ERTIFICATES</h1>
+    <div class="student-badge" id="studentBadge">
+      <span class="name" id="badgeName">Student</span>
+      <span style="color:#475569">•</span>
+      <span class="course" id="badgeCourse">Course</span>
+      <span style="color:#475569">•</span>
+      <span class="year" id="badgeYear">Year</span>
+    </div>
+  </div>
+  <div class="header-actions">
+    <button class="profile-btn" onclick="openProfileModal()">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      Profile
+    </button>
+    <a href="/" class="back">Dashboard</a>
+  </div>
+</div>
+
+<div class="container">
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab('my')">My Certificates</button>
+    <button class="tab" onclick="switchTab('verify')">Verify</button>
+    <button class="tab" id="issueTab" onclick="switchTab('issue')" style="display:none">Issue</button>
+  </div>
+
+  <div id="myPanel">
+    <div id="certList"></div>
+    <div class="empty" id="emptyCerts" style="display:none">
+      <h3>No certificates yet</h3>
+      <p>Your issued certificates will appear here.</p>
+    </div>
+  </div>
+
+  <div id="verifyPanel" style="display:none">
+    <div class="card">
+      <div class="card-header"><h2>Verify Certificate</h2></div>
+      <div class="form-group">
+        <label>Certificate Number</label>
+        <input type="text" id="verifyNumber" placeholder="e.g. VIT-2025-000001">
+      </div>
+      <button class="btn btn-primary" onclick="verifyCertificate()">Verify</button>
+      <div id="verifyResult" style="margin-top:16px"></div>
+    </div>
+  </div>
+
+  <div id="issuePanel" style="display:none">
+    <div class="card">
+      <div class="card-header"><h2>Issue Certificate</h2></div>
+      <form id="issueForm" onsubmit="return issueCertificate(event)">
+        <div class="form-group">
+          <label>Student *</label>
+          <select id="certStudent" required></select>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Certificate Type *</label>
+            <select id="certType" required>
+              <option value="BONAFIDE">Bonafide Certificate</option>
+              <option value="COURSE_COMPLETION">Course Completion</option>
+              <option value="CHARACTER">Character Certificate</option>
+              <option value="INTERNSHIP">Internship Certificate</option>
+              <option value="PROVISIONAL_DEGREE">Provisional Degree</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Purpose</label>
+            <input type="text" id="certPurpose" placeholder="e.g. Bank Loan, Higher Studies">
+          </div>
+        </div>
+        <div class="modal-actions" style="border:none;padding:0;margin-top:16px">
+          <button type="submit" class="btn btn-primary">Issue Certificate</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div id="toastContainer" class="toast-container"></div>
+
+<script src="/common/auth.js"></script>
+<script>
+let currentUser = { roles: [], student: null };
+let certificates = [];
+
+if (!requireAuth()) throw new Error('Not authenticated');
+
+async function init() {
+  currentUser.roles = await loadCurrentUserRoles();
+  currentUser.student = await loadStudentProfile();
+
+  if (currentUser.student) {
+    document.getElementById('studentBadge').style.display = 'flex';
+    document.getElementById('badgeName').textContent = currentUser.student.firstName + ' ' + currentUser.student.lastName;
+    document.getElementById('badgeCourse').textContent = currentUser.student.course || 'N/A';
+    document.getElementById('badgeYear').textContent = currentUser.student.year || 'N/A';
+  }
+
+  if (hasRole(currentUser.roles, 'ADMIN')) {
+    document.getElementById('issueTab').style.display = 'inline-block';
+    await loadStudentsForIssue();
+  }
+
+  await loadCertificates();
+}
+
+async function loadCertificates() {
+  try {
+    const res = await apiFetch('/api/certificates');
+    certificates = await res.json();
+    renderCertificates();
+  } catch (e) {
+    showToast('Failed to load certificates', 'error');
+  }
+}
+
+function renderCertificates() {
+  const list = document.getElementById('certList');
+  const empty = document.getElementById('emptyCerts');
+
+  if (certificates.length === 0) {
+    list.innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+
+  list.innerHTML = certificates.map(c => `
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px">
+        <div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
+            <h3 style="font-size:14px;font-weight:600">${escapeHtml(c.certificateType).replace(/_/g, ' ')}</h3>
+            <span class="badge ${getBadgeClass(c.status)}">${c.status}</span>
+          </div>
+          <div style="font-size:12px;color:var(--text-dim);display:flex;gap:12px;flex-wrap:wrap">
+            <span>#${c.certificateNumber}</span>
+            <span>Issued: ${formatDate(c.issueDate)}</span>
+            ${c.purpose ? `<span>Purpose: ${escapeHtml(c.purpose)}</span>` : ''}
+          </div>
+        </div>
+        <div style="display:flex;gap:6px">
+          ${c.status === 'ISSUED' && c.pdfPath ? `<a href="/api/certificates/${c.id}/download" class="btn btn-sm btn-outline">Download</a>` : ''}
+          ${hasRole(currentUser.roles, 'ADMIN') && c.status === 'ISSUED' ? `<button class="btn btn-sm btn-danger" onclick="revokeCertificate(${c.id})">Revoke</button>` : ''}
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function switchTab(tab) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  const tabs = document.querySelectorAll('.tab');
+  if (tab === 'my') tabs[0].classList.add('active');
+  else if (tab === 'verify') tabs[1].classList.add('active');
+  else if (tab === 'issue') tabs[2]?.classList.add('active');
+  document.getElementById('myPanel').style.display = tab === 'my' ? 'block' : 'none';
+  document.getElementById('verifyPanel').style.display = tab === 'verify' ? 'block' : 'none';
+  document.getElementById('issuePanel').style.display = tab === 'issue' ? 'block' : 'none';
+}
+
+async function verifyCertificate() {
+  const number = document.getElementById('verifyNumber').value.trim();
+  if (!number) { showToast('Enter certificate number', 'warning'); return; }
+  try {
+    const res = await fetch('/api/certificates/verify/' + number);
+    const data = await res.json();
+    const result = document.getElementById('verifyResult');
+    if (data.valid) {
+      result.innerHTML = `
+        <div style="background:#1e3a2f;border-radius:8px;padding:16px">
+          <div style="font-size:14px;font-weight:600;color:#4ade80;margin-bottom:8px">✓ Valid Certificate</div>
+          <div style="font-size:13px;color:var(--text-muted)">
+            <div><strong>Student:</strong> ${escapeHtml(data.studentName)}</div>
+            <div><strong>Roll Number:</strong> ${escapeHtml(data.rollNumber)}</div>
+            <div><strong>Type:</strong> ${escapeHtml(data.certificateType)}</div>
+            <div><strong>Issued:</strong> ${data.issueDate}</div>
+            <div><strong>Status:</strong> ${data.status}</div>
+          </div>
+        </div>
+      `;
+    } else {
+      result.innerHTML = `<div style="background:#3b1f2b;border-radius:8px;padding:16px;color:#f87171">✗ ${data.message}</div>`;
+    }
+  } catch (e) {
+    showToast('Verification failed', 'error');
+  }
+}
+
+async function loadStudentsForIssue() {
+  try {
+    const res = await apiFetch('/api/students');
+    const students = await res.json();
+    const sel = document.getElementById('certStudent');
+    sel.innerHTML = '<option value="">Select Student</option>';
+    students.forEach(s => {
+      sel.innerHTML += `<option value="${s.id}">${s.rollNumber} - ${s.firstName} ${s.lastName}</option>`;
+    });
+  } catch (e) {}
+}
+
+async function issueCertificate(e) {
+  e.preventDefault();
+  const payload = {
+    studentId: parseInt(document.getElementById('certStudent').value),
+    certificateType: document.getElementById('certType').value,
+    purpose: document.getElementById('certPurpose').value
+  };
+
+  try {
+    const res = await apiPost('/api/certificates', payload);
+    if (res.ok) {
+      showToast('Certificate issued!', 'success');
+      document.getElementById('issueForm').reset();
+      switchTab('my');
+      loadCertificates();
+    } else {
+      const err = await res.json();
+      showToast(err.message || 'Failed to issue', 'error');
+    }
+  } catch (e) {
+    showToast('Network error', 'error');
+  }
+  return false;
+}
+
+async function revokeCertificate(id) {
+  if (!confirm('Revoke this certificate?')) return;
+  try {
+    const res = await apiDelete(`/api/certificates/${id}`);
+    if (res.ok) {
+      showToast('Certificate revoked', 'success');
+      loadCertificates();
+    }
+  } catch (e) {
+    showToast('Failed to revoke', 'error');
+  }
+}
+
+init();
+</script>
+</body>
+</html>

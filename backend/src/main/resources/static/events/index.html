@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Events — Student ERP</title>
+<link rel="stylesheet" href="/common/shared.css">
+<link rel="stylesheet" href="/common/events.css">
+</head>
+<body>
+<div class="header">
+  <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+    <h1><span>E</span>VENTS</h1>
+    <div class="student-badge" id="studentBadge">
+      <span class="name" id="badgeName">Student</span>
+      <span style="color:#475569">•</span>
+      <span class="course" id="badgeCourse">Course</span>
+      <span style="color:#475569">•</span>
+      <span class="year" id="badgeYear">Year</span>
+    </div>
+  </div>
+  <div class="header-actions">
+    <button class="profile-btn" onclick="openProfileModal()">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      Profile
+    </button>
+    <a href="/vault" class="back">Vault</a>
+    <a href="/notehub" class="back">NoteHub</a>
+    <a href="/" class="back">Dashboard</a>
+  </div>
+</div>
+
+<div class="container">
+  <div class="stats-bar" id="statsBar">
+    <div class="stat"><div class="num" id="totalEvents">0</div><div class="lbl">Total Events</div></div>
+    <div class="stat success"><div class="num" id="activeEvents">0</div><div class="lbl">Active</div></div>
+    <div class="stat warning"><div class="num" id="upcomingEvents">0</div><div class="lbl">Upcoming</div></div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab('active')">Active Events</button>
+    <button class="tab" onclick="switchTab('all')">All Events</button>
+    <button class="tab" onclick="switchTab('past')">Past Events</button>
+  </div>
+
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px">
+    <div class="filter-bar" style="margin-bottom:0">
+      <select id="statusFilter" onchange="loadEvents()">
+        <option value="">All Status</option>
+        <option value="true">Active</option>
+        <option value="false">Inactive</option>
+      </select>
+    </div>
+    <button class="btn btn-primary" id="addEventBtn" onclick="openCreateModal()" style="display:none">+ Add Event</button>
+  </div>
+
+  <div class="grid" id="eventsGrid"></div>
+    <div class="empty" id="emptyState" style="display:none">
+      <h3>No events found</h3>
+      <p>Events will appear here when scheduled.</p>
+    </div>
+</div>
+
+<!-- Create/Edit Modal -->
+<div class="modal-overlay" id="eventModal">
+  <div class="modal">
+    <h3 id="modalTitle">Add New Event</h3>
+    <form id="eventForm" onsubmit="return saveEvent(event)">
+      <input type="hidden" id="eventId">
+      <div class="form-group">
+        <label>Event Name *</label>
+        <input type="text" id="eventName" required placeholder="e.g. Annual Tech Symposium">
+      </div>
+      <div class="form-group">
+        <label>Description</label>
+        <textarea id="eventDesc" placeholder="Event description..."></textarea>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Start Date *</label>
+          <input type="date" id="eventStart" required>
+        </div>
+        <div class="form-group">
+          <label>End Date *</label>
+          <input type="date" id="eventEnd" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Venue</label>
+        <input type="text" id="eventVenue" placeholder="e.g. Main Auditorium">
+      </div>
+      <div class="form-group">
+        <label>
+          <input type="checkbox" id="eventActive" checked style="width:auto;margin-right:6px">
+          Active
+        </label>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-outline" onclick="closeModal('eventModal')">Cancel</button>
+        <button type="submit" class="btn btn-primary">Save Event</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Delete Confirm Modal -->
+<div class="modal-overlay" id="deleteModal">
+  <div class="modal" style="max-width:400px">
+    <h3>Delete Event</h3>
+    <p style="color:var(--text-muted);margin-bottom:20px">Are you sure you want to delete "<strong id="deleteEventName"></strong>"? This action cannot be undone.</p>
+    <div class="modal-actions">
+      <button class="btn btn-outline" onclick="closeModal('deleteModal')">Cancel</button>
+      <button class="btn btn-danger" id="confirmDeleteBtn">Delete</button>
+    </div>
+  </div>
+</div>
+
+<div id="toastContainer" class="toast-container"></div>
+
+<script src="/common/auth.js"></script>
+<script>
+let currentTab = 'active';
+let allEvents = [];
+let canManage = false;
+
+if (!requireAuth()) throw new Error('Not authenticated');
+
+async function init() {
+  const roles = await loadCurrentUserRoles();
+  canManage = hasRole(roles, 'ADMIN') || hasRole(roles, 'FACULTY');
+  if (canManage) document.getElementById('addEventBtn').style.display = 'inline-flex';
+
+  const profile = await loadStudentProfile();
+  if (profile) {
+    document.getElementById('studentBadge').style.display = 'flex';
+    document.getElementById('badgeName').textContent = profile.firstName + ' ' + profile.lastName;
+    document.getElementById('badgeCourse').textContent = profile.course || 'N/A';
+    document.getElementById('badgeYear').textContent = profile.year || 'N/A';
+  }
+
+  await loadEvents();
+}
+
+async function loadEvents() {
+  try {
+    const res = await apiFetch('/api/events');
+    allEvents = await res.json();
+    renderEvents();
+    updateStats();
+  } catch (e) {
+    showToast('Failed to load events', 'error');
+  }
+}
+
+function renderEvents() {
+  const grid = document.getElementById('eventsGrid');
+  const empty = document.getElementById('emptyState');
+  const statusFilter = document.getElementById('statusFilter').value;
+
+  let filtered = allEvents;
+
+  if (currentTab === 'active') {
+    filtered = filtered.filter(e => e.active);
+  } else if (currentTab === 'past') {
+    const now = new Date();
+    filtered = filtered.filter(e => new Date(e.endDate) < now);
+  }
+
+  if (statusFilter !== '') {
+    const isActive = statusFilter === 'true';
+    filtered = filtered.filter(e => e.active === isActive);
+  }
+
+  if (filtered.length === 0) {
+    grid.innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+
+  empty.style.display = 'none';
+  grid.innerHTML = filtered.map(renderEventCard).join('');
+}
+
+function renderEventCard(event) {
+  const now = new Date();
+  const start = new Date(event.startDate);
+  const end = new Date(event.endDate);
+  const isPast = end < now;
+  const isToday = start <= now && end >= now;
+
+  let dateLabel = formatDate(event.startDate);
+  if (event.startDate !== event.endDate) {
+    dateLabel += ' — ' + formatDate(event.endDate);
+  }
+
+  let statusBadge = '<span class="badge ' + getBadgeClass(event.active ? 'active' : 'inactive') + '">' +
+    (event.active ? 'Active' : 'Inactive') + '</span>';
+
+  if (isPast) statusBadge += ' <span class="badge badge-muted">Past</span>';
+  if (isToday) statusBadge += ' <span class="badge badge-info">Happening Now</span>';
+
+  let actions = '';
+  if (canManage) {
+    actions = `
+      <div style="display:flex;gap:6px;margin-top:12px">
+        <button class="btn btn-sm btn-outline" onclick='openEditModal(${JSON.stringify(event)})'>Edit</button>
+        <button class="btn btn-sm btn-danger" onclick="openDeleteModal(${event.id}, '${escapeHtml(event.name)}')">Delete</button>
+      </div>
+    `;
+  }
+
+  return `
+    <div class="card" style="margin-bottom:0">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
+        <h3 style="font-size:15px;font-weight:600">${escapeHtml(event.name)}</h3>
+        ${statusBadge}
+      </div>
+      ${event.description ? `<p style="font-size:13px;color:var(--text-muted);margin-bottom:10px">${escapeHtml(event.description)}</p>` : ''}
+      <div style="font-size:12px;color:var(--text-dim);display:flex;flex-direction:column;gap:4px">
+        <div style="display:flex;align-items:center;gap:6px">
+          <span>📅</span> ${dateLabel}
+        </div>
+        ${event.venue ? `<div style="display:flex;align-items:center;gap:6px"><span>📍</span> ${escapeHtml(event.venue)}</div>` : ''}
+      </div>
+      ${actions}
+    </div>
+  `;
+}
+
+function updateStats() {
+  document.getElementById('totalEvents').textContent = allEvents.length;
+  document.getElementById('activeEvents').textContent = allEvents.filter(e => e.active).length;
+  const now = new Date();
+  document.getElementById('upcomingEvents').textContent = allEvents.filter(e =>
+    e.active && new Date(e.startDate) > now
+  ).length;
+}
+
+function switchTab(tab) {
+  currentTab = tab;
+  document.querySelectorAll('.tab').forEach((t, i) => {
+    t.classList.toggle('active', ['active', 'all', 'past'][i] === tab);
+  });
+  renderEvents();
+}
+
+function openCreateModal() {
+  document.getElementById('modalTitle').textContent = 'Add New Event';
+  document.getElementById('eventForm').reset();
+  document.getElementById('eventId').value = '';
+  document.getElementById('eventActive').checked = true;
+  openModal('eventModal');
+}
+
+function openEditModal(event) {
+  document.getElementById('modalTitle').textContent = 'Edit Event';
+  document.getElementById('eventId').value = event.id;
+  document.getElementById('eventName').value = event.name || '';
+  document.getElementById('eventDesc').value = event.description || '';
+  document.getElementById('eventStart').value = event.startDate || '';
+  document.getElementById('eventEnd').value = event.endDate || '';
+  document.getElementById('eventVenue').value = event.venue || '';
+  document.getElementById('eventActive').checked = event.active !== false;
+  openModal('eventModal');
+}
+
+async function saveEvent(e) {
+  e.preventDefault();
+  const id = document.getElementById('eventId').value;
+  const payload = {
+    name: document.getElementById('eventName').value,
+    description: document.getElementById('eventDesc').value,
+    startDate: document.getElementById('eventStart').value,
+    endDate: document.getElementById('eventEnd').value,
+    venue: document.getElementById('eventVenue').value,
+    active: document.getElementById('eventActive').checked
+  };
+
+  try {
+    let res;
+    if (id) {
+      res = await apiPut('/api/events/' + id, payload);
+    } else {
+      res = await apiPost('/api/events', payload);
+    }
+    if (res.ok) {
+      showToast(id ? 'Event updated' : 'Event created', 'success');
+      closeModal('eventModal');
+      loadEvents();
+    } else {
+      const err = await res.json();
+      showToast(err.message || 'Failed to save event', 'error');
+    }
+  } catch (e) {
+    showToast('Network error', 'error');
+  }
+  return false;
+}
+
+function openDeleteModal(id, name) {
+  document.getElementById('deleteEventName').textContent = name;
+  document.getElementById('confirmDeleteBtn').onclick = () => deleteEvent(id);
+  openModal('deleteModal');
+}
+
+async function deleteEvent(id) {
+  try {
+    const res = await apiDelete('/api/events/' + id);
+    if (res.ok) {
+      showToast('Event deleted', 'success');
+      closeModal('deleteModal');
+      loadEvents();
+    } else {
+      const err = await res.json();
+      showToast(err.message || 'Failed to delete', 'error');
+    }
+  } catch (e) {
+    showToast('Network error', 'error');
+  }
+}
+
+init();
+</script>
+</body>
+</html>

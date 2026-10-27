@@ -1,0 +1,49 @@
+# =========================================================================
+# Student ERP Project - Root Git Ignore
+# =========================================================================
+
+# Maven / Java Build Targets
+backend/target/
+target/
+*.class
+*.jar
+*.war
+*.ear
+
+# Runtime Dynamic Uploads (Vault & NoteHub user files)
+uploads/
+uploads/vault/
+uploads/notehub/
+backend/uploads/
+
+# Scraper Caches & Downloads (VIT Pune Scraper has its own gitignore)
+vit-pune-scraper/venv/
+vit-pune-scraper/__pycache__/
+vit-pune-scraper/downloads/*.pdf
+!vit-pune-scraper/downloads/.gitignore
+vit-pune-scraper/*.log
+
+# Environment & Secret Overrides
+.env
+.env.local
+*.env
+
+# IDE / Editor Files
+.idea/
+.vscode/
+*.iml
+*.iws
+*.ipr
+.project
+.classpath
+.settings/
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs & Temporary Files
+*.log
+tmp/
+temp/

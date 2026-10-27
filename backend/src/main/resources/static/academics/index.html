@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Academics — Student ERP</title>
+<link rel="stylesheet" href="/common/shared.css">
+</head>
+<body>
+<div class="header">
+  <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+    <h1><span>A</span>CADEMICS</h1>
+    <div class="student-badge" id="studentBadge">
+      <span class="name" id="badgeName">Student</span>
+      <span style="color:#475569">•</span>
+      <span class="course" id="badgeCourse">Course</span>
+      <span style="color:#475569">•</span>
+      <span class="year" id="badgeYear">Year</span>
+    </div>
+  </div>
+  <div class="header-actions">
+    <button class="profile-btn" onclick="openProfileModal()">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      Profile
+    </button>
+    <a href="/timetable" class="back">Timetable</a>
+    <a href="/examination" class="back">Exams</a>
+    <a href="/" class="back">Dashboard</a>
+  </div>
+</div>
+
+<div class="container">
+  <div class="card">
+    <div class="card-header"><h2>Academic Profile</h2></div>
+    <div id="profileContent">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px">
+        <div style="background:var(--bg-dark);padding:14px;border-radius:8px;border:1px solid var(--border)">
+          <div style="font-size:11px;color:var(--text-dim);text-transform:uppercase">Roll Number</div>
+          <div style="font-size:14px;font-weight:600;margin-top:4px" id="profRoll">-</div>
+        </div>
+        <div style="background:var(--bg-dark);padding:14px;border-radius:8px;border:1px solid var(--border)">
+          <div style="font-size:11px;color:var(--text-dim);text-transform:uppercase">Program</div>
+          <div style="font-size:14px;font-weight:600;margin-top:4px" id="profProgram">-</div>
+        </div>
+        <div style="background:var(--bg-dark);padding:14px;border-radius:8px;border:1px solid var(--border)">
+          <div style="font-size:11px;color:var(--text-dim);text-transform:uppercase">Department</div>
+          <div style="font-size:14px;font-weight:600;margin-top:4px;color:#60a5fa" id="profDept">-</div>
+        </div>
+        <div style="background:var(--bg-dark);padding:14px;border-radius:8px;border:1px solid var(--border)">
+          <div style="font-size:11px;color:var(--text-dim);text-transform:uppercase">Year / Semester</div>
+          <div style="font-size:14px;font-weight:600;margin-top:4px;color:#4ade80" id="profYear">-</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats-bar">
+    <div class="stat"><div class="num" id="statSections">0</div><div class="lbl">Enrolled Sections</div></div>
+    <div class="stat success"><div class="num" id="statCredits">0</div><div class="lbl">Total Credits</div></div>
+    <div class="stat warning"><div class="num" id="statCourses">0</div><div class="lbl">Dept Courses</div></div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab('current')">Current Enrollments</button>
+    <button class="tab" onclick="switchTab('transcript')">Transcript</button>
+  </div>
+
+  <div id="currentPanel">
+    <div id="enrollmentsList"></div>
+    <div class="empty" id="emptyEnrollments" style="display:none">
+      <h3>No enrollments</h3>
+      <p>Your enrolled sections and courses will appear here.</p>
+    </div>
+  </div>
+
+  <div id="transcriptPanel" style="display:none">
+    <div class="empty">
+      <div class="empty-icon">📊</div>
+      <h3>Transcript</h3>
+      <p>Full transcript with grades will be available after results are published.</p>
+    </div>
+  </div>
+</div>
+
+<div id="toastContainer" class="toast-container"></div>
+
+<script src="/common/auth.js"></script>
+<script>
+let academics = null;
+
+if (!requireAuth()) throw new Error('Not authenticated');
+
+async function init() {
+  const profile = await loadStudentProfile();
+  if (profile) {
+    document.getElementById('studentBadge').style.display = 'flex';
+    document.getElementById('badgeName').textContent = profile.firstName + ' ' + profile.lastName;
+    document.getElementById('badgeCourse').textContent = profile.course || 'N/A';
+    document.getElementById('badgeYear').textContent = profile.year || 'N/A';
+  }
+  await loadAcademics();
+}
+
+async function loadAcademics() {
+  try {
+    const res = await apiFetch('/api/academics/me');
+    academics = await res.json();
+    renderProfile();
+    renderEnrollments();
+  } catch (e) {
+    showToast('Failed to load academics data', 'error');
+  }
+}
+
+function renderProfile() {
+  const s = academics.student || {};
+  document.getElementById('profRoll').textContent = s.rollNumber || '-';
+  document.getElementById('profProgram').textContent = academics.programName || '-';
+  document.getElementById('profDept').textContent = academics.departmentName || '-';
+  document.getElementById('profYear').textContent = (s.year || '-') + ' / Sem ' + (s.currentSemester || '-');
+}
+
+function renderEnrollments() {
+  const list = document.getElementById('enrollmentsList');
+  const empty = document.getElementById('emptyEnrollments');
+
+  document.getElementById('statSections').textContent = academics.enrolledSections || 0;
+  document.getElementById('statCredits').textContent = academics.totalProgramCredits || 0;
+
+  const courses = academics.enrolledCourses || [];
+  document.getElementById('statCourses').textContent = courses.length > 0 ? (courses[0].availableCourses || 0) : 0;
+
+  if (courses.length === 0) {
+    list.innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+
+  list.innerHTML = courses.map(c => `
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+        <div>
+          <h3 style="font-size:14px;font-weight:600">${c.programCode || ''}</h3>
+          <div style="font-size:12px;color:var(--text-dim);margin-top:4px">
+            Section ${c.sectionName || '-'} • Semester ${c.semester || '-'}
+          </div>
+          <div style="font-size:12px;color:var(--text-muted);margin-top:4px">${c.programName || ''}</div>
+        </div>
+        <div style="text-align:right">
+          <div style="font-size:12px;color:var(--text-dim)">${c.availableCourses || 0} courses available</div>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function switchTab(tab) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  const tabs = document.querySelectorAll('.tab');
+  if (tab === 'current') tabs[0].classList.add('active');
+  else tabs[1].classList.add('active');
+  document.getElementById('currentPanel').style.display = tab === 'current' ? 'block' : 'none';
+  document.getElementById('transcriptPanel').style.display = tab === 'transcript' ? 'block' : 'none';
+}
+
+init();
+</script>
+</body>
+</html>

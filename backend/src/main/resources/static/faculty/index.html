@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Faculty Directory - Student ERP</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#0f172a;color:#e2e8f0;min-height:100vh}
+a{color:inherit;text-decoration:none}
+
+/* Header */
+.header{background:#1e293b;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #334155;position:sticky;top:0;z-index:50}
+.header-left{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.header h1{font-size:20px;font-weight:700;letter-spacing:0.5px}
+.header h1 span{color:#3b82f6}
+.header-subtitle{color:#64748b;font-size:13px;font-weight:500}
+.nav-links{display:flex;align-items:center;gap:10px}
+.nav-link{color:#94a3b8;font-size:13px;padding:6px 12px;border:1px solid #475569;border-radius:6px;transition:all .2s;display:inline-flex;align-items:center;gap:6px}
+.nav-link:hover{color:#e2e8f0;border-color:#64748b;background:#334155}
+
+/* Profile button */
+.profile-btn{background:linear-gradient(135deg,#1e293b,#0f172a);color:#38bdf8;border:1px solid #38bdf8;padding:6px 14px;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:all .2s ease;box-shadow:0 2px 6px rgba(56,189,248,.15)}
+.profile-btn:hover{background:#38bdf8;color:#0f172a;box-shadow:0 4px 12px rgba(56,189,248,.3);transform:translateY(-1px)}
+
+/* Container */
+.container{max-width:1400px;margin:0 auto;padding:24px 20px}
+
+/* Stats Bar */
+.stats-bar{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-bottom:24px}
+.stat-card{background:#1e293b;border:1px solid #334155;border-radius:10px;padding:16px;display:flex;align-items:center;gap:14px}
+.stat-icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px}
+.icon-total{background:rgba(59,130,246,0.15);color:#3b82f6}
+.icon-dean{background:rgba(234,179,8,0.15);color:#eab308}
+.icon-hod{background:rgba(168,85,247,0.15);color:#a855f7}
+.icon-prof{background:rgba(34,197,94,0.15);color:#22c55e}
+.icon-asst{background:rgba(56,189,248,0.15);color:#38bdf8}
+.stat-info .num{font-size:22px;font-weight:700;color:#f8fafc}
+.stat-info .lbl{font-size:12px;color:#94a3b8;font-weight:500;text-transform:uppercase;letter-spacing:0.5px}
+
+/* Filter Section */
+.filter-card{background:#1e293b;border:1px solid #334155;border-radius:12px;padding:20px;margin-bottom:24px}
+.search-wrapper{position:relative;margin-bottom:16px}
+.search-input{width:100%;padding:12px 16px 12px 42px;background:#0f172a;border:1px solid #334155;border-radius:8px;color:#e2e8f0;font-size:14px;outline:none;transition:border-color .2s}
+.search-input:focus{border-color:#38bdf8}
+.search-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:#64748b;pointer-events:none}
+.filter-pills-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.filter-label{font-size:12px;color:#94a3b8;font-weight:600;text-transform:uppercase;margin-right:4px}
+.pill-btn{background:#0f172a;border:1px solid #334155;color:#94a3b8;padding:6px 14px;border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;transition:all .2s}
+.pill-btn:hover{color:#e2e8f0;border-color:#64748b}
+.pill-btn.active{background:#2563eb;color:#fff;border-color:#2563eb}
+.filter-select{background:#0f172a;border:1px solid #334155;color:#e2e8f0;padding:6px 12px;border-radius:8px;font-size:13px;outline:none}
+
+/* Grid */
+.faculty-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:18px}
+.faculty-card{background:#1e293b;border:1px solid #334155;border-radius:12px;padding:20px;transition:all .2s ease;display:flex;flex-direction:column;position:relative}
+.faculty-card:hover{border-color:#38bdf8;transform:translateY(-2px);box-shadow:0 12px 24px -6px rgba(0,0,0,0.4)}
+.faculty-card.dean-card{border-left:4px solid #eab308}
+.faculty-card.hod-card{border-left:4px solid #a855f7}
+.faculty-card.prof-card{border-left:4px solid #22c55e}
+.faculty-card.asst-card{border-left:4px solid #38bdf8}
+
+/* Card Header */
+.card-top{display:flex;align-items:flex-start;gap:14px;margin-bottom:14px}
+.faculty-avatar{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:17px;color:#fff;flex-shrink:0}
+.avatar-dean{background:linear-gradient(135deg,#ca8a04,#eab308);color:#0f172a}
+.avatar-hod{background:linear-gradient(135deg,#7e22ce,#a855f7)}
+.avatar-prof{background:linear-gradient(135deg,#15803d,#22c55e)}
+.avatar-asst{background:linear-gradient(135deg,#0369a1,#38bdf8)}
+
+.card-title-area{flex:1;min-width:0}
+.faculty-name{font-size:16px;font-weight:600;color:#f8fafc;margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.faculty-empid{font-size:11px;color:#64748b;font-family:monospace}
+.badge-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.badge{font-size:11px;font-weight:700;padding:2px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:0.3px}
+.badge-dean{background:rgba(234,179,8,0.15);color:#facc15;border:1px solid rgba(234,179,8,0.3)}
+.badge-hod{background:rgba(168,85,247,0.15);color:#c084fc;border:1px solid rgba(168,85,247,0.3)}
+.badge-prof{background:rgba(34,197,94,0.15);color:#4ade80;border:1px solid rgba(34,197,94,0.3)}
+.badge-asst{background:rgba(56,189,248,0.15);color:#38bdf8;border:1px solid rgba(56,189,248,0.3)}
+.badge-dept{background:#0f172a;color:#94a3b8;border:1px solid #334155}
+
+/* Contact Info */
+.contact-section{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:10px 12px;margin-bottom:14px;display:flex;flex-direction:column;gap:8px}
+.contact-item{display:flex;align-items:center;gap:10px;font-size:13px;color:#cbd5e1;overflow:hidden;text-overflow:ellipsis}
+.contact-item svg{color:#38bdf8;flex-shrink:0}
+.contact-link{color:#cbd5e1;transition:color .2s}
+.contact-link:hover{color:#38bdf8;text-decoration:underline}
+
+/* Subjects Section */
+.subjects-section{margin-top:auto;border-top:1px solid #334155;padding-top:12px}
+.subjects-title{font-size:11px;color:#64748b;text-transform:uppercase;font-weight:700;letter-spacing:0.5px;margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.subjects-title svg{color:#a855f7}
+.subjects-pills{display:flex;flex-direction:column;gap:5px}
+.subject-pill{background:rgba(30,58,95,0.4);border:1px solid rgba(59,130,246,0.25);border-radius:6px;padding:5px 8px;font-size:12px;color:#93c5fd;font-weight:500}
+.admin-duty-pill{background:rgba(234,179,8,0.1);border:1px solid rgba(234,179,8,0.25);border-radius:6px;padding:5px 8px;font-size:12px;color:#fde047;font-weight:500}
+
+/* Empty State */
+.empty-state{text-align:center;padding:60px 20px;color:#64748b;grid-column:1 / -1}
+.empty-state h3{font-size:18px;color:#94a3b8;margin-bottom:6px}
+
+/* Modal */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:100;align-items:center;justify-content:center;padding:16px}
+.modal-overlay.show{display:flex}
+.modal{background:#1e293b;border:1px solid #38bdf8;border-radius:12px;padding:24px;width:100%;max-width:480px;box-shadow:0 20px 40px rgba(0,0,0,.6)}
+.btn-outline{background:transparent;border:1px solid #475569;color:#94a3b8;padding:6px 14px;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer}
+.btn-outline:hover{background:#334155;color:#e2e8f0}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-left">
+    <h1><span>F</span>ACULTY <span>•</span> Directory</h1>
+    <span class="header-subtitle">Official Institutional Faculty & Administration Contacts</span>
+  </div>
+  <div class="nav-links">
+    <button id="profile-btn" class="profile-btn" onclick="openProfileModal()">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>Profile
+    </button>
+    <a href="/vault" class="nav-link">Vault</a>
+    <a href="/notehub" class="nav-link">NoteHub</a>
+    <a href="/" class="nav-link">Dashboard</a>
+  </div>
+</div>
+
+<div class="container">
+  <!-- Stats Bar -->
+  <div class="stats-bar">
+    <div class="stat-card">
+      <div class="stat-icon icon-total">All</div>
+      <div class="stat-info">
+        <div class="num" id="stat-total">0</div>
+        <div class="lbl">Total Faculties</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon icon-dean">Dn</div>
+      <div class="stat-info">
+        <div class="num" id="stat-deans">0</div>
+        <div class="lbl">Deans & Admins</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon icon-hod">HOD</div>
+      <div class="stat-info">
+        <div class="num" id="stat-hods">0</div>
+        <div class="lbl">Department HODs</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon icon-prof">Pf</div>
+      <div class="stat-info">
+        <div class="num" id="stat-profs">0</div>
+        <div class="lbl">Professors</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon icon-asst">As</div>
+      <div class="stat-info">
+        <div class="num" id="stat-assts">0</div>
+        <div class="lbl">Asst. Professors</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filter Controls -->
+  <div class="filter-card">
+    <div class="search-wrapper">
+      <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      <input type="text" id="search-input" class="search-input" placeholder="Search by name, subject, designation, email, or contact number..." oninput="filterFaculty()">
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+      <div class="filter-pills-row" id="role-filter-row">
+        <span class="filter-label">Role:</span>
+        <button class="pill-btn active" data-role="ALL" onclick="setRoleFilter('ALL')">All</button>
+        <button class="pill-btn" data-role="DEAN" onclick="setRoleFilter('DEAN')">Deans & Admins</button>
+        <button class="pill-btn" data-role="HOD" onclick="setRoleFilter('HOD')">HODs</button>
+        <button class="pill-btn" data-role="PROF" onclick="setRoleFilter('PROF')">Professors</button>
+        <button class="pill-btn" data-role="ASST" onclick="setRoleFilter('ASST')">Asst. Professors</button>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px">
+        <span class="filter-label">Department:</span>
+        <select id="dept-select" class="filter-select" onchange="filterFaculty()">
+          <option value="ALL">All Departments</option>
+          <option value="ADMIN">Administration</option>
+          <option value="CSE">CSE</option>
+          <option value="AIML">AIML</option>
+          <option value="IT">IT</option>
+          <option value="AIDS">AIDS</option>
+          <option value="ENTC">ENTC</option>
+          <option value="MECH">MECH</option>
+          <option value="CHEM">CHEM</option>
+          <option value="INST">INST</option>
+          <option value="DESH">DESH</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Faculty Cards Grid -->
+  <div class="faculty-grid" id="faculty-grid">
+    <div class="empty-state"><h3>Loading Faculty Directory...</h3></div>
+  </div>
+</div>
+
+<!-- Student Profile Modal -->
+<div class="modal-overlay" id="profile-modal" onclick="if(event.target===this)closeProfileModal()">
+  <div class="modal">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;border-bottom:1px solid #334155;padding-bottom:12px">
+      <div style="display:flex;align-items:center;gap:12px">
+        <div style="width:42px;height:42px;border-radius:50%;background:#0284c7;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:16px" id="prof-avatar">ST</div>
+        <div>
+          <h3 style="margin:0;font-size:17px;color:#f8fafc" id="prof-fullname">Student Profile</h3>
+          <span style="font-size:12px;color:#94a3b8" id="prof-rollno">Roll No</span>
+        </div>
+      </div>
+      <button onclick="closeProfileModal()" style="background:none;border:none;color:#94a3b8;font-size:22px;cursor:pointer;line-height:1">&times;</button>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px">
+      <div style="background:#0f172a;padding:10px 12px;border-radius:8px;border:1px solid #334155">
+        <div style="font-size:11px;color:#64748b;text-transform:uppercase;font-weight:600">Course / Branch</div>
+        <div style="font-size:14px;color:#38bdf8;font-weight:600;margin-top:2px" id="prof-course">-</div>
+      </div>
+      <div style="background:#0f172a;padding:10px 12px;border-radius:8px;border:1px solid #334155">
+        <div style="font-size:11px;color:#64748b;text-transform:uppercase;font-weight:600">Class / Year</div>
+        <div style="font-size:14px;color:#4ade80;font-weight:600;margin-top:2px" id="prof-year">-</div>
+      </div>
+      <div style="background:#0f172a;padding:10px 12px;border-radius:8px;border:1px solid #334155">
+        <div style="font-size:11px;color:#64748b;text-transform:uppercase;font-weight:600">Current Semester</div>
+        <div style="font-size:14px;color:#e2e8f0;font-weight:600;margin-top:2px" id="prof-sem">-</div>
+      </div>
+      <div style="background:#0f172a;padding:10px 12px;border-radius:8px;border:1px solid #334155">
+        <div style="font-size:11px;color:#64748b;text-transform:uppercase;font-weight:600">Account Status</div>
+        <div style="font-size:14px;color:#a855f7;font-weight:600;margin-top:2px" id="prof-status">ACTIVE</div>
+      </div>
+      <div style="background:#0f172a;padding:10px 12px;border-radius:8px;border:1px solid #334155;grid-column:1 / -1">
+        <div style="font-size:11px;color:#64748b;text-transform:uppercase;font-weight:600">Degree Program</div>
+        <div style="font-size:13px;color:#e2e8f0;font-weight:500;margin-top:2px" id="prof-program">-</div>
+      </div>
+      <div style="background:#0f172a;padding:10px 12px;border-radius:8px;border:1px solid #334155;grid-column:1 / -1">
+        <div style="font-size:11px;color:#64748b;text-transform:uppercase;font-weight:600">College Email</div>
+        <div style="font-size:13px;color:#94a3b8;font-weight:500;margin-top:2px" id="prof-email">-</div>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:flex-end">
+      <button class="btn-outline" onclick="closeProfileModal()">Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const token = localStorage.getItem('token');
+let allFaculty = [];
+let currentRoleFilter = 'ALL';
+let studentProfile = null;
+
+async function loadFaculty() {
+  try {
+    const res = await fetch('/api/faculty', {
+      headers: token ? { 'Authorization': 'Bearer ' + token } : {}
+    });
+    if (!res.ok) throw new Error('Failed to load faculty');
+    allFaculty = await res.json();
+    calculateStats();
+    filterFaculty();
+  } catch(e) {
+    document.getElementById('faculty-grid').innerHTML = `<div class="empty-state"><h3>Unable to load faculty list</h3><p>${e.message}</p></div>`;
+  }
+}
+
+function calculateStats() {
+  const total = allFaculty.length;
+  const deans = allFaculty.filter(f => isDean(f.designation)).length;
+  const hods = allFaculty.filter(f => isHod(f.designation)).length;
+  const profs = allFaculty.filter(f => isProf(f.designation) && !isHod(f.designation) && !isDean(f.designation)).length;
+  const assts = allFaculty.filter(f => isAsst(f.designation)).length;
+
+  document.getElementById('stat-total').textContent = total;
+  document.getElementById('stat-deans').textContent = deans;
+  document.getElementById('stat-hods').textContent = hods;
+  document.getElementById('stat-profs').textContent = profs;
+  document.getElementById('stat-assts').textContent = assts;
+}
+
+function isDean(d) {
+  if (!d) return false;
+  const s = d.toLowerCase();
+  return s.includes('dean') || s.includes('fee') || s.includes('account') || s.includes('scholarship') || s.includes('admission') || s.includes('examination');
+}
+
+function isHod(d) {
+  if (!d) return false;
+  return d.toLowerCase().includes('hod') || d.toLowerCase().includes('head of');
+}
+
+function isProf(d) {
+  if (!d) return false;
+  const s = d.toLowerCase();
+  return (s.includes('professor') || s.includes('prof.')) && !s.includes('assistant');
+}
+
+function isAsst(d) {
+  if (!d) return false;
+  return d.toLowerCase().includes('assistant');
+}
+
+function setRoleFilter(role) {
+  currentRoleFilter = role;
+  document.querySelectorAll('#role-filter-row .pill-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.role === role);
+  });
+  filterFaculty();
+}
+
+function filterFaculty() {
+  const search = document.getElementById('search-input').value.toLowerCase().trim();
+  const dept = document.getElementById('dept-select').value;
+
+  const filtered = allFaculty.filter(f => {
+    // Role filter
+    if (currentRoleFilter === 'DEAN' && !isDean(f.designation)) return false;
+    if (currentRoleFilter === 'HOD' && !isHod(f.designation)) return false;
+    if (currentRoleFilter === 'PROF' && (!isProf(f.designation) || isHod(f.designation) || isDean(f.designation))) return false;
+    if (currentRoleFilter === 'ASST' && !isAsst(f.designation)) return false;
+
+    // Dept filter
+    if (dept !== 'ALL') {
+      const fDept = f.department?.code || '';
+      if (dept === 'ADMIN') {
+        if (!isDean(f.designation)) return false;
+      } else if (fDept !== dept) {
+        return false;
+      }
+    }
+
+    // Search filter
+    if (search) {
+      const fn = `${f.firstName || ''} ${f.lastName || ''}`.toLowerCase();
+      const em = (f.email || '').toLowerCase();
+      const ph = (f.phone || '').toLowerCase();
+      const des = (f.designation || '').toLowerCase();
+      const sub = (f.assignedSubjects || f.specialization || '').toLowerCase();
+      const emp = (f.employeeNumber || '').toLowerCase();
+      const dep = (f.department?.name || f.department?.code || '').toLowerCase();
+
+      return fn.includes(search) || em.includes(search) || ph.includes(search) ||
+             des.includes(search) || sub.includes(search) || emp.includes(search) || dep.includes(search);
+    }
+
+    return true;
+  });
+
+  renderCards(filtered);
+}
+
+function renderCards(list) {
+  const grid = document.getElementById('faculty-grid');
+  if (!list.length) {
+    grid.innerHTML = '<div class="empty-state"><h3>No faculties match your criteria</h3><p>Try refining your search or filters.</p></div>';
+    return;
+  }
+
+  // Sort order: Deans -> HODs -> Professors -> Assistant Professors
+  const sorted = [...list].sort((a, b) => {
+    const rank = f => {
+      if (isDean(f.designation)) return 1;
+      if (isHod(f.designation)) return 2;
+      if (isProf(f.designation)) return 3;
+      return 4;
+    };
+    return rank(a) - rank(b);
+  });
+
+  grid.innerHTML = sorted.map(f => {
+    const fn = `${f.firstName || ''} ${f.lastName || ''}`.trim() || 'Faculty Member';
+    const initials = ((f.firstName?.[0] || '') + (f.lastName?.[0] || '')).toUpperCase() || 'FA';
+    
+    let cardClass = 'asst-card';
+    let avatarClass = 'avatar-asst';
+    let badgeClass = 'badge-asst';
+    
+    if (isDean(f.designation)) {
+      cardClass = 'dean-card';
+      avatarClass = 'avatar-dean';
+      badgeClass = 'badge-dean';
+    } else if (isHod(f.designation)) {
+      cardClass = 'hod-card';
+      avatarClass = 'avatar-hod';
+      badgeClass = 'badge-hod';
+    } else if (isProf(f.designation)) {
+      cardClass = 'prof-card';
+      avatarClass = 'avatar-prof';
+      badgeClass = 'badge-prof';
+    }
+
+    const deptCode = f.department?.code || 'INST';
+    const phone = f.phone || '+91 98220 00000';
+    const email = f.email || `${(f.firstName || 'faculty').toLowerCase()}@vit.edu`;
+
+    // Parse assigned subjects
+    let subjectsHtml = '';
+    const rawSubs = f.assignedSubjects || f.specialization || '';
+    if (rawSubs) {
+      const parts = rawSubs.split(/\s*;\s*|\s*&\s*|\s*,\s*(?=[A-Z]{2,4}\d{2,4}:)/);
+      if (isDean(f.designation)) {
+        subjectsHtml = `
+          <div class="subjects-section">
+            <div class="subjects-title">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
+              Key Portfolio & Administrative Domain
+            </div>
+            <div class="subjects-pills">
+              <div class="admin-duty-pill">${escapeHtml(rawSubs)}</div>
+            </div>
+          </div>
+        `;
+      } else {
+        subjectsHtml = `
+          <div class="subjects-section">
+            <div class="subjects-title">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+              Assigned Subjects (Teaching Allocation)
+            </div>
+            <div class="subjects-pills">
+              ${parts.map(p => `<div class="subject-pill">${escapeHtml(p.trim())}</div>`).join('')}
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    return `
+      <div class="faculty-card ${cardClass}">
+        <div class="card-top">
+          <div class="faculty-avatar ${avatarClass}">${initials}</div>
+          <div class="card-title-area">
+            <div class="faculty-name" title="${escapeHtml(fn)}">${escapeHtml(fn)}</div>
+            <div class="faculty-empid">ID: ${escapeHtml(f.employeeNumber || 'FAC')}</div>
+            <div class="badge-row">
+              <span class="badge ${badgeClass}">${escapeHtml(f.designation || 'Faculty')}</span>
+              <span class="badge badge-dept">${escapeHtml(deptCode)}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-section">
+          <div class="contact-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            <a href="tel:${escapeHtml(phone)}" class="contact-link" title="Call ${escapeHtml(phone)}">${escapeHtml(phone)}</a>
+          </div>
+          <div class="contact-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            <a href="mailto:${escapeHtml(email)}" class="contact-link" title="Email ${escapeHtml(email)}">${escapeHtml(email)}</a>
+          </div>
+        </div>
+
+        ${subjectsHtml}
+      </div>
+    `;
+  }).join('');
+}
+
+function escapeHtml(str) {
+  if (!str) return '';
+  return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+}
+
+/* Profile modal handling */
+async function fetchProfileData() {
+  if (!token) return;
+  try {
+    const res = await fetch('/api/vault/profile', {
+      headers: { 'Authorization': 'Bearer ' + token }
+    });
+    if (res.ok) {
+      studentProfile = await res.json();
+      updateProfileModalData();
+    }
+  } catch(e) {}
+}
+
+function updateProfileModalData() {
+  if (!studentProfile) return;
+  const fn = (studentProfile.firstName || '') + ' ' + (studentProfile.lastName || '');
+  document.getElementById('prof-fullname').textContent = fn.trim() || 'Student';
+  document.getElementById('prof-rollno').textContent = 'Roll No: ' + (studentProfile.rollNumber || 'N/A');
+  const initials = ((studentProfile.firstName?.[0] || '') + (studentProfile.lastName?.[0] || '')).toUpperCase() || 'ST';
+  document.getElementById('prof-avatar').textContent = initials;
+  document.getElementById('prof-course').textContent = studentProfile.course || 'N/A';
+  document.getElementById('prof-year').textContent = (studentProfile.year || 'N/A') + ' (Year ' + (studentProfile.studyYear || '-') + ')';
+  document.getElementById('prof-sem').textContent = studentProfile.currentSemester ? ('Semester ' + studentProfile.currentSemester) : 'N/A';
+  document.getElementById('prof-status').textContent = studentProfile.status || 'ACTIVE';
+  document.getElementById('prof-program').textContent = studentProfile.program ? (studentProfile.program.name + ' (' + studentProfile.program.code + ')') : (studentProfile.course || 'Undergraduate Degree');
+  document.getElementById('prof-email').textContent = studentProfile.email || (studentProfile.rollNumber ? (studentProfile.rollNumber.toLowerCase() + '@college.edu') : 'N/A');
+}
+
+function openProfileModal() {
+  if (!studentProfile) {
+    fetchProfileData().then(() => document.getElementById('profile-modal').classList.add('show'));
+  } else {
+    updateProfileModalData();
+    document.getElementById('profile-modal').classList.add('show');
+  }
+}
+
+function closeProfileModal() {
+  document.getElementById('profile-modal').classList.remove('show');
+}
+
+loadFaculty();
+fetchProfileData();
+</script>
+</body>
+</html>
+

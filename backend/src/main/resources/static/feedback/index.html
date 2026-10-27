@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feedback — Student ERP</title>
+<link rel="stylesheet" href="/common/shared.css">
+<style>
+.star-rating { display: flex; gap: 4px; font-size: 28px; cursor: pointer; }
+.star-rating .star { color: var(--border); transition: color 0.15s; }
+.star-rating .star.active { color: #fbbf24; }
+.star-rating .star:hover { color: #fbbf24; }
+.stat-bar { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+.stat-bar .bar-container { flex: 1; height: 8px; background: var(--bg-dark); border-radius: 4px; overflow: hidden; }
+.stat-bar .bar-fill { height: 100%; background: #fbbf24; border-radius: 4px; }
+</style>
+</head>
+<body>
+<div class="header">
+  <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+    <h1><span>F</span>EEDBACK</h1>
+    <div class="student-badge" id="studentBadge">
+      <span class="name" id="badgeName">Student</span>
+      <span style="color:#475569">•</span>
+      <span class="course" id="badgeCourse">Course</span>
+      <span style="color:#475569">•</span>
+      <span class="year" id="badgeYear">Year</span>
+    </div>
+  </div>
+  <div class="header-actions">
+    <button class="profile-btn" onclick="openProfileModal()">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      Profile
+    </button>
+    <a href="/" class="back">Dashboard</a>
+  </div>
+</div>
+
+<div class="container">
+  <div class="tabs">
+    <button class="tab active" id="submitTab" onclick="switchTab('submit')">Submit Feedback</button>
+    <button class="tab" id="myTab" onclick="switchTab('my')">My Feedback</button>
+    <button class="tab" id="statsTab" onclick="switchTab('stats')" style="display:none">Course Stats</button>
+  </div>
+
+  <div id="submitPanel">
+    <div class="card">
+      <div class="card-header"><h2>Submit Course Feedback</h2></div>
+      <form id="feedbackForm" onsubmit="return submitFeedback(event)">
+        <div class="form-group">
+          <label>Course *</label>
+          <select id="feedbackCourse" required onchange="updateFaculty()">
+            <option value="">Select Course</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Faculty</label>
+          <input type="text" id="feedbackFaculty" readonly placeholder="Auto-filled from course">
+        </div>
+        <div class="form-group">
+          <label>Category</label>
+          <select id="feedbackCategory">
+            <option value="COURSE">Course Content</option>
+            <option value="FACULTY">Faculty Teaching</option>
+            <option value="INFRASTRUCTURE">Infrastructure</option>
+            <option value="OVERALL">Overall Experience</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Rating *</label>
+          <div class="star-rating" id="starRating">
+            <span class="star" data-val="1">★</span>
+            <span class="star" data-val="2">★</span>
+            <span class="star" data-val="3">★</span>
+            <span class="star" data-val="4">★</span>
+            <span class="star" data-val="5">★</span>
+          </div>
+          <input type="hidden" id="feedbackRating" required>
+          <span id="ratingLabel" style="font-size:12px;color:var(--text-dim)"></span>
+        </div>
+        <div class="form-group">
+          <label>Comments</label>
+          <textarea id="feedbackComments" placeholder="Share your feedback..."></textarea>
+        </div>
+        <div class="form-group">
+          <label>
+            <input type="checkbox" id="feedbackAnonymous" style="width:auto;margin-right:6px">
+            Submit anonymously
+          </label>
+        </div>
+        <div class="modal-actions" style="border:none;padding:0;margin-top:16px">
+          <button type="submit" class="btn btn-primary">Submit Feedback</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="myPanel" style="display:none">
+    <div id="myFeedbackList"></div>
+    <div class="empty" id="emptyMyFeedback" style="display:none">
+      <h3>No feedback submitted</h3>
+      <p>Your submitted feedback will appear here.</p>
+    </div>
+  </div>
+
+  <div id="statsPanel" style="display:none">
+    <div class="card">
+      <div class="card-header"><h2>Feedback Statistics</h2></div>
+      <div id="statsContent"></div>
+    </div>
+    <div class="card">
+      <div class="card-header"><h2>Recent Feedback</h2></div>
+      <div id="facultyFeedbackList"></div>
+    </div>
+  </div>
+</div>
+
+<div id="toastContainer" class="toast-container"></div>
+
+<script src="/common/auth.js"></script>
+<script>
+const RATING_LABELS = ['', 'Poor', 'Below Average', 'Average', 'Good', 'Excellent'];
+let currentUser = { roles: [], student: null, faculty: null };
+let courses = [];
+let myFeedback = [];
+let selectedRating = 0;
+
+if (!requireAuth()) throw new Error('Not authenticated');
+
+async function init() {
+  currentUser.roles = await loadCurrentUserRoles();
+  currentUser.student = await loadStudentProfile();
+
+  if (currentUser.student) {
+    document.getElementById('studentBadge').style.display = 'flex';
+    document.getElementById('badgeName').textContent = currentUser.student.firstName + ' ' + currentUser.student.lastName;
+    document.getElementById('badgeCourse').textContent = currentUser.student.course || 'N/A';
+    document.getElementById('badgeYear').textContent = currentUser.student.year || 'N/A';
+  }
+
+  if (hasRole(currentUser.roles, 'FACULTY') || hasRole(currentUser.roles, 'ADMIN')) {
+    document.getElementById('statsTab').style.display = 'inline-block';
+  }
+
+  if (!currentUser.student && !hasRole(currentUser.roles, 'FACULTY') && !hasRole(currentUser.roles, 'ADMIN')) {
+    currentUser.student = { studyYear: null, program: { department: { id: null } } };
+  }
+  await loadCourses();
+  setupStarRating();
+  await loadMyFeedback();
+}
+
+async function loadCourses() {
+  try {
+    const res = await apiFetch('/api/courses');
+    courses = await res.json();
+    const sel = document.getElementById('feedbackCourse');
+    sel.innerHTML = '<option value="">Select Course</option>';
+    const studentYear = currentUser.student?.studyYear;
+    const studentDept = currentUser.student?.program?.department?.id;
+    const filtered = courses.filter(c => {
+      if (studentYear && c.studyYear && c.studyYear !== studentYear) return false;
+      if (studentDept && c.department?.id && c.department.id !== studentDept) return false;
+      return true;
+    });
+    const displayCourses = filtered.length > 0 ? filtered : courses;
+    displayCourses.forEach(c => {
+      sel.innerHTML += `<option value="${c.id}" data-faculty="${c.code}">${c.code} - ${c.name}</option>`;
+    });
+  } catch (e) {}
+}
+
+function updateFaculty() {
+  const sel = document.getElementById('feedbackCourse');
+  const selected = sel.options[sel.selectedIndex];
+  document.getElementById('feedbackFaculty').value = selected?.dataset?.faculty ? 'Faculty for ' + selected.dataset.faculty : '';
+}
+
+function setupStarRating() {
+  const stars = document.querySelectorAll('#starRating .star');
+  stars.forEach(s => {
+    s.addEventListener('click', () => {
+      selectedRating = parseInt(s.dataset.val);
+      document.getElementById('feedbackRating').value = selectedRating;
+      document.getElementById('ratingLabel').textContent = RATING_LABELS[selectedRating];
+      stars.forEach((st, i) => st.classList.toggle('active', i < selectedRating));
+    });
+  });
+}
+
+async function submitFeedback(e) {
+  e.preventDefault();
+  if (!selectedRating) { showToast('Please select a rating', 'warning'); return false; }
+
+  const payload = {
+    courseId: parseInt(document.getElementById('feedbackCourse').value),
+    rating: selectedRating,
+    comments: document.getElementById('feedbackComments').value,
+    category: document.getElementById('feedbackCategory').value,
+    isAnonymous: document.getElementById('feedbackAnonymous').checked
+  };
+
+  try {
+    const res = await apiPost('/api/feedback', payload);
+    if (res.ok) {
+      showToast('Feedback submitted!', 'success');
+      document.getElementById('feedbackForm').reset();
+      selectedRating = 0;
+      document.querySelectorAll('#starRating .star').forEach(s => s.classList.remove('active'));
+      document.getElementById('ratingLabel').textContent = '';
+      await loadMyFeedback();
+      switchTab('my');
+    } else {
+      const err = await res.json();
+      showToast(err.message || 'Failed to submit', 'error');
+    }
+  } catch (e) {
+    showToast('Network error', 'error');
+  }
+  return false;
+}
+
+async function loadMyFeedback() {
+  try {
+    const res = await apiFetch('/api/feedback/me');
+    myFeedback = await res.json();
+    renderMyFeedback();
+  } catch (e) {}
+}
+
+function renderMyFeedback() {
+  const list = document.getElementById('myFeedbackList');
+  const empty = document.getElementById('emptyMyFeedback');
+
+  if (myFeedback.length === 0) {
+    list.innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+
+  list.innerHTML = myFeedback.map(f => `
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start">
+        <div>
+          <h3 style="font-size:14px;font-weight:600">${f.course?.code || ''} - ${f.course?.name || ''}</h3>
+          <div style="font-size:12px;color:var(--text-dim);margin-top:4px">
+            ${f.faculty?.firstName || ''} ${f.faculty?.lastName || ''} • ${f.category} • ${formatDateTime(f.submittedAt)}
+          </div>
+          <div style="margin-top:8px;color:#fbbf24;font-size:16px">
+            ${'★'.repeat(f.rating)}${'☆'.repeat(5 - f.rating)}
+            <span style="color:var(--text-muted);font-size:12px;margin-left:6px">(${f.rating}/5)</span>
+          </div>
+          ${f.comments ? `<p style="font-size:13px;color:var(--text-muted);margin-top:8px">${escapeHtml(f.comments)}</p>` : ''}
+        </div>
+        <span class="badge ${getBadgeClass(f.status)}">${f.status}</span>
+      </div>
+    </div>
+  `).join('');
+}
+
+async function loadStats() {
+  if (!currentUser.student) return;
+  try {
+    const res = await apiFetch('/api/feedback');
+    const allFeedback = await res.json();
+    renderStats(allFeedback);
+  } catch (e) {}
+}
+
+function renderStats(feedbacks) {
+  const container = document.getElementById('statsContent');
+  const list = document.getElementById('facultyFeedbackList');
+
+  if (feedbacks.length === 0) {
+    container.innerHTML = '<p style="color:var(--text-dim)">No feedback available yet.</p>';
+    list.innerHTML = '';
+    return;
+  }
+
+  const avgRating = (feedbacks.reduce((s, f) => s + f.rating, 0) / feedbacks.length).toFixed(1);
+  const distribution = {};
+  for (let i = 1; i <= 5; i++) distribution[i] = feedbacks.filter(f => f.rating === i).length;
+  const maxCount = Math.max(...Object.values(distribution));
+
+  container.innerHTML = `
+    <div style="margin-bottom:16px">
+      <div style="font-size:32px;font-weight:700;color:#fbbf24">${avgRating}</div>
+      <div style="font-size:12px;color:var(--text-dim)">Average Rating (${feedbacks.length} reviews)</div>
+    </div>
+    ${[5,4,3,2,1].map(r => `
+      <div class="stat-bar">
+        <span style="min-width:20px;font-size:12px">${r}★</span>
+        <div class="bar-container">
+          <div class="bar-fill" style="width:${maxCount ? (distribution[r]/maxCount)*100 : 0}%"></div>
+        </div>
+        <span style="min-width:25px;font-size:12px;color:var(--text-dim)">${distribution[r]}</span>
+      </div>
+    `).join('')}
+  `;
+
+  list.innerHTML = feedbacks.slice(0, 10).map(f => `
+    <div style="padding:12px 0;border-bottom:1px solid var(--border)">
+      <div style="display:flex;justify-content:space-between">
+        <span style="font-size:13px;font-weight:500">${f.isAnonymous ? 'Anonymous' : (f.student?.firstName || 'Student') + ' ' + (f.student?.lastName || '')}</span>
+        <span style="color:#fbbf24">${'★'.repeat(f.rating)}</span>
+      </div>
+      ${f.comments ? `<p style="font-size:12px;color:var(--text-muted);margin-top:4px">${escapeHtml(f.comments)}</p>` : ''}
+    </div>
+  `).join('');
+}
+
+function switchTab(tab) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  const tabs = { submit: 0, my: 1, stats: 2 };
+  document.querySelectorAll('.tab')[tabs[tab]]?.classList.add('active');
+  document.getElementById('submitPanel').style.display = tab === 'submit' ? 'block' : 'none';
+  document.getElementById('myPanel').style.display = tab === 'my' ? 'block' : 'none';
+  document.getElementById('statsPanel').style.display = tab === 'stats' ? 'block' : 'none';
+  if (tab === 'stats') loadStats();
+}
+
+init();
+</script>
+</body>
+</html>

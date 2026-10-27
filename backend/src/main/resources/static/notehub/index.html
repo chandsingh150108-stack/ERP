@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NoteHub - Student ERP</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#0f172a;color:#e2e8f0;min-height:100vh}
+.header{background:#1e293b;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #334155}
+.header h1{font-size:20px;font-weight:600}
+.header h1 span{color:#3b82f6}
+.header .back{color:#94a3b8;text-decoration:none;font-size:14px;padding:6px 12px;border:1px solid #475569;border-radius:6px;transition:all .2s}
+.header .back:hover{color:#e2e8f0;border-color:#64748b}
+.profile-btn{background:linear-gradient(135deg,#1e293b,#0f172a);color:#38bdf8;border:1px solid #38bdf8;padding:6px 14px;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:all .2s ease;box-shadow:0 2px 6px rgba(56,189,248,.15)}
+.profile-btn:hover{background:#38bdf8;color:#0f172a;box-shadow:0 4px 12px rgba(56,189,248,.3);transform:translateY(-1px)}
+.container{max-width:800px;margin:5rem auto 0;padding:0 1.5rem}
+.picker-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem}
+.card{background:#1e293b;border:1px solid #334155;border-radius:12px;padding:4rem 2rem;text-decoration:none;display:flex;align-items:center;justify-content:center;text-align:center;transition:all .2s;cursor:pointer}
+.card:hover{border-color:#3b82f6;background:#1e3a5f;transform:translateY(-3px);box-shadow:0 10px 25px -5px rgba(0,0,0,0.3)}
+.card h2{font-size:22px;font-weight:600;color:#e2e8f0;letter-spacing:0.3px}
+
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:100;align-items:center;justify-content:center;padding:16px}
+.modal-overlay.show{display:flex}
+.modal{background:#1e293b;border:1px solid #38bdf8;border-radius:12px;padding:24px;width:100%;max-width:480px;box-shadow:0 20px 40px rgba(0,0,0,.6)}
+.btn-outline{background:transparent;border:1px solid #475569;color:#94a3b8;padding:6px 14px;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer}
+.btn-outline:hover{background:#334155;color:#e2e8f0}
+</style>
+</head>
+<body>
+<div class="header">
+  <h1><span>N</span>oteHub</h1>
+  <div style="display:flex;align-items:center;gap:10px">
+    <button id="profile-btn" class="profile-btn" onclick="openProfileModal()">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>Profile
+    </button>
+    <a href="/faculty" class="back">Faculty Directory</a>
+    <a href="/" class="back">Dashboard</a>
+  </div>
+</div>
+<div class="container">
+  <div class="picker-grid">
+    <a href="/notehub/course" class="card">
+      <h2>Course note</h2>
+    </a>
+    <a href="/notehub/extra" class="card">
+      <h2>Extra notes</h2>
+    </a>
+  </div>
+</div>
+
+<!-- Student Profile Modal -->
+<div class="modal-overlay" id="profile-modal" onclick="if(event.target===this)closeProfileModal()">
+  <div class="modal">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;border-bottom:1px solid #334155;padding-bottom:12px">
+      <div style="display:flex;align-items:center;gap:12px">
+        <div style="width:42px;height:42px;border-radius:50%;background:#0284c7;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:16px" id="prof-avatar">ST</div>
+        <div>
+          <h3 style="margin:0;font-size:17px;color:#f8fafc" id="prof-fullname">Student Profile</h3>
+          <span style="font-size:12px;color:#94a3b8" id="prof-rollno">Roll No</span>
+        </div>
+      </div>
+      <button onclick="closeProfileModal()" style="background:none;border:none;color:#94a3b8;font-size:22px;cursor:pointer;line-height:1">&times;</button>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px">
+      <div style="background:#0f172a;padding:10px 12px;border-radius:8px;border:1px solid #334155">
+        <div style="font-size:11px;color:#64748b;text-transform:uppercase;font-weight:600">Course / Branch</div>
+        <div style="font-size:14px;color:#38bdf8;font-weight:600;margin-top:2px" id="prof-course">-</div>
+      </div>
+      <div style="background:#0f172a;padding:10px 12px;border-radius:8px;border:1px solid #334155">
+        <div style="font-size:11px;color:#64748b;text-transform:uppercase;font-weight:600">Class / Year</div>
+        <div style="font-size:14px;color:#4ade80;font-weight:600;margin-top:2px" id="prof-year">-</div>
+      </div>
+      <div style="background:#0f172a;padding:10px 12px;border-radius:8px;border:1px solid #334155">
+        <div style="font-size:11px;color:#64748b;text-transform:uppercase;font-weight:600">Current Semester</div>
+        <div style="font-size:14px;color:#e2e8f0;font-weight:600;margin-top:2px" id="prof-sem">-</div>
+      </div>
+      <div style="background:#0f172a;padding:10px 12px;border-radius:8px;border:1px solid #334155">
+        <div style="font-size:11px;color:#64748b;text-transform:uppercase;font-weight:600">Account Status</div>
+        <div style="font-size:14px;color:#a855f7;font-weight:600;margin-top:2px" id="prof-status">ACTIVE</div>
+      </div>
+      <div style="background:#0f172a;padding:10px 12px;border-radius:8px;border:1px solid #334155;grid-column:1 / -1">
+        <div style="font-size:11px;color:#64748b;text-transform:uppercase;font-weight:600">Degree Program</div>
+        <div style="font-size:13px;color:#e2e8f0;font-weight:500;margin-top:2px" id="prof-program">-</div>
+      </div>
+      <div style="background:#0f172a;padding:10px 12px;border-radius:8px;border:1px solid #334155;grid-column:1 / -1">
+        <div style="font-size:11px;color:#64748b;text-transform:uppercase;font-weight:600">College Email</div>
+        <div style="font-size:13px;color:#94a3b8;font-weight:500;margin-top:2px" id="prof-email">-</div>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:flex-end">
+      <button class="btn-outline" onclick="closeProfileModal()">Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const token = localStorage.getItem('token');
+if (!token) { window.location.href = '/'; }
+
+let studentProfile = null;
+async function fetchProfileData() {
+  try {
+    const res = await fetch('/api/vault/profile', {
+      headers: { 'Authorization': 'Bearer ' + token }
+    });
+    if (res.ok) {
+      studentProfile = await res.json();
+      updateProfileModalData();
+    }
+  } catch (e) {
+    console.warn('Profile fetch error', e);
+  }
+}
+
+function updateProfileModalData() {
+  if (!studentProfile) return;
+  const fn = (studentProfile.firstName || '') + ' ' + (studentProfile.lastName || '');
+  document.getElementById('prof-fullname').textContent = fn.trim() || 'Student';
+  document.getElementById('prof-rollno').textContent = 'Roll No: ' + (studentProfile.rollNumber || 'N/A');
+  const initials = ((studentProfile.firstName?.[0] || '') + (studentProfile.lastName?.[0] || '')).toUpperCase() || 'ST';
+  document.getElementById('prof-avatar').textContent = initials;
+  document.getElementById('prof-course').textContent = studentProfile.course || 'N/A';
+  document.getElementById('prof-year').textContent = (studentProfile.year || 'N/A') + ' (Year ' + (studentProfile.studyYear || '-') + ')';
+  document.getElementById('prof-sem').textContent = studentProfile.currentSemester ? ('Semester ' + studentProfile.currentSemester) : 'N/A';
+  document.getElementById('prof-status').textContent = studentProfile.status || 'ACTIVE';
+  document.getElementById('prof-program').textContent = studentProfile.program ? (studentProfile.program.name + ' (' + studentProfile.program.code + ')') : (studentProfile.course || 'Undergraduate Degree');
+  document.getElementById('prof-email').textContent = studentProfile.email || (studentProfile.rollNumber ? (studentProfile.rollNumber.toLowerCase() + '@college.edu') : 'N/A');
+}
+
+function openProfileModal() {
+  if (!studentProfile) {
+    fetchProfileData().then(() => document.getElementById('profile-modal').classList.add('show'));
+  } else {
+    updateProfileModalData();
+    document.getElementById('profile-modal').classList.add('show');
+  }
+}
+
+function closeProfileModal() {
+  document.getElementById('profile-modal').classList.remove('show');
+}
+
+fetchProfileData();
+</script>
+</body>
+</html>

@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Examination — Student ERP</title>
+<link rel="stylesheet" href="/common/shared.css">
+<style>
+.grade-AA, .grade-AB { background: #1e3a2f; color: #4ade80; }
+.grade-BB, .grade-BC { background: #1e3a5f; color: #60a5fa; }
+.grade-CD { background: #3b2f1e; color: #fbbf24; }
+.grade-DD, .grade-FF { background: #3b1f2b; color: #f87171; }
+.exam-card { border-left: 3px solid var(--primary); }
+</style>
+</head>
+<body>
+<div class="header">
+  <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+    <h1><span>E</span>XAMINATION</h1>
+    <div class="student-badge" id="studentBadge">
+      <span class="name" id="badgeName">Student</span>
+      <span style="color:#475569">•</span>
+      <span class="course" id="badgeCourse">Course</span>
+      <span style="color:#475569">•</span>
+      <span class="year" id="badgeYear">Year</span>
+    </div>
+  </div>
+  <div class="header-actions">
+    <button class="profile-btn" onclick="openProfileModal()">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      Profile
+    </button>
+    <a href="/academics" class="back">Academics</a>
+    <a href="/" class="back">Dashboard</a>
+  </div>
+</div>
+
+<div class="container">
+  <div class="stats-bar" id="statsBar">
+    <div class="stat"><div class="num" id="totalExams">0</div><div class="lbl">Total Exams</div></div>
+    <div class="stat success"><div class="num" id="scheduledExams">0</div><div class="lbl">Scheduled</div></div>
+    <div class="stat warning"><div class="num" id="completedExams">0</div><div class="lbl">Completed</div></div>
+    <div class="stat"><div class="num" id="avgMarks">-</div><div class="lbl">Avg Marks</div></div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab('schedule')">Exam Schedule</button>
+    <button class="tab" onclick="switchTab('results')">Results</button>
+    <button class="tab" id="manageTab" onclick="switchTab('manage')" style="display:none">Manage</button>
+  </div>
+
+  <div id="schedulePanel">
+    <div id="scheduleList"></div>
+    <div class="empty" id="emptySchedule" style="display:none">
+      <h3>No exams scheduled</h3>
+      <p>Exam schedules will appear here.</p>
+    </div>
+  </div>
+
+  <div id="resultsPanel" style="display:none">
+    <div id="resultsList"></div>
+    <div class="empty" id="emptyResults" style="display:none">
+      <h3>No results yet</h3>
+      <p>Results will be published after exams are graded.</p>
+    </div>
+  </div>
+
+  <div id="managePanel" style="display:none">
+    <div class="card">
+      <div class="card-header"><h2>Create Exam</h2></div>
+      <form id="examForm" onsubmit="return createExam(event)">
+        <div class="form-group">
+          <label>Exam Name *</label>
+          <input type="text" id="examName" required placeholder="e.g. Mid-Term Examination">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Type *</label>
+            <select id="examType" required>
+              <option value="MID_TERM">Mid Term</option>
+              <option value="END_TERM">End Term</option>
+              <option value="QUIZ">Quiz</option>
+              <option value="MAKEUP">Makeup</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Course *</label>
+            <select id="examCourse" required></select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Section *</label>
+            <select id="examSection" required></select>
+          </div>
+          <div class="form-group">
+            <label>Max Marks *</label>
+            <input type="number" id="examMaxMarks" required placeholder="e.g. 100">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Date *</label>
+            <input type="date" id="examDate" required>
+          </div>
+          <div class="form-group">
+            <label>Venue</label>
+            <input type="text" id="examVenue" placeholder="e.g. Main Block - Hall A">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Start Time</label>
+            <input type="time" id="examStartTime">
+          </div>
+          <div class="form-group">
+            <label>End Time</label>
+            <input type="time" id="examEndTime">
+          </div>
+        </div>
+        <div class="modal-actions" style="border:none;padding:0;margin-top:16px">
+          <button type="submit" class="btn btn-primary">Create Exam</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div id="toastContainer" class="toast-container"></div>
+
+<script src="/common/auth.js"></script>
+<script>
+let currentUser = { roles: [], student: null };
+let exams = [];
+let results = [];
+
+if (!requireAuth()) throw new Error('Not authenticated');
+
+async function init() {
+  currentUser.roles = await loadCurrentUserRoles();
+  currentUser.student = await loadStudentProfile();
+
+  if (currentUser.student) {
+    document.getElementById('studentBadge').style.display = 'flex';
+    document.getElementById('badgeName').textContent = currentUser.student.firstName + ' ' + currentUser.student.lastName;
+    document.getElementById('badgeCourse').textContent = currentUser.student.course || 'N/A';
+    document.getElementById('badgeYear').textContent = currentUser.student.year || 'N/A';
+  }
+
+  if (hasRole(currentUser.roles, 'ADMIN')) {
+    document.getElementById('manageTab').style.display = 'inline-block';
+    await loadCoursesForManage();
+    await loadSectionsForManage();
+  }
+
+  await loadExams();
+}
+
+async function loadExams() {
+  try {
+    const res = await apiFetch('/api/exams');
+    exams = await res.json();
+    renderSchedule();
+    updateStats();
+    await loadResults();
+  } catch (e) {
+    showToast('Failed to load exams', 'error');
+  }
+}
+
+async function loadResults() {
+  results = [];
+  for (const exam of exams.filter(e => e.status === 'COMPLETED')) {
+    try {
+      const res = await apiFetch(`/api/exams/${exam.id}/my-result`);
+      if (res.ok) {
+        const result = await res.json();
+        if (result) results.push(result);
+      }
+    } catch (e) {}
+  }
+  renderResults();
+}
+
+function renderSchedule() {
+  const list = document.getElementById('scheduleList');
+  const empty = document.getElementById('emptySchedule');
+  const upcoming = exams.filter(e => e.status === 'SCHEDULED' || e.status === 'ONGOING');
+  upcoming.sort((a, b) => new Date(a.examDate) - new Date(b.examDate));
+
+  if (upcoming.length === 0) {
+    list.innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+
+  list.innerHTML = upcoming.map(e => {
+    const date = formatDate(e.examDate);
+    const today = new Date().toDateString();
+    const isToday = new Date(e.examDate).toDateString() === today;
+
+    return `
+      <div class="card exam-card" style="margin-bottom:12px;border-left-color:${isToday ? 'var(--warning)' : 'var(--primary)'}">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px">
+          <div>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
+              <h3 style="font-size:14px;font-weight:600">${escapeHtml(e.name)}</h3>
+              <span class="badge badge-info">${e.examType?.replace('_', ' ') || 'EXAM'}</span>
+              ${isToday ? '<span class="badge badge-warning">Today</span>' : ''}
+            </div>
+            <div style="font-size:12px;color:var(--text-dim);display:flex;gap:12px;flex-wrap:wrap">
+              ${e.course ? `<span>${e.course.code} - ${e.course.name}</span>` : ''}
+              <span>📅 ${date}</span>
+              ${e.startTime ? `<span>🕐 ${e.startTime}${e.endTime ? ' - ' + e.endTime : ''}</span>` : ''}
+              ${e.venue ? `<span>📍 ${e.venue}</span>` : ''}
+              <span>Max: ${e.maxMarks}</span>
+            </div>
+          </div>
+          <span class="badge ${getBadgeClass(e.status)}">${e.status}</span>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function renderResults() {
+  const list = document.getElementById('resultsList');
+  const empty = document.getElementById('emptyResults');
+
+  if (results.length === 0) {
+    list.innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+
+  list.innerHTML = results.map(r => {
+    const gradeClass = 'grade-' + (r.grade || 'N/A').replace('/', '');
+    return `
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+          <div>
+            <h3 style="font-size:14px;font-weight:600">${r.exam?.course?.code || ''} - ${r.exam?.name || 'Exam'}</h3>
+            <div style="font-size:12px;color:var(--text-dim);margin-top:4px">
+              ${r.exam?.course?.name || ''} • ${r.exam?.examType?.replace('_', ' ') || ''}
+            </div>
+          </div>
+          <div style="text-align:right">
+            <div style="font-size:20px;font-weight:700">${r.marksObtained ?? '-'}/${r.exam?.maxMarks ?? '?'}</div>
+            <span class="badge ${gradeClass}">${r.grade || 'N/A'}</span>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function updateStats() {
+  document.getElementById('totalExams').textContent = exams.length;
+  document.getElementById('scheduledExams').textContent = exams.filter(e => e.status === 'SCHEDULED').length;
+  document.getElementById('completedExams').textContent = exams.filter(e => e.status === 'COMPLETED').length;
+  const publishedResults = results.filter(r => r.status === 'PUBLISHED');
+  if (publishedResults.length > 0) {
+    const avg = publishedResults.reduce((s, r) => s + (r.marksObtained || 0), 0) / publishedResults.length;
+    document.getElementById('avgMarks').textContent = avg.toFixed(1);
+  }
+}
+
+function switchTab(tab) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  const tabs = document.querySelectorAll('.tab');
+  if (tab === 'schedule') tabs[0].classList.add('active');
+  else if (tab === 'results') tabs[1].classList.add('active');
+  else if (tab === 'manage') tabs[2]?.classList.add('active');
+  document.getElementById('schedulePanel').style.display = tab === 'schedule' ? 'block' : 'none';
+  document.getElementById('resultsPanel').style.display = tab === 'results' ? 'block' : 'none';
+  document.getElementById('managePanel').style.display = tab === 'manage' ? 'block' : 'none';
+}
+
+async function loadCoursesForManage() {
+  try {
+    const res = await apiFetch('/api/courses');
+    const courses = await res.json();
+    const sel = document.getElementById('examCourse');
+    sel.innerHTML = '<option value="">Select Course</option>';
+    courses.forEach(c => { sel.innerHTML += `<option value="${c.id}">${c.code} - ${c.name}</option>`; });
+  } catch (e) {}
+}
+
+async function loadSectionsForManage() {
+  try {
+    const res = await apiFetch('/api/sections');
+    const sections = await res.json();
+    const sel = document.getElementById('examSection');
+    sel.innerHTML = '<option value="">Select Section</option>';
+    sections.forEach(s => { sel.innerHTML += `<option value="${s.id}">${s.name} (Sem ${s.semester})</option>`; });
+  } catch (e) {}
+}
+
+async function createExam(e) {
+  e.preventDefault();
+  const payload = {
+    name: document.getElementById('examName').value,
+    examType: document.getElementById('examType').value,
+    course: { id: parseInt(document.getElementById('examCourse').value) },
+    section: { id: parseInt(document.getElementById('examSection').value) },
+    maxMarks: parseInt(document.getElementById('examMaxMarks').value),
+    examDate: document.getElementById('examDate').value,
+    venue: document.getElementById('examVenue').value,
+    startTime: document.getElementById('examStartTime').value || null,
+    endTime: document.getElementById('examEndTime').value || null,
+    status: 'SCHEDULED'
+  };
+
+  try {
+    const res = await apiPost('/api/exams', payload);
+    if (res.ok) {
+      showToast('Exam created!', 'success');
+      document.getElementById('examForm').reset();
+      loadExams();
+    } else {
+      const err = await res.json();
+      showToast(err.message || 'Failed to create', 'error');
+    }
+  } catch (e) {
+    showToast('Network error', 'error');
+  }
+  return false;
+}
+
+init();
+</script>
+</body>
+</html>
